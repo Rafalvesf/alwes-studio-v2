@@ -89,6 +89,16 @@ textarea.input{min-height:90px;resize:vertical;}
   --color-accent-2-900:#332707;
 }
 :focus-visible{outline:2px solid var(--color-accent);outline-offset:2px;}
+@media (max-width:900px){
+  .rz-hero{grid-template-columns:1fr !important;min-height:auto !important;padding:40px 24px !important;gap:32px !important;}
+  .rz-grid2,.rz-grid2b,.rz-grid21,.rz-grid3,.rz-grid4,.rz-grid75{grid-template-columns:1fr !important;}
+  .rz-strip{flex-wrap:wrap !important;}
+  .rz-strip-card{width:140px !important;height:186px !important;margin:0 -10px !important;}
+  section[style*="64px"]{padding-left:20px !important;padding-right:20px !important;}
+}
+@media (max-width:480px){
+  .rz-strip-card{width:88px !important;height:118px !important;margin:0 -8px !important;}
+}
 </style>
 </helmet>
 <div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;">
@@ -110,7 +120,7 @@ textarea.input{min-height:90px;resize:vertical;}
 <sc-if value="{{isHome}}" hint-placeholder-val="{{true}}">
 <div>
 
-  <section style="min-height:calc(100vh - 61px);display:grid;grid-template-columns:1.1fr 1fr;align-items:center;max-width:1600px;margin:0 auto;padding:64px;box-sizing:border-box;gap:48px;">
+  <section class="rz-hero" style="min-height:calc(100vh - 61px);display:grid;grid-template-columns:1.1fr 1fr;align-items:center;max-width:1600px;margin:0 auto;padding:64px;box-sizing:border-box;gap:48px;">
     <div style="min-width:0;">
       <h1 style="font-family:var(--font-hero);font-weight:400;font-size:46px;line-height:1.2;margin:0 0 20px;max-width:14ch;">Design que comunica. Marcas que ficam.</h1>
       <div style="display:flex;gap:12px;margin-bottom:36px;">
@@ -132,7 +142,7 @@ textarea.input{min-height:90px;resize:vertical;}
     <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
       <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text);opacity:.55;font-weight:600;margin-bottom:14px;">O que fazemos</div>
       <h2 style="font-size:28px;margin:0 0 32px;max-width:22ch;">Um processo pensado pra durar, com IA onde ela ajuda de verdade</h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
+      <div class="rz-grid3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
         <div style="padding:0 32px 0 0;border-right:1px solid rgba(32,30,29,.1);">
           <i data-lucide="compass" style="width:22px;height:22px;color:var(--color-accent);margin-bottom:14px;display:block;"></i>
           <h3 style="font-size:17px;margin:0 0 8px;">Estratégia</h3>
@@ -153,12 +163,12 @@ textarea.input{min-height:90px;resize:vertical;}
   </section>
 
 
-  <section style="max-width:1600px;margin:0 auto;padding:8px 64px 0;display:flex;justify-content:center;gap:0;">
-    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(-10deg) translateY(26px);z-index:1;background-image:url('uploads/ChatGPT Image Aug 19, 2026, 11_08_48 PM.png');background-size:cover;background-position:center;box-shadow:var(--shadow-md);margin:0 -18px;"></div>
-    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(-5deg) translateY(10px);z-index:2;background-image:url('uploads/ChatGPT Image Aug 19, 2026, 11_16_19 PM.png');background-size:cover;background-position:center;box-shadow:var(--shadow-md);margin:0 -18px;"></div>
-    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:translateY(0);z-index:3;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">foto da equipe</span></div>
-    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(5deg) translateY(10px);z-index:2;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">detalhe do projeto</span></div>
-    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(10deg) translateY(26px);z-index:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">projeto entregue</span></div>
+  <section class="rz-strip" style="max-width:1600px;margin:0 auto;padding:8px 64px 0;display:flex;justify-content:center;gap:0;">
+    <div class="grayscale rz-strip-card" style="flex:none;width:210px;height:280px;transform:rotate(-10deg) translateY(26px);z-index:1;background-image:url('uploads/ChatGPT Image Aug 19, 2026, 11_08_48 PM.png');background-size:cover;background-position:center;box-shadow:var(--shadow-md);margin:0 -18px;"></div>
+    <div class="grayscale rz-strip-card" style="flex:none;width:210px;height:280px;transform:rotate(-5deg) translateY(10px);z-index:2;background-image:url('uploads/ChatGPT Image Aug 19, 2026, 11_16_19 PM.png');background-size:cover;background-position:center;box-shadow:var(--shadow-md);margin:0 -18px;"></div>
+    <div class="grayscale rz-strip-card" style="flex:none;width:210px;height:280px;transform:translateY(0);z-index:3;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">foto da equipe</span></div>
+    <div class="grayscale rz-strip-card" style="flex:none;width:210px;height:280px;transform:rotate(5deg) translateY(10px);z-index:2;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">detalhe do projeto</span></div>
+    <div class="grayscale rz-strip-card" style="flex:none;width:210px;height:280px;transform:rotate(10deg) translateY(26px);z-index:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">projeto entregue</span></div>
   </section>
 
   <section style="max-width:1600px;margin:0 auto;padding:72px 64px;">
@@ -198,7 +208,7 @@ textarea.input{min-height:90px;resize:vertical;}
   </section>
 
   <sc-if value="{{isServicosTab}}">
-  <section style="max-width:1600px;margin:0 auto;padding:0 64px;display:grid;grid-template-columns:1fr 1fr;">
+  <section class="rz-grid2" style="max-width:1600px;margin:0 auto;padding:0 64px;display:grid;grid-template-columns:1fr 1fr;">
     <div style="padding:48px 64px 48px 0;border-right:1px solid rgba(32,30,29,.1);border-bottom:1px solid rgba(32,30,29,.1);">
       <i data-lucide="layout" style="width:26px;height:26px;color:var(--color-accent);margin-bottom:16px;display:block;"></i>
       <h3 style="font-size:20px;margin:0 0 8px;">Website: design e desenvolvimento</h3>
@@ -237,7 +247,7 @@ textarea.input{min-height:90px;resize:vertical;}
     <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
       <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text);opacity:.55;font-weight:600;margin-bottom:14px;">Como funciona</div>
       <h2 style="font-size:28px;margin:0 0 32px;max-width:20ch;">Quatro etapas, sem surpresas</h2>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
+      <div class="rz-grid4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
         <div style="padding-right:24px;border-right:1px solid rgba(32,30,29,.1);">
           <div style="font-size:30px;font-weight:800;color:var(--color-accent);margin-bottom:10px;">01</div>
           <h4 style="font-size:16px;margin:0 0 6px;">Descoberta</h4>
@@ -270,7 +280,7 @@ textarea.input{min-height:90px;resize:vertical;}
       <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:10px;">01 — Website</div>
       <div style="font-size:32px;font-weight:800;margin-bottom:8px;">A partir de 790€</div>
       <p style="font-size:14px;opacity:.75;margin:0 0 24px;max-width:44ch;">A base para colocar o seu negócio online.</p>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;font-size:14px;max-width:640px;">
+      <div class="rz-grid2b" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;font-size:14px;max-width:640px;">
         <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>1–3 páginas</div>
         <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Até 3 secções por página</div>
         <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Design personalizado</div>
@@ -285,7 +295,7 @@ textarea.input{min-height:90px;resize:vertical;}
     </div>
   </section>
 
-  <section style="max-width:1600px;margin:0 auto;padding:0 64px 72px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+  <section class="rz-grid2" style="max-width:1600px;margin:0 auto;padding:0 64px 72px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
     <div style="border:1px solid rgba(32,30,29,.12);padding:44px 48px;">
       <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:14px;">02 — Personalize</div>
       <h2 style="font-size:24px;margin:0 0 14px;max-width:18ch;">O que precisa além da base?</h2>
@@ -319,7 +329,7 @@ textarea.input{min-height:90px;resize:vertical;}
     <p style="font-size:16px;opacity:.8;margin:0;max-width:52ch;">Planos de manutenção mensal, opcionais e separados do valor do website. Escolha o que faz sentido para o seu negócio — sem obrigação de aderir.</p>
   </section>
 
-  <section style="max-width:1600px;margin:0 auto;padding:0 64px 88px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+  <section class="rz-grid2" style="max-width:1600px;margin:0 auto;padding:0 64px 88px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
     <div style="border:1px solid rgba(32,30,29,.12);padding:44px 48px;display:flex;flex-direction:column;">
       <h3 style="font-size:18px;margin:0 0 6px;">Managed Website</h3>
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.55;margin-bottom:8px;">Mensal</div>
@@ -378,7 +388,7 @@ textarea.input{min-height:90px;resize:vertical;}
 
   <section style="max-width:1600px;margin:0 auto;padding:0 64px 88px;">
     <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="rz-grid3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
         <sc-for list="{{caseStudies}}" as="c" hint-placeholder-count="6">
           <div class="card" style="background:rgba(255,255,255,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow-sm);">
             <div class="grayscale" style="aspect-ratio:4/3;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);display:flex;align-items:center;justify-content:center;margin:calc(var(--space-3) * -1) calc(var(--space-3) * -1) 0;"><span style="font-family:monospace;font-size:10px;color:var(--color-text);">{{c.photoLabel}}</span></div>
@@ -405,14 +415,14 @@ textarea.input{min-height:90px;resize:vertical;}
 <sc-if value="{{isAbout}}">
 <div>
 
-  <section style="max-width:1600px;margin:0 auto;padding:80px 64px;display:grid;grid-template-columns:7fr 5fr;gap:48px;">
+  <section class="rz-grid75" style="max-width:1600px;margin:0 auto;padding:80px 64px;display:grid;grid-template-columns:7fr 5fr;gap:48px;">
     <div>
       <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:18px;">About</div>
       <h1 style="font-size:44px;margin:0 0 20px;max-width:14ch;">Eleven people, one studio.</h1>
       <p style="font-size:16px;opacity:.8;margin:0 0 16px;max-width:48ch;">Alwes Studio started in 2018 building sites for businesses that had been let down by templates and freelancers who disappeared. We're still doing that — now for a wider range of clients, with a small in-house team instead of a laptop and a deadline.</p>
       <p style="font-size:16px;opacity:.8;margin:0;max-width:48ch;">We keep projects small enough that the same three or four people are on it from kickoff to launch.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-left:1px solid rgba(32,30,29,.1);padding-left:24px;">
+    <div class="rz-grid2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-left:1px solid rgba(32,30,29,.1);padding-left:24px;">
       <div style="padding-bottom:24px;border-right:1px solid rgba(32,30,29,.1);border-bottom:1px solid rgba(32,30,29,.1);">
         <div style="font-size:32px;font-weight:800;color:var(--color-accent);">8</div>
         <div style="font-size:12px;opacity:.7;">years running</div>
@@ -437,7 +447,7 @@ textarea.input{min-height:90px;resize:vertical;}
     <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
       <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text);opacity:.55;font-weight:600;margin-bottom:14px;">The team</div>
       <h2 style="font-size:28px;margin:0 0 32px;">Eleven people, one desk row</h2>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
+      <div class="rz-grid4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
         <sc-for list="{{team}}" as="p" hint-placeholder-count="4">
           <div>
             <div class="grayscale" style="aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">headshot</span></div>
@@ -466,7 +476,7 @@ textarea.input{min-height:90px;resize:vertical;}
   <section style="max-width:1600px;margin:0 auto;padding:0 64px 96px;">
     <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:18px;">Contact</div>
     <h1 style="font-size:44px;margin:0 0 28px;max-width:14ch;">Tell us about the project.</h1>
-    <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);display:grid;grid-template-columns:7fr 5fr;gap:56px;">
+    <div class="rz-grid75" style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);display:grid;grid-template-columns:7fr 5fr;gap:56px;">
     <div>
       <form style="display:flex;flex-direction:column;gap:20px;max-width:480px;">
         <div class="field">
@@ -549,7 +559,7 @@ textarea.input{min-height:90px;resize:vertical;}
     <sc-if value="{{!showScheduling}}">
     <p style="font-size:14px;opacity:.75;margin:0 0 28px;max-width:56ch;">Comece com a base e adicione os módulos que o seu negócio precisa. Valor estimado — o orçamento final é confirmado após uma conversa connosco.</p>
 
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start;">
+    <div class="rz-grid21" style="display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start;">
       <div style="border:1px solid rgba(32,30,29,.12);padding:24px 28px;max-height:50vh;overflow-y:auto;">
         <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(32,30,29,.12);margin-bottom:14px;">
           <div style="font-size:14px;font-weight:700;">Website base</div>
@@ -588,7 +598,7 @@ textarea.input{min-height:90px;resize:vertical;}
           <image-slot id="budget-inspiration" shape="rect" radius="8" placeholder="Arraste uma imagem de referência"></image-slot>
         </div>
         <div style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.55;padding:16px 0 10px;border-top:1px solid rgba(32,30,29,.1);margin-top:8px;">Manutenção mensal</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <div class="rz-grid3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
           <sc-for list="{{maintenanceRows}}" as="p" hint-placeholder-count="3">
             <label style="{{p.cardStyle}}">
               <input type="radio" name="maintenance" checked="{{p.checked}}" onChange="{{p.select}}" style="display:none;">
