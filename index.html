@@ -244,11 +244,27 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   section{padding:0 22px;}
   .page-head{padding:48px 22px 32px;}
   .hero{grid-template-columns:1fr;padding-top:32px;}
-  .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.case-grid,.about-hero,.stat-grid,.team-grid,.contact-wrap,.budget-grid{grid-template-columns:1fr !important;}
+  .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.case-grid,.about-hero,.stat-grid,.team-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
   .grid-3>div,.svc-grid>.svc-cell,.steps>div{border:none !important;padding:20px 0 !important;border-bottom:1px solid var(--color-divider) !important;}
   .cta-band,.quote,footer{padding:44px 22px;}
   .contact-side{border-left:none;border-top:1px solid var(--color-divider);padding-left:0;padding-top:24px;}
-  .strip-card{width:120px;height:160px;}
+  .strip-card{width:120px;height:160px;margin:0 -10px;}
+  .panel,.price-card{padding:32px 24px;}
+  .backdrop{padding:0;}
+  .dialog{max-width:none;min-height:100vh;padding:28px 20px;border:none;}
+  .contact-wrap{padding:28px 24px;}
+  .topnav{padding:14px 16px;gap:12px;}
+  .stat-grid{border-left:none;padding-left:0;}
+  .stat:nth-child(odd){border-right:none;padding-right:0;}
+  .stat{border-bottom:1px solid var(--color-divider);padding-bottom:16px;padding-top:16px;}
+  .contact-map{display:none;}
+}
+@media (max-width:480px){
+  .hero-ctas{flex-direction:column;align-items:stretch;}
+  .strip-card{width:78px;height:104px;margin:0 -8px;}
+  .cta-band-inner{flex-direction:column;align-items:flex-start;}
+  .price-check-grid{gap:10px;}
+  .lang-row{flex-direction:column;align-items:flex-start;gap:8px;}
 }
 </style>
 
@@ -487,8 +503,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <!-- PORTFOLIO -->
     <div class="page" data-page="portfolio" hidden>
       <div class="page-head">
-        <div class="eyebrow">Selected work</div>
-        <h1>Six businesses, six different problems.</h1>
+        <div class="eyebrow">Trabalho selecionado</div>
+        <h1>Seis negócios, seis problemas diferentes.</h1>
       </div>
       <section style="padding-bottom:88px;">
         <div class="panel">
@@ -503,22 +519,22 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       <section class="about-hero">
         <div>
           <div class="eyebrow">About</div>
-          <h1>Eleven people, one studio.</h1>
-          <p>Alwes Studio started in 2018 building sites for businesses that had been let down by templates and freelancers who disappeared. We're still doing that — now for a wider range of clients, with a small in-house team instead of a laptop and a deadline.</p>
-          <p>We keep projects small enough that the same three or four people are on it from kickoff to launch.</p>
+          <h1>Onze pessoas, um estúdio.</h1>
+          <p>A Alwes Studio começou em 2018 a construir sites para negócios que tinham sido mal servidos por templates e freelancers que desapareciam. Continuamos a fazer isso — agora para um leque mais alargado de clientes, com uma pequena equipa interna em vez de um portátil e um prazo.</p>
+          <p>Mantemos os projetos pequenos o suficiente para que as mesmas três ou quatro pessoas estejam neles do início ao lançamento.</p>
         </div>
         <div class="stat-grid">
-          <div class="stat"><div class="stat-num">8</div><div class="stat-label">years running</div></div>
-          <div class="stat"><div class="stat-num">130+</div><div class="stat-label">sites shipped</div></div>
-          <div class="stat"><div class="stat-num">11</div><div class="stat-label">on the team</div></div>
-          <div class="stat"><div class="stat-num">92%</div><div class="stat-label">clients who return</div></div>
+          <div class="stat"><div class="stat-num">8</div><div class="stat-label">anos de atividade</div></div>
+          <div class="stat"><div class="stat-num">130+</div><div class="stat-label">sites entregues</div></div>
+          <div class="stat"><div class="stat-num">11</div><div class="stat-label">na equipa</div></div>
+          <div class="stat"><div class="stat-num">92%</div><div class="stat-label">clientes que voltam</div></div>
         </div>
       </section>
 
       <section style="padding-top:40px;padding-bottom:88px;">
         <div class="panel">
-          <div class="eyebrow" style="color:var(--color-text-55);">The team</div>
-          <h2 style="font-size:28px;margin-bottom:32px;">Eleven people, one desk row</h2>
+          <div class="eyebrow" style="color:var(--color-text-55);">A equipa</div>
+          <h2 style="font-size:28px;margin-bottom:32px;">Onze pessoas, uma fila de secretárias</h2>
           <div class="team-grid" id="teamGrid"></div>
         </div>
       </section>
@@ -528,27 +544,27 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <!-- CONTACT -->
     <div class="page" data-page="contact" hidden>
       <section style="padding-top:72px;padding-bottom:96px;">
-        <div class="eyebrow">Contact</div>
-        <h1 style="font-size:clamp(28px,4vw,44px);max-width:14ch;margin-bottom:28px;">Tell us about the project.</h1>
+        <div class="eyebrow">Contacto</div>
+        <h1 style="font-size:clamp(28px,4vw,44px);max-width:14ch;margin-bottom:28px;">Conte-nos sobre o projeto.</h1>
         <div class="panel contact-wrap">
           <form class="contact-form" id="contactForm">
-            <div class="field"><label>Name</label><input type="text" class="input" required></div>
+            <div class="field"><label>Nome</label><input type="text" class="input" required></div>
             <div class="field"><label>Email</label><input type="email" class="input" required></div>
-            <div class="field"><label>Budget</label>
+            <div class="field"><label>Orçamento</label>
               <select class="input">
-                <option>Under $5,000</option>
-                <option>$5,000 – $15,000</option>
-                <option>$15,000+</option>
+                <option>Até 5.000€</option>
+                <option>5.000€ – 15.000€</option>
+                <option>15.000€+</option>
               </select>
             </div>
-            <div class="field"><label>Project details</label><textarea rows="4" class="input"></textarea></div>
-            <button type="submit" class="btn btn-dark" style="align-self:flex-start;">Send it over</button>
+            <div class="field"><label>Detalhes do projeto</label><textarea rows="4" class="input"></textarea></div>
+            <button type="submit" class="btn btn-dark" style="align-self:flex-start;">Enviar</button>
           </form>
           <div class="contact-side">
             <div class="contact-row">ICON_MAIL<div><div class="clabel">Email</div><div style="font-size:14px;">hello@alwesstudio.com</div></div></div>
-            <div class="contact-row">ICON_PHONE<div><div class="clabel">Phone</div><div style="font-size:14px;">+1 (555) 010-2938</div></div></div>
-            <div class="contact-row">ICON_PIN<div><div class="clabel">Studio</div><div style="font-size:14px;">214 Fulton St, Unit 4<br>Brooklyn, NY 11201</div></div></div>
-            <div class="contact-map"><span>map / location embed</span></div>
+            <div class="contact-row">ICON_PHONE<div><div class="clabel">Telefone</div><div style="font-size:14px;">+1 (555) 010-2938</div></div></div>
+            <div class="contact-row">ICON_PIN<div><div class="clabel">Estúdio</div><div style="font-size:14px;">214 Fulton St, Unit 4<br>Brooklyn, NY 11201</div></div></div>
+            <div class="contact-map"><span>mapa / localização</span></div>
           </div>
         </div>
       </section>
@@ -662,7 +678,7 @@ FONTS_JS_PLACEHOLDER_NONE
   swap(document.body, iconMap);
 
   var TEMPLATES = [
-    ['home','Home'], ['services','Services'], ['portfolio','Portfolio'], ['about','About / Team'], ['contact','Contact']
+    ['home','Início'], ['services','Serviços'], ['portfolio','Portefólio'], ['about','Sobre / Equipa'], ['contact','Contacto']
   ];
   var navTabs = document.getElementById('navTabs');
   TEMPLATES.forEach(function(t){
@@ -694,31 +710,31 @@ FONTS_JS_PLACEHOLDER_NONE
   });
 
   var CASES = [
-    { tag: 'E-commerce', name: 'Harlow & Finch', result: 'Checkout conversion up 34% after rebuild.' },
-    { tag: 'Logistics', name: 'Bramwell Logistics', result: 'Quote requests up 3x with a clearer site.' },
-    { tag: 'Architecture', name: 'Ada Studio', result: 'A portfolio that finally matches the work.' },
-    { tag: 'Hospitality', name: 'Kestrel Coffee', result: 'Online orders became 20% of revenue.' },
-    { tag: 'Professional services', name: 'Northbank Legal', result: 'New-client inquiries doubled in 6 months.' },
-    { tag: 'Health', name: 'Solace Wellness', result: 'Booking flow cut drop-off in half.' }
+    { tag: 'E-commerce', name: 'Harlow & Finch', result: 'Conversão no checkout subiu 34% após a reconstrução.' },
+    { tag: 'Logística', name: 'Bramwell Logistics', result: 'Pedidos de orçamento triplicaram com um site mais claro.' },
+    { tag: 'Arquitetura', name: 'Ada Studio', result: 'Um portefólio que finalmente está à altura do trabalho.' },
+    { tag: 'Hotelaria', name: 'Kestrel Coffee', result: 'Os pedidos online passaram a representar 20% da receita.' },
+    { tag: 'Serviços profissionais', name: 'Northbank Legal', result: 'Os pedidos de novos clientes duplicaram em 6 meses.' },
+    { tag: 'Saúde', name: 'Solace Wellness', result: 'O fluxo de marcação reduziu a desistência para metade.' }
   ];
   var caseGrid = document.getElementById('caseGrid');
   CASES.forEach(function(c){
     var d = document.createElement('div');
     d.className = 'case-card';
-    d.innerHTML = '<div class="case-photo"><span>case study photo</span></div><div class="case-tag">'+c.tag+'</div><div class="case-name">'+c.name+'</div><p class="case-result">'+c.result+'</p>';
+    d.innerHTML = '<div class="case-photo"><span>foto do estudo de caso</span></div><div class="case-tag">'+c.tag+'</div><div class="case-name">'+c.name+'</div><p class="case-result">'+c.result+'</p>';
     caseGrid.appendChild(d);
   });
 
   var TEAM = [
-    { name: 'Dana Okafor', role: 'Founder / Strategy' },
-    { name: 'Marcus Ryel', role: 'Design Lead' },
-    { name: 'Ines Vogt', role: 'Engineering' },
-    { name: 'Tobias Lund', role: 'Project Management' }
+    { name: 'Dana Okafor', role: 'Fundadora / Estratégia' },
+    { name: 'Marcus Ryel', role: 'Direção de Design' },
+    { name: 'Ines Vogt', role: 'Engenharia' },
+    { name: 'Tobias Lund', role: 'Gestão de Projeto' }
   ];
   var teamGrid = document.getElementById('teamGrid');
   TEAM.forEach(function(p){
     var d = document.createElement('div');
-    d.innerHTML = '<div class="team-avatar"><span>headshot</span></div><h4 class="team-name">'+p.name+'</h4><div class="team-role">'+p.role+'</div>';
+    d.innerHTML = '<div class="team-avatar"><span>foto</span></div><h4 class="team-name">'+p.name+'</h4><div class="team-role">'+p.role+'</div>';
     teamGrid.appendChild(d);
   });
 
