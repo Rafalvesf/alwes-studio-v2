@@ -628,7 +628,6 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 </div>
 
 <script>
-FONTS_JS_PLACEHOLDER_NONE
 (function(){
   var ICONS = {
     compass: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
@@ -646,14 +645,11 @@ FONTS_JS_PLACEHOLDER_NONE
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'
   };
 
-  var html = document.documentElement.innerHTML;
-
   var FOOTER = '<footer><div class="fbrand">Alwes Studio</div><div class="flinks"><a href="#">hello@alwesstudio.com</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div><div class="fcopy">© 2026 Alwes Studio</div></footer>';
 
   document.querySelectorAll('.viewport .page').forEach(function(pageEl){
     pageEl.innerHTML = pageEl.innerHTML.replace(/FOOTER/g, FOOTER);
   });
-  document.querySelectorAll('.feat-icon,.svc-cell,.about-hero,.contact-row,.dialog-close,.cta-band,.price-check,.maint-list').forEach(function(){});
 
   function swap(el, map){
     Object.keys(map).forEach(function(k){
@@ -675,7 +671,8 @@ FONTS_JS_PLACEHOLDER_NONE
     'ICON_PIN': ICONS.pin,
     'ICON_X': ICONS.x
   };
-  swap(document.body, iconMap);
+  swap(document.querySelector('.app'), iconMap);
+  swap(document.getElementById('budgetBackdrop'), iconMap);
 
   var TEMPLATES = [
     ['home','Início'], ['services','Serviços'], ['portfolio','Portefólio'], ['about','Sobre / Equipa'], ['contact','Contacto']
