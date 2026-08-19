@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<script src="_ds/modernist-bc0e42a4-3759-4787-97ea-2a30d0b49e7e/_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="./image-slot.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Newsreader:ital@0;1&display=swap');
+@font-face{font-family:'Lostar';src:url('uploads/Fonts/Lostar.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'Eternalo';src:url('uploads/Eternalo.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'LEMON MILK Bold';src:url('uploads/LEMONMILK-Bold.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'LEMON MILK Medium';src:url('uploads/LEMONMILK-Medium.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'LEMON MILK Light';src:url('uploads/LEMONMILK-Light.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'Arial Narrow 7';src:url('uploads/Fonts/arial_narrow_7.ttf') format('truetype');font-display:swap;}
+:root{
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-accent: #ec3013;
+  --color-accent-2: #e15b47;
+  --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+  --color-neutral-100: #f8f4f4; --color-neutral-200: #eae7e7; --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6; --color-neutral-500: #9b9797; --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d; --color-neutral-800: #444141; --color-neutral-900: #2d2b2b;
+  --font-heading: 'LEMON MILK Medium', "Archivo", system-ui, sans-serif;
+  --font-hero: 'LEMON MILK Bold', "Archivo", system-ui, sans-serif;
+  --font-heading-weight: 800;
+  --font-body: 'LEMON MILK Light', Arial, Helvetica, sans-serif;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 32px;
+  --radius-sm: 0px; --radius-md: 0px; --radius-lg: 0px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+}
+body{background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);margin:0;font-size:15px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased;}
+*,*::before,*::after{box-sizing:border-box;}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:var(--font-heading-weight);line-height:1.12;letter-spacing:-0.015em;margin:0 0 var(--space-2);}
+p{margin:0 0 var(--space-3);}
+a{color:var(--color-accent);text-underline-offset:3px;text-decoration:none;}
+img{display:block;max-width:100%;}
+.grayscale{filter:grayscale(1) contrast(1.08);}
+.hr{height:2px;border:0;margin:var(--space-4) 0;background:var(--color-divider);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;text-decoration:none;font-family:var(--font-body);font-weight:500;font-size:14px;line-height:1.2;color:var(--color-text);background:transparent;border:1px solid transparent;padding:10px 20px;border-radius:var(--radius-md);}
+.btn svg{display:block;}
+.btn-primary{background:var(--color-accent);color:var(--color-bg);}
+.btn-primary:hover{background:var(--color-accent-600,#dd2b0f);}
+.btn-secondary{border-color:var(--color-divider);}
+.btn-secondary:hover{background:color-mix(in srgb, var(--color-text) 7%, transparent);}
+.field>label{display:block;font-size:12px;margin-bottom:5px;color:color-mix(in srgb, var(--color-text) 70%, transparent);}
+.input{width:100%;min-height:36px;padding:6px 10px;font:inherit;font-size:14px;color:var(--color-text);background:var(--color-surface);border:1px solid var(--color-divider);border-radius:var(--radius-md);}
+textarea.input{min-height:90px;resize:vertical;}
+.card{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-3);border-radius:var(--radius-md);background:var(--color-surface);}
+.card-kicker{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);}
+.card-title{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:17px;line-height:1.2;}
+.card-body{margin:0;font-size:13px;opacity:.8;flex:1;}
+.elev-sm{box-shadow:var(--shadow-sm);}
+.elev-md{box-shadow:var(--shadow-md);}
+.elev-lg{box-shadow:var(--shadow-lg);}
+.nav{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-3) var(--space-4);border-bottom:2px solid var(--color-divider);}
+.nav-brand{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:18px;margin-right:auto;}
+.nav a{color:inherit;text-decoration:none;font-size:14px;}
+.nav a:hover,.nav a[aria-current='page']{color:var(--color-accent);}
+:root{
+  --color-accent:#e2a300;
+  --color-accent-100:#fff8e0;
+  --color-accent-200:#ffedb3;
+  --color-accent-300:#ffdd7a;
+  --color-accent-400:#f7c948;
+  --color-accent-500:#e2a300;
+  --color-accent-600:#b98300;
+  --color-accent-700:#8f6600;
+  --color-accent-800:#664900;
+  --color-accent-900:#3d2c00;
+  --color-accent-2-100:#fff8e0;
+  --color-accent-2-200:#ffedb3;
+  --color-accent-2-300:#ffdd7a;
+  --color-accent-2-400:#f7c948;
+  --color-accent-2-500:#c99a1f;
+  --color-accent-2-600:#a37e19;
+  --color-accent-2-700:#7d6113;
+  --color-accent-2-800:#57430d;
+  --color-accent-2-900:#332707;
+}
+:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px;}
+</style>
+</helmet>
+<div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;">
+
+<div style="flex:none;display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--color-bg);position:relative;z-index:20;">
+  <div style="display:flex;align-items:center;gap:10px;flex:none;">
+    <div style="font-family:var(--font-heading);font-weight:400;font-size:17px;letter-spacing:.01em;white-space:nowrap;">Alwes Studio</div>
+  </div>
+  <nav style="display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;justify-content:center;">
+    <sc-for list="{{templates}}" as="t" hint-placeholder-count="6">
+      <button onClick="{{t.select}}" style="{{t.navStyle}}">{{t.label}}</button>
+    </sc-for>
+  </nav>
+  <a href="#" onClick="{{openBudget}}" class="btn btn-primary" style="flex:none;white-space:nowrap;padding:8px 14px;font-size:13px;border-radius:999px;background:var(--color-text);color:var(--color-bg);">Falar connosco</a>
+</div>
+
+<div style="flex:1;overflow-y:auto;background:var(--color-bg);position:relative;">
+
+<sc-if value="{{isHome}}" hint-placeholder-val="{{true}}">
+<div>
+
+  <section style="min-height:calc(100vh - 61px);display:grid;grid-template-columns:1.1fr 1fr;align-items:center;max-width:1600px;margin:0 auto;padding:64px;box-sizing:border-box;gap:48px;">
+    <div style="min-width:0;">
+      <h1 style="font-family:var(--font-hero);font-weight:400;font-size:46px;line-height:1.2;margin:0 0 20px;max-width:14ch;">Design que comunica. Marcas que ficam.</h1>
+      <div style="display:flex;gap:12px;margin-bottom:36px;">
+        <a href="#" class="btn btn-primary" style="border-radius:999px;background:var(--color-text);color:var(--color-bg);">Começar um projeto</a>
+        <a href="#" class="btn btn-secondary" style="border-radius:999px;">Ver nosso trabalho</a>
+      </div>
+      <div style="font-size:13px;line-height:1.7;opacity:.75;border-top:1px solid rgba(32,30,29,.1);padding-top:20px;max-width:60ch;">
+        <div style="font-family:'Lostar',var(--font-heading);font-weight:400;font-size:16px;color:var(--color-text);opacity:1;margin-bottom:10px;">Alwes Studio</div>
+        Todo projeto começa com a mesma pergunta: para que esse site existe, de verdade. O resto — páginas, funcionalidades, design — vem depois da resposta.
+      </div>
+    </div>
+    <div style="width:100%;overflow:visible;">
+      <img src="uploads/ChatGPT Image Aug 19, 2026, 10_57_36 PM-dfd177d0.png" alt="Mockups de websites" style="width:160%;max-width:none;height:auto;display:block;margin-left:-30%;margin-top:-40px;">
+    </div>
+  </section>
+
+
+  <section style="max-width:1600px;margin:0 auto;padding:40px 64px 72px;">
+    <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text);opacity:.55;font-weight:600;margin-bottom:14px;">O que fazemos</div>
+      <h2 style="font-size:28px;margin:0 0 32px;max-width:22ch;">Um processo pensado pra durar, com IA onde ela ajuda de verdade</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
+        <div style="padding:0 32px 0 0;border-right:1px solid rgba(32,30,29,.1);">
+          <i data-lucide="compass" style="width:22px;height:22px;color:var(--color-accent);margin-bottom:14px;display:block;"></i>
+          <h3 style="font-size:17px;margin:0 0 8px;">Estratégia</h3>
+          <p style="font-size:14px;opacity:.75;margin:0;">Estrutura, conteúdo e objetivos definidos antes de qualquer pixel — com IA acelerando a pesquisa inicial.</p>
+        </div>
+        <div style="padding:0 32px;border-right:1px solid rgba(32,30,29,.1);">
+          <i data-lucide="palette" style="width:22px;height:22px;color:var(--color-accent);margin-bottom:14px;display:block;"></i>
+          <h3 style="font-size:17px;margin:0 0 8px;">Design</h3>
+          <p style="font-size:14px;opacity:.75;margin:0;">Layouts construídos sobre uma grade real, com tipografia que carrega a marca.</p>
+        </div>
+        <div style="padding:0 0 0 32px;">
+          <i data-lucide="code-2" style="width:22px;height:22px;color:var(--color-accent);margin-bottom:14px;display:block;"></i>
+          <h3 style="font-size:17px;margin:0 0 8px;">Construção</h3>
+          <p style="font-size:14px;opacity:.75;margin:0;">Rápido e fácil de manter — e, quando faz sentido, com agentes de IA embutidos no próprio site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section style="max-width:1600px;margin:0 auto;padding:8px 64px 0;display:flex;justify-content:center;gap:0;">
+    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(-10deg) translateY(26px);z-index:1;background-image:url('uploads/ChatGPT Image Aug 19, 2026, 11_08_48 PM.png');background-size:cover;background-position:center;box-shadow:var(--shadow-md);margin:0 -18px;"></div>
+    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(-5deg) translateY(10px);z-index:2;background-image:url('uploads/ChatGPT Image Aug 19, 2026, 11_16_19 PM.png');background-size:cover;background-position:center;box-shadow:var(--shadow-md);margin:0 -18px;"></div>
+    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:translateY(0);z-index:3;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">foto da equipe</span></div>
+    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(5deg) translateY(10px);z-index:2;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">detalhe do projeto</span></div>
+    <div class="grayscale" style="flex:none;width:210px;height:280px;transform:rotate(10deg) translateY(26px);z-index:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;margin:0 -18px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">projeto entregue</span></div>
+  </section>
+
+  <section style="max-width:1600px;margin:0 auto;padding:72px 64px;">
+    <p style="font-size:28px;line-height:1.35;font-weight:600;max-width:32ch;margin:0 0 20px;">"Fizeram mais perguntas do que qualquer agência com quem já falamos. O site que entregaram parece a nossa empresa de verdade."</p>
+    <div style="font-size:13px;opacity:.7;">Marina Alves — Fundadora, Aurora Bem-Estar</div>
+  </section>
+
+  <section style="background:var(--color-accent);color:var(--color-bg);padding:80px 64px;">
+    <div style="max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <h2 style="font-size:34px;margin:0;color:var(--color-bg);max-width:20ch;">Pronto para transformar o seu site?</h2>
+      <a href="#" class="btn" style="background:var(--color-bg);color:var(--color-accent-700);flex:none;border-radius:999px;">Começar um projeto <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+    </div>
+  </section>
+  <footer style="border-top:1px solid rgba(32,30,29,.1);padding:48px 64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div style="font-family:var(--font-heading);font-size:15px;">Alwes Studio</div>
+    <div style="display:flex;gap:24px;font-size:13px;opacity:.7;">
+      <a href="#">hello@alwesstudio.com</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div style="font-size:12px;opacity:.5;">© 2026 Alwes Studio</div>
+  </footer>
+</div>
+</sc-if>
+
+<sc-if value="{{isServices}}">
+<div>
+
+  <section style="max-width:1600px;margin:0 auto;padding:80px 64px 56px;">
+    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:18px;">Serviços · Preços</div>
+    <h1 style="font-size:48px;margin:0 0 16px;max-width:16ch;">Cinco formas de ajudar.</h1>
+    <p style="font-size:16px;max-width:52ch;opacity:.8;margin:0 0 32px;">A maioria dos projetos combina dois ou três destes serviços. Nenhum é vendido como pacote fechado — cada um é definido conforme o que o site realmente precisa.</p>
+    <div style="display:inline-flex;border:1px solid rgba(32,30,29,.15);border-radius:999px;padding:4px;gap:2px;">
+      <button onClick="{{selectServicosTab}}" style="{{servicosTabStyle}}">Serviços</button>
+      <button onClick="{{selectPrecosTab}}" style="{{precosTabStyle}}">Preços</button>
+    </div>
+  </section>
+
+  <sc-if value="{{isServicosTab}}">
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px;display:grid;grid-template-columns:1fr 1fr;">
+    <div style="padding:48px 64px 48px 0;border-right:1px solid rgba(32,30,29,.1);border-bottom:1px solid rgba(32,30,29,.1);">
+      <i data-lucide="layout" style="width:26px;height:26px;color:var(--color-accent);margin-bottom:16px;display:block;"></i>
+      <h3 style="font-size:20px;margin:0 0 8px;">Website: design e desenvolvimento</h3>
+      <p style="font-size:14px;opacity:.75;margin:0 0 14px;max-width:40ch;">Um site novo do zero — estrutura, design, textos e uma construção que a sua equipa consegue manter.</p>
+      <div style="font-size:12px;color:var(--color-accent-700);font-weight:600;">A partir de 790€</div>
+    </div>
+    <div style="padding:48px 0 48px 64px;border-bottom:1px solid rgba(32,30,29,.1);">
+      <i data-lucide="palette" style="width:26px;height:26px;color:var(--color-accent);margin-bottom:16px;display:block;"></i>
+      <h3 style="font-size:20px;margin:0 0 8px;">Marca e identidade</h3>
+      <p style="font-size:14px;opacity:.75;margin:0 0 14px;max-width:40ch;">Logótipo, tipografia, cor e um conjunto de guidelines — construído para se manter coerente no site e além dele.</p>
+      <div style="font-size:12px;color:var(--color-accent-700);font-weight:600;">A partir de 750€</div>
+    </div>
+    <div style="padding:48px 64px 48px 0;border-right:1px solid rgba(32,30,29,.1);border-bottom:1px solid rgba(32,30,29,.1);">
+      <i data-lucide="shopping-cart" style="width:26px;height:26px;color:var(--color-accent);margin-bottom:16px;display:block;"></i>
+      <h3 style="font-size:20px;margin:0 0 8px;">E-commerce</h3>
+      <p style="font-size:14px;opacity:.75;margin:0 0 14px;max-width:40ch;">Catálogo de produtos, checkout e inventário configurados para vender de verdade, não só mostrar.</p>
+      <div style="font-size:12px;color:var(--color-accent-700);font-weight:600;">A partir de 1.200€</div>
+    </div>
+    <div style="padding:48px 0 48px 64px;border-bottom:1px solid rgba(32,30,29,.1);">
+      <i data-lucide="life-buoy" style="width:26px;height:26px;color:var(--color-accent);margin-bottom:16px;display:block;"></i>
+      <h3 style="font-size:20px;margin:0 0 8px;">Manutenção contínua</h3>
+      <p style="font-size:14px;opacity:.75;margin:0 0 14px;max-width:40ch;">Plano mensal que cobre atualizações, hosting, backups e pequenas alterações à medida que surgem.</p>
+      <div style="font-size:12px;color:var(--color-accent-700);font-weight:600;">A partir de 79€/mês</div>
+    </div>
+    <div style="padding:48px 64px 56px 0;border-right:1px solid rgba(32,30,29,.1);">
+      <i data-lucide="search" style="width:26px;height:26px;color:var(--color-accent);margin-bottom:16px;display:block;"></i>
+      <h3 style="font-size:20px;margin:0 0 8px;">SEO e conteúdo</h3>
+      <p style="font-size:14px;opacity:.75;margin:0 0 14px;max-width:40ch;">SEO técnico, estrutura de páginas e um plano de conteúdo que faz o site ser encontrado.</p>
+      <div style="font-size:12px;color:var(--color-accent-700);font-weight:600;">A partir de 350€</div>
+    </div>
+    <div></div>
+  </section>
+
+
+  <section style="max-width:1600px;margin:0 auto;padding:40px 64px 88px;">
+    <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text);opacity:.55;font-weight:600;margin-bottom:14px;">Como funciona</div>
+      <h2 style="font-size:28px;margin:0 0 32px;max-width:20ch;">Quatro etapas, sem surpresas</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
+        <div style="padding-right:24px;border-right:1px solid rgba(32,30,29,.1);">
+          <div style="font-size:30px;font-weight:800;color:var(--color-accent);margin-bottom:10px;">01</div>
+          <h4 style="font-size:16px;margin:0 0 6px;">Descoberta</h4>
+          <p style="font-size:13px;opacity:.7;margin:0;">Duas semanas. Objetivos, público e auditoria de conteúdo.</p>
+        </div>
+        <div style="padding:0 24px;border-right:1px solid rgba(32,30,29,.1);">
+          <div style="font-size:30px;font-weight:800;color:var(--color-accent);margin-bottom:10px;">02</div>
+          <h4 style="font-size:16px;margin:0 0 6px;">Design</h4>
+          <p style="font-size:13px;opacity:.7;margin:0;">Duas rondas de revisão. Sem surpresas no lançamento.</p>
+        </div>
+        <div style="padding:0 24px;border-right:1px solid rgba(32,30,29,.1);">
+          <div style="font-size:30px;font-weight:800;color:var(--color-accent);margin-bottom:10px;">03</div>
+          <h4 style="font-size:16px;margin:0 0 6px;">Construção</h4>
+          <p style="font-size:13px;opacity:.7;margin:0;">Em ambiente de testes para validar antes do lançamento.</p>
+        </div>
+        <div style="padding-left:24px;">
+          <div style="font-size:30px;font-weight:800;color:var(--color-accent);margin-bottom:10px;">04</div>
+          <h4 style="font-size:16px;margin:0 0 6px;">Lançamento</h4>
+          <p style="font-size:13px;opacity:.7;margin:0;">Documentação de handoff e duas semanas de suporte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </sc-if>
+
+  <sc-if value="{{isPrecosTab}}">
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px 72px;">
+    <div style="border:1px solid rgba(32,30,29,.12);padding:44px 48px;background:var(--color-surface);">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:10px;">01 — Website</div>
+      <div style="font-size:32px;font-weight:800;margin-bottom:8px;">A partir de 790€</div>
+      <p style="font-size:14px;opacity:.75;margin:0 0 24px;max-width:44ch;">A base para colocar o seu negócio online.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;font-size:14px;max-width:640px;">
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>1–3 páginas</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Até 3 secções por página</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Design personalizado</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Mobile responsive</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>SEO base</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Analytics</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Formulário de contacto</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Links para redes sociais</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Alterações incluídas</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Publicação</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px 72px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div style="border:1px solid rgba(32,30,29,.12);padding:44px 48px;">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:14px;">02 — Personalize</div>
+      <h2 style="font-size:24px;margin:0 0 14px;max-width:18ch;">O que precisa além da base?</h2>
+      <p style="font-size:14px;opacity:.75;margin:0 0 12px;">O seu negócio não precisa de funcionalidades que não vai utilizar.</p>
+      <p style="font-size:14px;opacity:.75;margin:0 0 20px;">Escolha apenas o que faz sentido para o seu projeto e nós adicionamos ao website.</p>
+      <div style="font-size:13px;font-weight:600;margin-bottom:10px;">Booking · E-commerce · CRM · Landing Pages · SEO avançado · Automações · Multilingue · Pagamentos · ...</div>
+      <div style="font-size:12px;opacity:.6;">Cada módulo tem o seu próprio custo — veja a lista completa e simule o seu orçamento clicando em <a href="#" onClick="{{openBudget}}">Falar connosco</a>.</div>
+    </div>
+    <div style="border:1px solid rgba(32,30,29,.12);padding:44px 48px;background:var(--color-surface);">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:14px;">03 — À sua medida</div>
+      <h2 style="font-size:24px;margin:0 0 14px;max-width:18ch;">Construa apenas o que precisa.</h2>
+      <p style="font-size:14px;opacity:.75;margin:0 0 24px;max-width:44ch;">Começamos com a base de 790€ e adicionamos apenas as funcionalidades que o seu negócio necessita.</p>
+      <div style="display:flex;align-items:center;gap:16px;font-size:13px;font-weight:600;flex-wrap:wrap;margin-bottom:16px;">
+        <div style="border:1px solid rgba(32,30,29,.15);padding:12px 18px;">Website Base 790€</div>
+        <span style="opacity:.5;">+</span>
+        <div style="border:1px solid rgba(32,30,29,.15);padding:12px 18px;">Módulos selecionados</div>
+        <span style="opacity:.5;">=</span>
+        <div style="border:1px solid var(--color-text);padding:12px 18px;">Projeto final</div>
+      </div>
+      <div style="font-size:12px;opacity:.65;line-height:1.6;">Sem funcionalidades desnecessárias.<br>Sem pacotes que não se adaptam ao seu negócio.</div>
+    </div>
+  </section>
+
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px 88px;">
+    <a href="#" onClick="{{openBudget}}" class="btn btn-primary" style="border-radius:999px;background:var(--color-text);color:var(--color-bg);">Falar connosco</a>
+  </section>
+
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px 56px;">
+    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:18px;">Manutenção</div>
+    <h2 style="font-family:var(--font-heading);font-weight:400;font-size:36px;line-height:1.2;margin:0 0 12px;max-width:16ch;">Depois do website, continuamos consigo.</h2>
+    <p style="font-size:16px;opacity:.8;margin:0;max-width:52ch;">Planos de manutenção mensal, opcionais e separados do valor do website. Escolha o que faz sentido para o seu negócio — sem obrigação de aderir.</p>
+  </section>
+
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px 88px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div style="border:1px solid rgba(32,30,29,.12);padding:44px 48px;display:flex;flex-direction:column;">
+      <h3 style="font-size:18px;margin:0 0 6px;">Managed Website</h3>
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.55;margin-bottom:8px;">Mensal</div>
+      <div style="font-size:30px;font-weight:800;margin-bottom:10px;">79€/mês</div>
+      <p style="font-size:14px;opacity:.75;margin:0 0 6px;max-width:44ch;">O essencial para manter o website seguro, atualizado e online.</p>
+      <p style="font-size:12px;opacity:.55;margin:0 0 24px;">Plano opcional, independente do valor do website.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;flex:1;">
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Hosting</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>SSL</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Backups</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Atualizações técnicas</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Monitorização</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Pequenas alterações incluídas</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Suporte</div>
+      </div>
+      <a href="#" onClick="{{openBudget}}" class="btn btn-secondary" style="margin-top:24px;border-radius:999px;align-self:flex-start;">Falar connosco</a>
+    </div>
+    <div style="border:1px solid rgba(32,30,29,.12);padding:44px 48px;background:var(--color-surface);display:flex;flex-direction:column;">
+      <h3 style="font-size:18px;margin:0 0 6px;">Managed Plus</h3>
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.55;margin-bottom:8px;">Mensal</div>
+      <div style="font-size:30px;font-weight:800;margin-bottom:10px;">149€/mês</div>
+      <p style="font-size:14px;opacity:.75;margin:0 0 6px;max-width:44ch;">Mais acompanhamento para websites que estão em constante evolução.</p>
+      <p style="font-size:12px;opacity:.55;margin:0 0 24px;">Plano opcional, independente do valor do website.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;flex:1;">
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Tudo do Managed Website</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Alterações regulares incluídas</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Monitorização avançada</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Otimização de performance</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>SEO básico contínuo</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><i data-lucide="check" style="width:16px;height:16px;color:var(--color-accent);flex:none;margin-top:1px;"></i>Melhorias contínuas</div>
+      </div>
+      <a href="#" onClick="{{openBudget}}" class="btn btn-primary" style="margin-top:24px;border-radius:999px;background:var(--color-text);color:var(--color-bg);align-self:flex-start;">Falar connosco</a>
+    </div>
+  </section>
+  </sc-if>
+
+  <footer style="border-top:1px solid rgba(32,30,29,.1);padding:48px 64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div style="font-family:var(--font-heading);font-size:15px;">Alwes Studio</div>
+    <div style="display:flex;gap:24px;font-size:13px;opacity:.7;">
+      <a href="#">hello@alwesstudio.com</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div style="font-size:12px;opacity:.5;">© 2026 Alwes Studio</div>
+  </footer>
+</div>
+</sc-if>
+
+<sc-if value="{{isPortfolio}}">
+<div>
+
+  <section style="max-width:1600px;margin:0 auto;padding:80px 64px 56px;">
+    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:18px;">Selected work</div>
+    <h1 style="font-size:48px;margin:0;max-width:18ch;">Six businesses, six different problems.</h1>
+  </section>
+
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px 88px;">
+    <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <sc-for list="{{caseStudies}}" as="c" hint-placeholder-count="6">
+          <div class="card" style="background:rgba(255,255,255,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow-sm);">
+            <div class="grayscale" style="aspect-ratio:4/3;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);display:flex;align-items:center;justify-content:center;margin:calc(var(--space-3) * -1) calc(var(--space-3) * -1) 0;"><span style="font-family:monospace;font-size:10px;color:var(--color-text);">{{c.photoLabel}}</span></div>
+            <div class="card-kicker">{{c.tag}}</div>
+            <div class="card-title">{{c.name}}</div>
+            <p class="card-body">{{c.result}}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <footer style="border-top:1px solid rgba(32,30,29,.1);padding:48px 64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div style="font-family:var(--font-heading);font-size:15px;">Alwes Studio</div>
+    <div style="display:flex;gap:24px;font-size:13px;opacity:.7;">
+      <a href="#">hello@alwesstudio.com</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div style="font-size:12px;opacity:.5;">© 2026 Alwes Studio</div>
+  </footer>
+</div>
+</sc-if>
+
+<sc-if value="{{isAbout}}">
+<div>
+
+  <section style="max-width:1600px;margin:0 auto;padding:80px 64px;display:grid;grid-template-columns:7fr 5fr;gap:48px;">
+    <div>
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:18px;">About</div>
+      <h1 style="font-size:44px;margin:0 0 20px;max-width:14ch;">Eleven people, one studio.</h1>
+      <p style="font-size:16px;opacity:.8;margin:0 0 16px;max-width:48ch;">Alwes Studio started in 2018 building sites for businesses that had been let down by templates and freelancers who disappeared. We're still doing that — now for a wider range of clients, with a small in-house team instead of a laptop and a deadline.</p>
+      <p style="font-size:16px;opacity:.8;margin:0;max-width:48ch;">We keep projects small enough that the same three or four people are on it from kickoff to launch.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-left:1px solid rgba(32,30,29,.1);padding-left:24px;">
+      <div style="padding-bottom:24px;border-right:1px solid rgba(32,30,29,.1);border-bottom:1px solid rgba(32,30,29,.1);">
+        <div style="font-size:32px;font-weight:800;color:var(--color-accent);">8</div>
+        <div style="font-size:12px;opacity:.7;">years running</div>
+      </div>
+      <div style="padding-bottom:24px;border-bottom:1px solid rgba(32,30,29,.1);">
+        <div style="font-size:32px;font-weight:800;color:var(--color-accent);">130+</div>
+        <div style="font-size:12px;opacity:.7;">sites shipped</div>
+      </div>
+      <div style="padding-top:24px;border-right:1px solid rgba(32,30,29,.1);">
+        <div style="font-size:32px;font-weight:800;color:var(--color-accent);">11</div>
+        <div style="font-size:12px;opacity:.7;">on the team</div>
+      </div>
+      <div style="padding-top:24px;">
+        <div style="font-size:32px;font-weight:800;color:var(--color-accent);">92%</div>
+        <div style="font-size:12px;opacity:.7;">clients who return</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section style="max-width:1600px;margin:0 auto;padding:40px 64px 88px;">
+    <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text);opacity:.55;font-weight:600;margin-bottom:14px;">The team</div>
+      <h2 style="font-size:28px;margin:0 0 32px;">Eleven people, one desk row</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid rgba(32,30,29,.12);padding-top:28px;">
+        <sc-for list="{{team}}" as="p" hint-placeholder-count="4">
+          <div>
+            <div class="grayscale" style="aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);display:flex;align-items:center;justify-content:center;margin-bottom:12px;"><span style="font-family:monospace;font-size:9px;color:var(--color-text);">headshot</span></div>
+            <h4 style="font-size:15px;margin:0 0 2px;">{{p.name}}</h4>
+            <div style="font-size:12px;opacity:.65;">{{p.role}}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <footer style="border-top:1px solid rgba(32,30,29,.1);padding:48px 64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div style="font-family:var(--font-heading);font-size:15px;">Alwes Studio</div>
+    <div style="display:flex;gap:24px;font-size:13px;opacity:.7;">
+      <a href="#">hello@alwesstudio.com</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div style="font-size:12px;opacity:.5;">© 2026 Alwes Studio</div>
+  </footer>
+</div>
+</sc-if>
+
+<sc-if value="{{isContact}}">
+<div>
+
+  <section style="max-width:1600px;margin:0 auto;padding:0 64px 96px;">
+    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:18px;">Contact</div>
+    <h1 style="font-size:44px;margin:0 0 28px;max-width:14ch;">Tell us about the project.</h1>
+    <div style="border:1px solid rgba(32,30,29,.12);border-radius:0;padding:44px 48px;background:var(--color-surface);display:grid;grid-template-columns:7fr 5fr;gap:56px;">
+    <div>
+      <form style="display:flex;flex-direction:column;gap:20px;max-width:480px;">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" class="input">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" class="input">
+        </div>
+        <div class="field">
+          <label>Budget</label>
+          <select class="input">
+            <option>Under $5,000</option>
+            <option>$5,000 – $15,000</option>
+            <option>$15,000+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Project details</label>
+          <textarea rows="4" class="input"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;border-radius:999px;background:var(--color-text);color:var(--color-bg);">Send it over</button>
+      </form>
+    </div>
+    <div style="border-left:1px solid rgba(32,30,29,.1);padding-left:32px;display:flex;flex-direction:column;gap:24px;">
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <i data-lucide="mail" style="width:18px;height:18px;color:var(--color-accent);flex:none;margin-top:1px;"></i>
+        <div><div style="font-size:12px;opacity:.6;margin-bottom:2px;">Email</div><div style="font-size:14px;">hello@alwesstudio.com</div></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <i data-lucide="phone" style="width:18px;height:18px;color:var(--color-accent);flex:none;margin-top:1px;"></i>
+        <div><div style="font-size:12px;opacity:.6;margin-bottom:2px;">Phone</div><div style="font-size:14px;">+1 (555) 010-2938</div></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <i data-lucide="map-pin" style="width:18px;height:18px;color:var(--color-accent);flex:none;margin-top:1px;"></i>
+        <div><div style="font-size:12px;opacity:.6;margin-bottom:2px;">Studio</div><div style="font-size:14px;">214 Fulton St, Unit 4<br>Brooklyn, NY 11201</div></div>
+      </div>
+      <div class="grayscale" style="margin-top:8px;aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);display:flex;align-items:center;justify-content:center;"><span style="font-family:monospace;font-size:10px;color:var(--color-text);">map / location embed</span></div>
+    </div>
+    </div>
+  </section>
+  <footer style="border-top:1px solid rgba(32,30,29,.1);padding:48px 64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div style="font-family:var(--font-heading);font-size:15px;">Alwes Studio</div>
+    <div style="display:flex;gap:24px;font-size:13px;opacity:.7;">
+      <a href="#">hello@alwesstudio.com</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div style="font-size:12px;opacity:.5;">© 2026 Alwes Studio</div>
+  </footer>
+</div>
+</sc-if>
+
+<sc-if value="{{showBudget}}">
+<div class="dialog-backdrop" style="position:fixed;inset:0;z-index:100;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:48px 24px;background:rgba(32,30,29,.5);">
+  <div class="dialog" style="max-width:900px;width:100%;background:var(--color-bg);border:1px solid rgba(32,30,29,.15);padding:40px 44px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <div>
+        <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600;margin-bottom:10px;">Orçamento</div>
+        <sc-if value="{{showScheduling}}" hint-placeholder-val="{{false}}">
+          <h2 style="font-size:28px;margin:0 0 8px;max-width:22ch;">Pedido enviado. Marque uma chamada.</h2>
+        </sc-if>
+        <sc-if value="{{!showScheduling}}" hint-placeholder-val="{{true}}">
+          <h2 style="font-size:28px;margin:0 0 8px;max-width:18ch;">Simule o seu projeto.</h2>
+        </sc-if>
+      </div>
+      <button onClick="{{closeBudget}}" style="background:none;border:none;cursor:pointer;padding:4px;color:var(--color-text);">
+        <i data-lucide="x" style="width:22px;height:22px;display:block;"></i>
+      </button>
+    </div>
+
+    <sc-if value="{{showScheduling}}">
+      <p style="font-size:14px;opacity:.75;margin:0 0 28px;max-width:56ch;">Recebemos o seu pedido com uma estimativa de {{budgetTotal}}€. Escolha um horário abaixo para conversarmos sobre o projeto.</p>
+      <div style="border:1px solid rgba(32,30,29,.12);border-radius:8px;overflow:hidden;height:600px;">
+        <iframe src="https://calendar.google.com/calendar/appointments/schedules/PLACEHOLDER" style="width:100%;height:100%;border:none;" title="Marcar chamada"></iframe>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{!showScheduling}}">
+    <p style="font-size:14px;opacity:.75;margin:0 0 28px;max-width:56ch;">Comece com a base e adicione os módulos que o seu negócio precisa. Valor estimado — o orçamento final é confirmado após uma conversa connosco.</p>
+
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start;">
+      <div style="border:1px solid rgba(32,30,29,.12);padding:24px 28px;max-height:50vh;overflow-y:auto;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(32,30,29,.12);margin-bottom:14px;">
+          <div style="font-size:14px;font-weight:700;">Website base</div>
+          <div style="font-size:14px;font-weight:700;">790€</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr;gap:2px;">
+          <sc-for list="{{moduleRows}}" as="m" hint-placeholder-count="35">
+            <sc-if value="{{m.showCategory}}">
+              <div style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.55;padding:16px 0 6px;">{{m.category}}</div>
+            </sc-if>
+            <label style="{{m.labelStyle}}">
+              <span style="display:flex;align-items:center;gap:8px;">
+                <input type="checkbox" checked="{{m.checked}}" onChange="{{m.toggle}}" style="display:none;">
+                <span style="{{m.boxStyle}}"></span>
+                {{m.name}}
+              </span>
+              <span style="opacity:.6;flex:none;">+{{m.price}}€</span>
+            </label>
+          </sc-for>
+        </div>
+        <div style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.55;padding:16px 0 6px;">Idiomas adicionais</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(32,30,29,.06);font-size:13px;">
+          <span>Idiomas adicionais além do Português (+250€ / idioma)</span>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button onClick="{{decLanguages}}" style="width:26px;height:26px;border-radius:6px;border:1px solid rgba(32,30,29,.15);background:transparent;cursor:pointer;font-size:15px;line-height:1;">–</button>
+            <span style="min-width:14px;text-align:center;font-weight:700;">{{languageCount}}</span>
+            <button onClick="{{incLanguages}}" style="width:26px;height:26px;border-radius:6px;border:1px solid rgba(32,30,29,.15);background:transparent;cursor:pointer;font-size:15px;line-height:1;">+</button>
+          </div>
+        </div>
+        <sc-if value="{{languageCount}}">
+          <input type="text" value="{{languageNames}}" onChange="{{setLanguageNames}}" placeholder="Quais idiomas além do Português? ex: Inglês, Espanhol" style="width:100%;padding:8px 10px;margin:4px 0 8px;font:inherit;font-size:13px;color:var(--color-text);background:var(--color-bg);border:1px solid rgba(32,30,29,.15);border-radius:6px;">
+        </sc-if>
+        <div style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.55;padding:16px 0 8px;border-top:1px solid rgba(32,30,29,.1);margin-top:8px;">Inspiração (opcional)</div>
+        <div style="font-size:12px;opacity:.65;margin-bottom:10px;">Tem um site ou mockup que gostava que o seu se parecesse? Envie-nos aqui.</div>
+        <div style="width:100%;height:140px;">
+          <image-slot id="budget-inspiration" shape="rect" radius="8" placeholder="Arraste uma imagem de referência"></image-slot>
+        </div>
+        <div style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.55;padding:16px 0 10px;border-top:1px solid rgba(32,30,29,.1);margin-top:8px;">Manutenção mensal</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <sc-for list="{{maintenanceRows}}" as="p" hint-placeholder-count="3">
+            <label style="{{p.cardStyle}}">
+              <input type="radio" name="maintenance" checked="{{p.checked}}" onChange="{{p.select}}" style="display:none;">
+              {{p.name}}
+            </label>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="border:1px solid rgba(32,30,29,.12);padding:28px 24px;background:var(--color-surface);">
+        <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55;font-weight:600;margin-bottom:12px;">Estimativa</div>
+        <div style="font-size:32px;font-weight:800;margin-bottom:6px;">{{budgetTotal}}€</div>
+        <div style="font-size:12px;opacity:.6;margin-bottom:6px;">Website base + módulos + {{languageCount}} idioma(s)</div>
+        <sc-if value="{{maintenanceMonthly}}">
+          <div style="font-size:14px;font-weight:700;margin-bottom:22px;">+ {{maintenanceMonthly}}€/mês manutenção</div>
+        </sc-if>
+        <a href="#" onClick="{{submitBudget}}" class="btn btn-primary" style="width:100%;border-radius:999px;background:var(--color-text);color:var(--color-bg);justify-content:center;margin-top:12px;">Enviar pedido de contacto</a>
+      </div>
+    </div>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400,&quot;height&quot;:900},&quot;initialTemplate&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;services&quot;,&quot;portfolio&quot;,&quot;about&quot;,&quot;pricing&quot;,&quot;contact&quot;],&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  state = { active: this.props.initialTemplate || 'home', selectedModules: {}, showBudget: false, servicesTab: 'servicos', maintenancePlan: 'none', languageCount: 0, languageNames: '' };
+
+  setLanguageNames(v) { this.setState({ languageNames: v }); }
+
+  changeLanguages(delta) {
+    this.setState(s => ({ languageCount: Math.max(0, s.languageCount + delta) }));
+  }
+
+  selectMaintenance(plan) { this.setState({ maintenancePlan: plan }); }
+
+  submitBudget(e) { if (e) e.preventDefault(); this.setState({ showScheduling: true }); }
+
+  maintenanceCardStyle(checked) {
+    const base = "display:flex;align-items:center;justify-content:center;text-align:center;padding:14px 10px;border-radius:6px;font-size:12.5px;cursor:pointer;border:1px solid rgba(32,30,29,.15);";
+    return checked ? base + "background:var(--color-accent);color:var(--color-bg);border-color:var(--color-accent);" : base + "background:transparent;color:var(--color-text);";
+  }
+
+  openBudget(e) { if (e) e.preventDefault(); this.setState({ showBudget: true }); }
+  closeBudget() { this.setState({ showBudget: false, showScheduling: false }); }
+
+  modules = [
+    { id: 'page', name: 'Página adicional', price: 200, category: 'Módulos principais' },
+    { id: 'landing', name: 'Landing Page', price: 300, category: 'Módulos principais' },
+    { id: 'booking', name: 'Booking / Reservas', price: 450, category: 'Módulos principais' },
+    { id: 'booking-adv', name: 'Booking avançado', price: 750, category: 'Módulos principais' },
+    { id: 'ecom', name: 'E-commerce', price: 900, category: 'Módulos principais' },
+    { id: 'ecom-adv', name: 'E-commerce avançado', price: 1500, category: 'Módulos principais' },
+    { id: 'login', name: 'Área de cliente / Login', price: 500, category: 'Módulos principais' },
+    { id: 'crm', name: 'CRM', price: 600, category: 'Módulos principais' },
+    { id: 'blog', name: 'Blog / Notícias', price: 300, category: 'Módulos principais' },
+    { id: 'members', name: 'Área de membros', price: 700, category: 'Módulos principais' },
+
+    { id: 'payments', name: 'Pagamentos online', price: 300, category: 'Módulos principais' },
+    { id: 'seo-adv', name: 'SEO avançado', price: 400, category: 'Marketing & SEO' },
+    { id: 'seo-tech', name: 'SEO técnico', price: 350, category: 'Marketing & SEO' },
+    { id: 'analytics', name: 'Google Analytics + tracking avançado', price: 200, category: 'Marketing & SEO' },
+    { id: 'gsc', name: 'Google Search Console + configuração', price: 150, category: 'Marketing & SEO' },
+    { id: 'perf', name: 'Performance / Core Web Vitals', price: 300, category: 'Marketing & SEO' },
+    { id: 'copy', name: 'Copywriting (por página)', price: 200, category: 'Marketing & SEO' },
+    { id: 'blog-seo', name: 'Blog + estrutura SEO', price: 400, category: 'Marketing & SEO' },
+    { id: 'whatsapp', name: 'WhatsApp / contacto avançado', price: 150, category: 'Integrações & automações' },
+    { id: 'newsletter', name: 'Newsletter / Email marketing', price: 250, category: 'Integrações & automações' },
+    { id: 'automations', name: 'Automações', price: 400, category: 'Integrações & automações' },
+    { id: 'api', name: 'Integração com API externa', price: 500, category: 'Integrações & automações' },
+    { id: 'software', name: 'Integração com software externo', price: 400, category: 'Integrações & automações' },
+    { id: 'crm-int', name: 'CRM + integração', price: 750, category: 'Integrações & automações' },
+    { id: 'notifications', name: 'Sistema de notificações', price: 300, category: 'Integrações & automações' },
+    { id: 'forms', name: 'Formulários avançados', price: 200, category: 'Integrações & automações' },
+    { id: 'gallery', name: 'Galeria / Portfólio avançado', price: 250, category: 'Funcionalidades adicionais' },
+    { id: 'reviews', name: 'Sistema de avaliações', price: 150, category: 'Funcionalidades adicionais' },
+    { id: 'map', name: 'Mapa / localização avançada', price: 150, category: 'Funcionalidades adicionais' },
+    { id: 'chat', name: 'Chat / Live Chat', price: 150, category: 'Funcionalidades adicionais' },
+    { id: 'social', name: 'Integração de redes sociais', price: 100, category: 'Funcionalidades adicionais' },
+    { id: 'search', name: 'Pesquisa interna', price: 250, category: 'Funcionalidades adicionais' },
+    { id: 'filters', name: 'Filtros / pesquisa avançada', price: 400, category: 'Funcionalidades adicionais' },
+    { id: 'dashboard', name: 'Dashboard personalizado', price: 750, category: 'Funcionalidades adicionais' },
+    { id: 'custom', name: 'Funcionalidade personalizada', price: 500, category: 'Funcionalidades adicionais' }
+  ];
+
+  tabStyle(isActive) {
+    const base = "padding:8px 20px;border-radius:999px;border:none;cursor:pointer;font-size:13px;font-family:var(--font-body);";
+    return isActive ? base + "background:var(--color-text);color:var(--color-bg);font-weight:600;" : base + "background:transparent;color:var(--color-text);opacity:.6;";
+  }
+
+  toggleModule(id) {
+    this.setState(s => ({ selectedModules: { ...s.selectedModules, [id]: !s.selectedModules[id] } }));
+  }
+
+  moduleLabelStyle(checked) {
+    return "display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(32,30,29,.06);font-size:13px;cursor:pointer;color:var(--color-text);";
+  }
+
+  moduleBoxStyle(checked) {
+    const base = "width:15px;height:15px;flex:none;border-radius:3px;border:1px solid rgba(32,30,29,.3);";
+    return checked ? base + "background:var(--color-accent);border-color:var(--color-accent);" : base + "background:transparent;";
+  }
+
+  componentDidMount() {
+    if (window.lucide) window.lucide.createIcons();
+  }
+  componentDidUpdate() {
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  navStyle(isActive) {
+    const base = "display:flex;align-items:center;white-space:nowrap;flex:none;padding:6px 6px;font-weight:400;font-size:12.5px;background:none;border:none;cursor:pointer;color:rgba(32,30,29,.5);font-family:var(--font-body);";
+    return isActive ? base + "color:var(--color-text);font-weight:600;" : base;
+  }
+
+  renderVals() {
+    const active = this.state.active;
+    const defs = [
+      ['home', 'Homepage'], ['services', 'Services'], ['portfolio', 'Portfolio'],
+      ['about', 'About / Team'], ['contact', 'Contact']
+    ];
+    const templates = defs.map(([id, label]) => ({
+      id, label,
+      isActive: id === active,
+      navStyle: this.navStyle(id === active),
+      select: () => this.setState({ active: id })
+    }));
+
+    const caseStudies = [
+      { tag: 'E-commerce', name: 'Harlow & Finch', result: 'Checkout conversion up 34% after rebuild.', photoLabel: 'case study photo' },
+      { tag: 'Logistics', name: 'Bramwell Logistics', result: 'Quote requests up 3x with a clearer site.', photoLabel: 'case study photo' },
+      { tag: 'Architecture', name: 'Ada Studio', result: 'A portfolio that finally matches the work.', photoLabel: 'case study photo' },
+      { tag: 'Hospitality', name: 'Kestrel Coffee', result: 'Online orders became 20% of revenue.', photoLabel: 'case study photo' },
+      { tag: 'Professional services', name: 'Northbank Legal', result: 'New-client inquiries doubled in 6 months.', photoLabel: 'case study photo' },
+      { tag: 'Health', name: 'Solace Wellness', result: 'Booking flow cut drop-off in half.', photoLabel: 'case study photo' }
+    ];
+
+    const team = [
+      { name: 'Dana Okafor', role: 'Founder / Strategy' },
+      { name: 'Marcus Ryel', role: 'Design Lead' },
+      { name: 'Ines Vogt', role: 'Engineering' },
+      { name: 'Tobias Lund', role: 'Project Management' }
+    ];
+
+    return {
+      templates, caseStudies, team,
+      active,
+      isHome: active === 'home',
+      isServices: active === 'services',
+      isPortfolio: active === 'portfolio',
+      isAbout: active === 'about',
+      showBudget: this.state.showBudget,
+      openBudget: (e) => this.openBudget(e),
+      closeBudget: () => this.closeBudget(),
+      showScheduling: this.state.showScheduling,
+      submitBudget: (e) => this.submitBudget(e),
+      isServicosTab: this.state.servicesTab === 'servicos',
+      isPrecosTab: this.state.servicesTab === 'precos',
+      selectServicosTab: () => this.setState({ servicesTab: 'servicos' }),
+      selectPrecosTab: () => this.setState({ servicesTab: 'precos' }),
+      servicosTabStyle: this.tabStyle(this.state.servicesTab === 'servicos'),
+      precosTabStyle: this.tabStyle(this.state.servicesTab === 'precos'),
+      isContact: active === 'contact',
+      moduleRows: this.modules.map((m, i) => ({
+        ...m,
+        checked: !!this.state.selectedModules[m.id],
+        toggle: () => this.toggleModule(m.id),
+        showCategory: i === 0 || this.modules[i - 1].category !== m.category,
+        labelStyle: this.moduleLabelStyle(!!this.state.selectedModules[m.id]),
+        boxStyle: this.moduleBoxStyle(!!this.state.selectedModules[m.id])
+      })),
+      languageCount: this.state.languageCount,
+      languageCost: this.state.languageCount * 250,
+      incLanguages: () => this.changeLanguages(1),
+      decLanguages: () => this.changeLanguages(-1),
+      languageNames: this.state.languageNames,
+      setLanguageNames: (e) => this.setLanguageNames(e.target.value),
+      budgetTotal: 790 + this.state.languageCount * 250 + this.modules.reduce((sum, m) => sum + (this.state.selectedModules[m.id] ? m.price : 0), 0),
+      maintenanceMonthly: this.state.maintenancePlan === 'basic' ? 79 : this.state.maintenancePlan === 'plus' ? 149 : 0,
+      maintenanceRows: [
+        { id: 'none', name: 'Sem manutenção', checked: this.state.maintenancePlan === 'none', select: () => this.selectMaintenance('none'), cardStyle: this.maintenanceCardStyle(this.state.maintenancePlan === 'none') },
+        { id: 'basic', name: 'Managed Website 79€/mês', checked: this.state.maintenancePlan === 'basic', select: () => this.selectMaintenance('basic'), cardStyle: this.maintenanceCardStyle(this.state.maintenancePlan === 'basic') },
+        { id: 'plus', name: 'Managed Plus 149€/mês', checked: this.state.maintenancePlan === 'plus', select: () => this.selectMaintenance('plus'), cardStyle: this.maintenanceCardStyle(this.state.maintenancePlan === 'plus') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
