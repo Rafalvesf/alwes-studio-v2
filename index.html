@@ -227,16 +227,17 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .select-wrap select.input{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-right:36px;cursor:pointer;}
 .select-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--color-text-60);display:flex;}
 .field-hint{font-size:11px;color:var(--color-text-55);margin-top:6px;}
-.file-input{display:flex;align-items:center;gap:10px;border:1px solid var(--color-divider);padding:6px 6px 6px 11px;cursor:pointer;background:var(--color-bg);}
+.file-input{display:flex;align-items:center;gap:10px;border:1px solid var(--color-divider);padding:6px 6px 6px 11px;cursor:pointer;background:var(--color-bg);min-width:0;}
 .file-input:hover{border-color:var(--color-text-55);}
 .file-input-btn{flex:none;display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:6px;background:var(--color-text);color:var(--color-bg);font-size:11px;font-weight:600;white-space:nowrap;}
 .file-input-btn svg{display:block;flex:none;}
-.file-input-name{font-size:14px;font-family:inherit;color:var(--color-text-60);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.file-input-name{font-size:14px;font-family:inherit;color:var(--color-text-60);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;}
 .budget-modules .file-input,.contact-form .file-input{border:none;border-radius:12px;padding:9px 10px;background:var(--color-surface);}
 .budget-modules .file-input-name,.contact-form .file-input-name{font-size:12.5px;}
 textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
-.contact-form{display:flex;flex-direction:column;gap:18px;max-width:480px;}
-.contact-side{border-left:1px solid var(--color-divider);padding-left:30px;display:flex;flex-direction:column;gap:22px;}
+.contact-form{display:flex;flex-direction:column;gap:18px;max-width:480px;min-width:0;}
+.contact-form .btn-dark{background:#fff;color:#000;}
+.contact-side{border-left:1px solid var(--color-divider);padding-left:30px;display:flex;flex-direction:column;gap:22px;min-width:0;}
 .contact-row{display:flex;gap:10px;align-items:flex-start;}
 .contact-row svg{width:17px;height:17px;color:var(--color-accent);flex:none;margin-top:2px;}
 .contact-row .clabel{font-size:11.5px;color:var(--color-text-60);margin-bottom:2px;}
@@ -635,7 +636,6 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
           </form>
           <div class="contact-side">
             <div class="contact-row">ICON_MAIL<div><div class="clabel">Email</div><div style="font-size:14px;">hello@alwesstudio.space</div></div></div>
-            <div class="contact-row">ICON_PHONE<div><div class="clabel">Telefone</div><div style="font-size:14px;">+351 910 294 842</div></div></div>
             <div id="contactDone" hidden style="margin-top:40px;text-align:center;">
               <div class="done-icon">ICON_CHECK</div>
               <p class="dialog-lede" style="text-align:center;margin-left:auto;margin-right:auto;margin-top:40px;">Obrigado! Recebemos a sua mensagem. Marque já uma chamada, se preferir avançar mais rápido.</p>
