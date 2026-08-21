@@ -11,7 +11,7 @@
 
 
 :root{
-  --color-bg: #f3f2f2;
+  --color-bg: #ffffff;
   --color-surface: #eae9e9;
   --color-surface-2: #e2e0e0;
   --color-text: #201e1d;
@@ -48,31 +48,32 @@ button{font-family:inherit;}
 .app{display:flex;flex-direction:column;height:100vh;overflow:hidden;}
 
 /* ---- nav ---- */
-.topnav{flex:none;display:flex;align-items:center;gap:20px;padding:16px 28px;background:var(--color-bg);border-bottom:1px solid var(--color-divider);position:relative;z-index:20;}
-.brand{font-family:var(--font-heading);font-size:16px;letter-spacing:.02em;white-space:nowrap;flex:none;display:flex;align-items:center;gap:8px;}
+.topnav{flex:none;display:flex;align-items:center;gap:20px;padding:16px 28px;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0) 45%),rgba(255,255,255,.55);position:relative;z-index:20;backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);box-shadow:0 8px 20px rgba(0,0,0,.05);}
+.brand{font-family:var(--font-heading);font-size:14px;letter-spacing:.02em;white-space:nowrap;flex:none;display:flex;align-items:center;gap:8px;}
 .nav-tabs{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;justify-content:center;scrollbar-width:none;}
 .nav-tabs::-webkit-scrollbar{display:none;}
-.nav-tab{white-space:nowrap;flex:none;padding:8px 14px;font-family:var(--font-body);font-weight:400;font-size:12.5px;letter-spacing:.02em;background:none;border:none;cursor:pointer;color:var(--color-text-55);border-radius:999px;transition:color .15s ease,background .15s ease;}
-.nav-tab:hover{color:var(--color-text);background:var(--color-divider-soft);}
-.nav-tab[aria-current="page"]{color:var(--color-text);background:var(--color-surface);font-weight:600;}
+.nav-tab{white-space:nowrap;flex:none;padding:8px 14px;font-family:var(--font-body);font-weight:400;font-size:11px;letter-spacing:.02em;background:none;border:none;cursor:pointer;color:var(--color-text-55);border-radius:999px;transition:color .15s ease,background .15s ease;}
+.nav-tab:hover{color:var(--color-text);}
+.nav-tab[aria-current="page"]{color:var(--color-text);font-weight:600;}
 .nav-menu{display:contents;}
 .nav-toggle{display:none;flex:none;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:36px;height:36px;margin-left:auto;background:none;border:none;cursor:pointer;padding:0;}
 .nav-toggle span{display:block;width:20px;height:2px;background:var(--color-text);transition:transform .15s ease,opacity .15s ease;}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg);}
 .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;text-decoration:none;font-family:var(--font-body);font-weight:500;font-size:13.5px;line-height:1.2;border:1px solid transparent;padding:10px 18px;border-radius:999px;transition:opacity .15s ease,transform .1s ease;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;text-decoration:none;font-family:var(--font-body);font-weight:700;font-size:13.5px;line-height:1.2;border:1px solid transparent;padding:10px 18px;border-radius:8px;transition:opacity .15s ease,transform .1s ease;}
 .btn:active{transform:scale(.97);}
 .btn-dark{background:var(--color-text);color:var(--color-bg);}
 .btn-dark:hover{opacity:.85;}
 .btn-accent{background:var(--color-accent);color:var(--color-on-accent);}
 .btn-accent:hover{background:var(--color-accent-600);}
-.btn-ghost{border-color:var(--color-divider);background:transparent;color:var(--color-text);}
-.btn-ghost:hover{background:var(--color-divider-soft);}
+.btn-ghost{border-color:var(--color-divider);background:transparent;color:var(--color-text);text-shadow:0 1px 2px rgba(0,0,0,.12);}
+.btn-ghost:hover{background:transparent;text-shadow:0 1px 3px rgba(0,0,0,.22);}
 .btn svg{display:block;flex:none;}
 
 /* ---- shell ---- */
-.viewport{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--color-bg);}
+.viewport{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--color-bg);scrollbar-width:none;-ms-overflow-style:none;}
+.viewport::-webkit-scrollbar{display:none;}
 .page{max-width:1600px;margin:0 auto;}
 .page[hidden]{display:none;}
 section{padding:0 64px;}
@@ -161,6 +162,49 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .maint-list div{display:flex;gap:8px;align-items:flex-start;}
 .maint-list svg{width:15px;height:15px;color:var(--color-accent);flex:none;margin-top:2px;}
 
+/* ---- black boxes ---- */
+.panel,.price-card,.maint-card,.dialog,.budget-modules,.budget-summary{
+  background:#000;
+  color:#fff;
+  --color-text:#fff;
+  --color-text-55:rgba(255,255,255,.55);
+  --color-text-60:rgba(255,255,255,.6);
+  --color-text-65:rgba(255,255,255,.65);
+  --color-text-70:rgba(255,255,255,.7);
+  --color-text-75:rgba(255,255,255,.75);
+  --color-divider:rgba(255,255,255,.18);
+  --color-divider-soft:rgba(255,255,255,.08);
+  --color-surface:rgba(255,255,255,.1);
+  --color-accent-700:var(--color-accent);
+}
+.panel .input,.price-card .input,.maint-card .input,.dialog .input,.budget-modules .input,.budget-summary .input{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  border-color:rgba(255,255,255,.25);
+}
+.panel .input option,.dialog .input option{color:#000;}
+.panel .file-input,.price-card .file-input,.maint-card .file-input,.dialog .file-input,.budget-modules .file-input,.budget-summary .file-input{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.25);
+}
+.panel .file-input-name,.price-card .file-input-name,.maint-card .file-input-name,.dialog .file-input-name,.budget-modules .file-input-name,.budget-summary .file-input-name{
+  color:rgba(255,255,255,.6);
+}
+.panel .file-input-btn,.price-card .file-input-btn,.maint-card .file-input-btn,.dialog .file-input-btn,.budget-modules .file-input-btn,.budget-summary .file-input-btn{
+  background:#fff;
+  color:#000;
+}
+.budget-modules .mod-box{border-color:rgba(255,255,255,.3);}
+
+/* ---- portfolio ---- */
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.case-card{display:flex;flex-direction:column;gap:8px;padding:14px;background:#fff;border:1px solid rgba(255,255,255,.6);box-shadow:var(--shadow-sm);}
+.case-photo{aspect-ratio:4/3;overflow:hidden;margin:-14px -14px 0;}
+.case-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.case-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);}
+.case-name{font-family:var(--font-heading);font-size:17px;color:#141312;}
+.case-result{font-size:13px;color:rgba(20,19,18,.75);opacity:.9;flex:1;}
+
 /* ---- about ---- */
 .about-hero{display:grid;grid-template-columns:7fr 5fr;gap:48px;padding-top:72px;padding-bottom:96px;}
 .about-hero h1{font-size:clamp(28px,4vw,42px);max-width:14ch;margin-bottom:18px;}
@@ -178,6 +222,18 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .field label{font-size:12px;color:var(--color-text-70);}
 .input{width:100%;min-height:38px;padding:8px 11px;font:inherit;font-size:14px;color:var(--color-text);background:var(--color-bg);border:1px solid var(--color-divider);}
 .input:focus-visible{outline:2px solid var(--color-accent);outline-offset:1px;}
+.contact-form .input{border:none;border-radius:12px;background:var(--color-surface);}
+.select-wrap{position:relative;}
+.select-wrap select.input{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-right:36px;cursor:pointer;}
+.select-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--color-text-60);display:flex;}
+.field-hint{font-size:11px;color:var(--color-text-55);margin-top:6px;}
+.file-input{display:flex;align-items:center;gap:10px;border:1px solid var(--color-divider);padding:6px 6px 6px 11px;cursor:pointer;background:var(--color-bg);}
+.file-input:hover{border-color:var(--color-text-55);}
+.file-input-btn{flex:none;display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:6px;background:var(--color-text);color:var(--color-bg);font-size:11px;font-weight:600;white-space:nowrap;}
+.file-input-btn svg{display:block;flex:none;}
+.file-input-name{font-size:14px;font-family:inherit;color:var(--color-text-60);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.budget-modules .file-input,.contact-form .file-input{border:none;border-radius:12px;padding:9px 10px;background:var(--color-surface);}
+.budget-modules .file-input-name,.contact-form .file-input-name{font-size:12.5px;}
 textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 .contact-form{display:flex;flex-direction:column;gap:18px;max-width:480px;}
 .contact-side{border-left:1px solid var(--color-divider);padding-left:30px;display:flex;flex-direction:column;gap:22px;}
@@ -196,52 +252,68 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 .cookie-actions .btn-ghost{border-color:var(--color-bg);color:var(--color-bg);}
 
 /* ---- budget modal ---- */
-.backdrop{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:48px 24px;background:rgba(32,30,29,.55);}
+.backdrop{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:48px 24px;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);scrollbar-width:none;-ms-overflow-style:none;}
+.backdrop::-webkit-scrollbar{display:none;}
 .backdrop.open{display:flex;}
-.dialog{max-width:900px;width:100%;background:var(--color-bg);border:1px solid var(--color-divider);padding:38px 44px;}
+.dialog{max-width:900px;width:100%;padding:38px 44px;border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.45);}
 .dialog-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
 .dialog-head h2{font-size:27px;max-width:20ch;margin-bottom:6px;}
-.dialog-close{background:none;border:none;cursor:pointer;padding:5px;color:var(--color-text);border-radius:6px;}
-.dialog-close:hover{background:var(--color-divider-soft);}
+.dialog-close{display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--color-surface);border:none;cursor:pointer;color:var(--color-text);border-radius:999px;flex:none;}
+.dialog-close:hover{background:rgba(255,255,255,.2);}
 .dialog-lede{font-size:13.5px;color:var(--color-text-75);max-width:56ch;margin-bottom:24px;}
 
 .budget-grid{display:grid;grid-template-columns:2fr 1fr;gap:22px;align-items:start;}
-.budget-modules{border:1px solid var(--color-divider);padding:22px 24px;max-height:48vh;overflow-y:auto;}
+.budget-modules{padding:22px 24px;max-height:48vh;overflow-y:auto;border-radius:20px;scrollbar-width:none;-ms-overflow-style:none;}
+.budget-modules::-webkit-scrollbar{display:none;}
 .budget-modules-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:13px;border-bottom:1px solid var(--color-divider);margin-bottom:12px;font-size:13.5px;font-weight:700;}
 .mod-cat{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--color-text-55);padding:14px 0 6px;}
-.mod-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--color-divider-soft);font-size:12.5px;cursor:pointer;}
+.mod-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:12px;font-size:12.5px;cursor:pointer;transition:background .15s ease;}
+.mod-row:hover{background:var(--color-divider-soft);}
+.mod-row:has(input:checked){background:rgba(226,163,0,.14);}
 .mod-row-left{display:flex;align-items:center;gap:8px;}
-.mod-box{width:15px;height:15px;flex:none;border-radius:3px;border:1px solid rgba(32,30,29,.3);position:relative;}
+.mod-box{width:15px;height:15px;flex:none;border-radius:5px;border:1px solid rgba(255,255,255,.3);position:relative;}
 .mod-row input{position:absolute;opacity:0;width:15px;height:15px;margin:0;cursor:pointer;}
 .mod-row input:checked ~ .mod-box{background:var(--color-accent);border-color:var(--color-accent);}
 .mod-row input:checked ~ .mod-box::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid var(--color-on-accent);border-width:0 2px 2px 0;transform:rotate(45deg);}
 .mod-price{opacity:.6;flex:none;}
 
-.lang-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--color-divider-soft);font-size:12.5px;}
+.lang-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:12px;font-size:12.5px;background:var(--color-surface);}
 .stepper{display:flex;align-items:center;gap:9px;}
-.stepper button{width:25px;height:25px;border-radius:6px;border:1px solid var(--color-divider);background:transparent;cursor:pointer;font-size:15px;line-height:1;}
-.stepper button:hover{background:var(--color-divider-soft);}
+.stepper button{width:25px;height:25px;border-radius:999px;border:none;background:var(--color-divider-soft);cursor:pointer;font-size:15px;line-height:1;}
+.stepper button:hover{background:rgba(255,255,255,.2);}
 .stepper span{min-width:14px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums;}
 
 .maint-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px;}
-.maint-opt{display:flex;align-items:center;justify-content:center;text-align:center;padding:13px 9px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid var(--color-divider);position:relative;}
+.maint-opt{display:flex;align-items:center;justify-content:center;text-align:center;padding:13px 9px;border-radius:14px;font-size:12px;cursor:pointer;border:none;background:var(--color-surface);position:relative;transition:background .15s ease;}
 .maint-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;}
-.maint-opt.active{background:var(--color-accent);color:var(--color-on-accent);border-color:var(--color-accent);}
+.maint-opt.active{background:rgba(226,163,0,.18);color:var(--color-accent);}
 
-.budget-summary{border:1px solid var(--color-divider);padding:26px 22px;background:var(--color-surface);}
+.budget-summary{padding:26px 22px;border-radius:20px;}
 .summary-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-55);font-weight:600;margin-bottom:10px;}
 .summary-total{font-size:30px;font-weight:800;font-family:var(--font-heading);margin-bottom:6px;font-variant-numeric:tabular-nums;}
 .summary-sub{font-size:11.5px;color:var(--color-text-60);margin-bottom:6px;}
 .summary-maint{font-size:13.5px;font-weight:700;margin-bottom:20px;}
+.dialog,.budget-modules,.budget-summary{background:rgba(20,18,17,.55);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);}
+.done-icon{width:56px;height:56px;border-radius:999px;background:rgba(226,163,0,.18);color:var(--color-accent);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.done-icon svg{width:24px;height:24px;}
+#budgetDone .btn{margin-top:18px;}
+.booking-embed{margin:20px 0;border-radius:16px;overflow:hidden;background:#fff;}
+.booking-embed iframe{display:block;}
+.budget-submit{justify-content:space-between;padding-left:24px;padding-right:7px;padding-top:12px;padding-bottom:12px;width:100%;font-size:14.5px;font-weight:600;}
+.budget-submit .submit-icon{width:36px;height:36px;border-radius:999px;background:#0a0908;color:#fff;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:transform .2s ease;}
+.budget-submit:hover .submit-icon{transform:scale(1.1) rotate(45deg);}
 
 @media (max-width:900px){
   section{padding:0 22px;}
   .page-head{padding:48px 22px 32px;}
-  .hero{grid-template-columns:1fr;padding-top:32px;}
-  .hero-art{margin-right:0;}
-  .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.about-hero,.stat-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
+  .hero{grid-template-columns:1fr;padding-top:64px;gap:20px;}
+  .hero-art{margin-right:0;order:-1;}
+  .btn-dark{background:#000;}
+  .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.case-grid,.about-hero,.stat-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
   .grid-3>div,.svc-grid>.svc-cell,.steps>div{border:none !important;padding:20px 0 !important;border-bottom:1px solid var(--color-divider) !important;}
   .cta-band,.quote,footer{padding:44px 22px;}
+  footer{flex-direction:column;align-items:flex-start;gap:14px;}
+  footer .flinks{flex-wrap:wrap;gap:14px;}
   .contact-side{border-left:none;border-top:1px solid var(--color-divider);padding-left:0;padding-top:24px;}
   .strip-card{width:120px;height:160px;margin:0 -10px;}
   .panel,.price-card{padding:32px 24px;}
@@ -277,7 +349,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <div class="nav-tabs" id="navTabs" role="tablist"></div>
-      <button class="btn btn-dark" data-goto="contact">Falar connosco</button>
+      <button class="btn btn-ghost" data-goto="contact" style="font-size:12px;">Falar connosco ICON_ARROW</button>
     </div>
   </nav>
 
@@ -289,15 +361,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <div>
           <h1>Design que comunica. Marcas que ficam.</h1>
           <div class="hero-ctas">
-            <a href="#" class="btn btn-dark open-budget">Simular</a>
+            <a href="#" class="btn btn-dark open-budget">Simular projeto</a>
           </div>
           <div class="hero-note">
-            <div class="hero-note-brand">Alwes Studio</div>
-            Todo projeto começa com a mesma pergunta: para que esse site existe, de verdade. O resto — páginas, funcionalidades, design — vem depois da resposta.
+            Todo projeto começa com a mesma pergunta: para que esse site existe, de verdade.
           </div>
         </div>
         <div class="hero-art">
-          <img src="uploads/ChatGPT%20Image%20Aug%2019%2C%202026%2C%2010_57_36%20PM-dfd177d0.png" alt="Mockups de websites desenhados pela Alwes Studio">
+          <img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2003_16_38%20AM.png" alt="Website da Alwes Studio apresentado em laptop">
         </div>
       </section>
 
@@ -326,22 +397,22 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       </section>
 
       <section class="strip">
-        <div class="strip-card photo" style="transform:rotate(-10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2019%2C%202026%2C%2011_08_48%20PM.png" alt="Projeto em desenvolvimento no estúdio" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card photo" style="transform:rotate(-5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/equipa-alwes-studio.png" alt="Colaboração em projeto digital" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card" style="z-index:3;box-shadow:var(--shadow-lg);overflow:hidden;"><img src="uploads/imagem_2026-08-19_175020418.png" alt="Website desenhado pela Alwes Studio" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card" style="transform:rotate(5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2019%2C%202026%2C%2007_02_51%20PM.png" alt="Detalhe de interface de um projeto" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card" style="transform:rotate(10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2019%2C%202026%2C%2011_16_19%20PM.png" alt="Projeto entregue em vários dispositivos" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card photo" style="transform:rotate(-10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2001_59_42%20AM.png" alt="Equipa Alwes Studio a colaborar num projeto" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card photo" style="transform:rotate(-5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_01_12%20AM.png" alt="Sistema de design e guia de estilo criado pela Alwes Studio" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="z-index:3;box-shadow:var(--shadow-lg);overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_03_51%20AM.png" alt="Website desenhado pela Alwes Studio apresentado em laptop" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="transform:rotate(5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_03_28%20AM.png" alt="Website da Alwes Studio apresentado em smartphone" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="transform:rotate(10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_02_37%20AM.png" alt="Transformação de um website antes e depois do redesign" style="width:100%;height:100%;object-fit:cover;"></div>
       </section>
 
       <section class="quote">
-        <p>"Fizeram mais perguntas do que qualquer agência com quem já falamos. O site que entregaram parece a nossa empresa de verdade."</p>
-        <cite>Marina Alves — Fundadora, Aurora Bem-Estar</cite>
+        <p>"Não desenho sites bonitos por desenhar. Cada projeto começa com uma pergunta simples: o que é que isto precisa de fazer pelo seu negócio. O resto é consequência disso."</p>
+        <cite>Rafael Alves — Fundador, Alwes Studio</cite>
       </section>
 
       <div class="cta-band">
         <div class="cta-band-inner">
           <h2>Pronto para transformar o seu site?</h2>
-          <a href="#" class="btn btn-dark open-budget" style="background:var(--color-text);color:var(--color-bg);">Simular ICON_ARROW</a>
+          <a href="#" class="btn btn-dark open-budget">Simular ICON_ARROW</a>
         </div>
       </div>
 
@@ -405,7 +476,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <section style="padding-top:40px;padding-bottom:88px;">
           <div class="panel">
             <div class="eyebrow" style="color:var(--color-text-55);">Como funciona</div>
-            <h2 style="font-size:28px;max-width:20ch;margin-bottom:32px;">Quatro etapas, sem surpresas</h2>
+            <h2 style="font-size:28px;max-width:22ch;margin-bottom:32px;">Um processo pensado para durar, com IA onde ela ajuda de verdade</h2>
             <div class="steps">
               <div><div class="step-eyebrow">01</div><h4>Descoberta</h4><p>Duas semanas. Objetivos, público e auditoria de conteúdo.</p></div>
               <div><div class="step-eyebrow">02</div><h4>Design</h4><p>Duas rondas de revisão. Sem surpresas no lançamento.</p></div>
@@ -445,24 +516,20 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
               <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:11px;">O seu negócio não precisa de funcionalidades que não vai utilizar.</p>
               <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:18px;">Escolha apenas o que faz sentido para o seu projeto e nós adicionamos ao website.</p>
               <div style="font-size:13px;font-weight:600;margin-bottom:9px;">Booking · E-commerce · CRM · Landing Pages · SEO avançado · Automações · Multilingue · Pagamentos · ...</div>
-              <div style="font-size:11.5px;color:var(--color-text-60);">Cada módulo tem o seu próprio custo — veja a lista completa e simule o seu orçamento no botão <button class="link-btn open-budget" style="text-decoration:underline;">Falar connosco</button>.</div>
+              <div style="font-size:13.5px;color:var(--color-text-75);">Cada módulo tem o seu próprio custo</div>
             </div>
-            <div class="price-card" style="background:var(--color-surface);">
+            <div class="price-card" style="background:#fff;border-color:var(--color-accent);color:#000;--color-text:#000;--color-text-55:rgba(0,0,0,.55);--color-text-60:rgba(0,0,0,.6);--color-text-65:rgba(0,0,0,.65);--color-text-70:rgba(0,0,0,.7);--color-text-75:rgba(0,0,0,.75);">
               <div class="eyebrow">03 — À sua medida</div>
               <h2 style="font-size:23px;max-width:18ch;margin-bottom:13px;">Construa apenas o que precisa.</h2>
               <p style="font-size:13.5px;color:var(--color-text-75);max-width:44ch;margin-bottom:22px;">Começamos com a base de 790€ e adicionamos apenas as funcionalidades que o seu negócio necessita.</p>
               <div class="pill-row">
                 <div class="pill">Website Base 790€</div><span style="opacity:.5">+</span>
                 <div class="pill">Módulos selecionados</div><span style="opacity:.5">=</span>
-                <div class="pill final">Projeto final</div>
+                <button class="btn btn-dark open-budget">Simular projeto</button>
               </div>
-              <div style="font-size:11.5px;color:var(--color-text-65,rgba(32,30,29,.65));line-height:1.6;">Sem funcionalidades desnecessárias.<br>Sem pacotes que não se adaptam ao seu negócio.</div>
+              <div style="font-size:13.5px;color:var(--color-text-75);line-height:1.6;">Sem funcionalidades desnecessárias.<br>Sem pacotes que não se adaptam ao seu negócio.</div>
             </div>
           </div>
-        </section>
-
-        <section style="padding-bottom:80px;">
-          <button class="btn btn-dark open-budget">Falar connosco</button>
         </section>
 
         <section style="padding-bottom:48px;">
@@ -484,9 +551,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
                 <div>ICON_CHECK Atualizações técnicas</div><div>ICON_CHECK Monitorização</div>
                 <div>ICON_CHECK Pequenas alterações incluídas</div><div>ICON_CHECK Suporte</div>
               </div>
-              <button class="btn btn-ghost open-budget" style="align-self:flex-start;">Falar connosco</button>
             </div>
-            <div class="maint-card highlight">
+            <div class="maint-card highlight" style="background:#fff;border-color:var(--color-accent);color:#000;--color-text:#000;--color-text-55:rgba(0,0,0,.55);--color-text-60:rgba(0,0,0,.6);--color-text-65:rgba(0,0,0,.65);--color-text-70:rgba(0,0,0,.7);--color-text-75:rgba(0,0,0,.75);">
               <h3 style="font-size:17px;margin-bottom:6px;">Managed Plus</h3>
               <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-55);margin-bottom:6px;">Mensal</div>
               <div class="maint-price">149€/mês</div>
@@ -497,12 +563,26 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
                 <div>ICON_CHECK Monitorização avançada</div><div>ICON_CHECK Otimização de performance</div>
                 <div>ICON_CHECK SEO básico contínuo</div><div>ICON_CHECK Melhorias contínuas</div>
               </div>
-              <button class="btn btn-dark open-budget" style="align-self:flex-start;">Falar connosco</button>
+              <button class="btn btn-ghost open-budget" style="align-self:flex-start;font-size:12px;">Falar connosco ICON_ARROW</button>
             </div>
           </div>
         </section>
       </div>
 
+      FOOTER
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div class="page" data-page="portfolio" hidden>
+      <div class="page-head">
+        <div class="eyebrow">Trabalho selecionado</div>
+        <h1>Projetos que resolveram problemas reais.</h1>
+      </div>
+      <section style="padding-bottom:88px;">
+        <div class="panel">
+          <div class="case-grid" id="caseGrid"></div>
+        </div>
+      </section>
       FOOTER
     </div>
 
@@ -512,8 +592,10 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <div>
           <div class="eyebrow">Sobre</div>
           <h1>Um estúdio focado em resultados.</h1>
-          <p>Nos últimos 5 anos, a Alwes Studio tem trabalhado com negócios que tinham sido mal servidos por templates e freelancers que desapareciam. Trazemos essa experiência para cada projeto, com acompanhamento próximo do início ao fim.</p>
-          <p>Mantemos os projetos com um acompanhamento dedicado, do início ao lançamento, sem passar de mão em mão.</p>
+          <p>A Alwes Studio nasceu de uma paixão por tecnologia, design e pela vontade de criar algo próprio.</p>
+          <p>Fundada por Rafael Alves, programador autodidata e entusiasta de tecnologia e Inteligência Artificial, a Alwes é o resultado de vários anos a explorar, aprender e desenvolver experiências digitais.</p>
+          <p>O que começou como uma paixão por código tornou-se num objetivo maior: criar um estúdio onde cada projeto recebe atenção real, desde a primeira ideia até ao lançamento.</p>
+          <p>Na Alwes, cada projeto é acompanhado de perto, sem passar de mão em mão. Combinamos design, desenvolvimento e novas tecnologias para transformar ideias em experiências digitais pensadas para fazer negócios crescer.</p>
         </div>
       </section>
 
@@ -527,21 +609,38 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <h1 style="font-size:clamp(28px,4vw,44px);max-width:14ch;margin-bottom:28px;">Conte-nos sobre o projeto.</h1>
         <div class="panel contact-wrap">
           <form class="contact-form" id="contactForm">
-            <div class="field"><label>Nome</label><input type="text" class="input" required></div>
-            <div class="field"><label>Email</label><input type="email" class="input" required></div>
+            <div class="field"><label>Nome</label><input type="text" class="input" id="cfName" required></div>
+            <div class="field"><label>Email</label><input type="email" class="input" id="cfEmail" required></div>
             <div class="field"><label>Orçamento</label>
-              <select class="input">
+              <div class="select-wrap">
+              <select class="input" id="cfBudget">
                 <option>Até 2.000€</option>
                 <option>2.000€ – 10.000€</option>
                 <option>10.000€+</option>
               </select>
+              <span class="select-arrow">ICON_CHEVRON</span>
+              </div>
             </div>
-            <div class="field"><label>Detalhes do projeto</label><textarea rows="4" class="input"></textarea></div>
-            <button type="submit" class="btn btn-dark" style="align-self:flex-start;">Enviar</button>
+            <div class="field"><label>Detalhes do projeto</label><textarea rows="4" class="input" id="cfDetails"></textarea></div>
+            <div class="field">
+              <label>Anexar documento (opcional)</label>
+              <label class="file-input" for="cfFile">
+                <span class="file-input-btn">ICON_PAPERCLIP Escolher ficheiro</span>
+                <span class="file-input-name" id="cfFileName">Nenhum ficheiro selecionado</span>
+              </label>
+              <input type="file" id="cfFile" hidden>
+              <div class="field-hint">O ficheiro tem de ser anexado manualmente no email que se abrir a seguir.</div>
+            </div>
+            <button type="submit" class="btn btn-dark" style="align-self:flex-start;color:#000;">Enviar</button>
           </form>
           <div class="contact-side">
             <div class="contact-row">ICON_MAIL<div><div class="clabel">Email</div><div style="font-size:14px;">hello@alwesstudio.space</div></div></div>
             <div class="contact-row">ICON_PHONE<div><div class="clabel">Telefone</div><div style="font-size:14px;">+351 910 294 842</div></div></div>
+            <div id="contactDone" hidden style="margin-top:40px;text-align:center;">
+              <div class="done-icon">ICON_CHECK</div>
+              <p class="dialog-lede" style="text-align:center;margin-left:auto;margin-right:auto;margin-top:40px;">Obrigado! Recebemos a sua mensagem. Marque já uma chamada, se preferir avançar mais rápido.</p>
+              <button class="btn btn-accent" id="openBookingPopup" style="align-self:center;margin-top:20px;">Marcar chamada ICON_ARROW</button>
+            </div>
           </div>
         </div>
       </section>
@@ -586,6 +685,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
             <label class="maint-opt"><input type="radio" name="maint" value="79">Managed Website 79€/mês</label>
             <label class="maint-opt"><input type="radio" name="maint" value="149">Managed Plus 149€/mês</label>
           </div>
+
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Anexar documento (opcional)</div>
+          <label class="file-input" for="bqFile">
+            <span class="file-input-btn">ICON_PAPERCLIP Escolher ficheiro</span>
+            <span class="file-input-name" id="bqFileName">Nenhum ficheiro selecionado</span>
+          </label>
+          <input type="file" id="bqFile" hidden>
+          <div class="field-hint">O ficheiro tem de ser anexado manualmente no email que se abrir a seguir.</div>
         </div>
 
         <div class="budget-summary">
@@ -593,13 +700,18 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
           <div class="summary-total" id="budgetTotal">790€</div>
           <div class="summary-sub" id="budgetSub">Website base + módulos + 0 idioma(s)</div>
           <div class="summary-maint" id="budgetMaint" style="display:none;"></div>
-          <button class="btn btn-dark" id="submitBudget" style="width:100%;justify-content:center;margin-top:8px;">Enviar pedido de contacto</button>
+          <button class="btn btn-accent budget-submit" id="submitBudget" style="margin-top:8px;"><span>Enviar pedido de contacto</span><span class="submit-icon">ICON_ARROW</span></button>
         </div>
       </div>
     </div>
 
-    <div id="budgetDone" hidden>
-      <p class="dialog-lede">Recebemos o seu pedido com uma estimativa de <strong id="doneTotal"></strong>. Este é um template de demonstração — em produção, aqui apareceria um calendário para marcar uma chamada.</p>
+    <div id="budgetDone" hidden style="text-align:center;padding:24px 0 4px;">
+      <div class="done-icon">ICON_CHECK</div>
+      <p class="dialog-lede" style="text-align:center;margin-left:auto;margin-right:auto;">Recebemos o seu pedido com uma estimativa de <strong id="doneTotal"></strong>. Marque já uma chamada para conversarmos sobre o projeto.</p>
+      <div class="booking-embed">
+        <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0j4aDAD0V_JFk_tmb-eR9WiIuxgSq1K7hGHA38E5qqMw6dX-FKJDwkeuAlWgG13-y3c-5N2i8U?gv=true" style="border:0" width="100%" height="500" frameborder="0"></iframe>
+      </div>
+      <button class="btn btn-ghost" id="closeBudgetDone">Fechar</button>
     </div>
   </div>
 </div>
@@ -628,7 +740,9 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>',
     phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M13.8 19.3a2 2 0 0 1-2.2.4 15.6 15.6 0 0 1-6-4.5 15 15 0 0 1-4.5-6A2 2 0 0 1 1.5 7L4 5c.6-.5 1.5-.4 2 .2l1.6 2c.4.6.4 1.4-.1 2l-.9.9a12 12 0 0 0 4.3 4.3l.9-.9c.6-.5 1.4-.5 2-.1l2 1.6c.6.5.7 1.4.2 2Z"/></svg>',
     pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
-    x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'
+    x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
+    paperclip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>',
+    chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="m6 9 6 6 6-6"/></svg>'
   };
 
   var FOOTER = '<footer><div class="fbrand">Alwes Studio</div><div class="flinks"><a href="#">hello@alwesstudio.space</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div><div class="fcopy">© 2026 Alwes Studio</div></footer>';
@@ -656,13 +770,15 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     'ICON_MAIL': ICONS.mail,
     'ICON_PHONE': ICONS.phone,
     'ICON_PIN': ICONS.pin,
-    'ICON_X': ICONS.x
+    'ICON_X': ICONS.x,
+    'ICON_PAPERCLIP': ICONS.paperclip,
+    'ICON_CHEVRON': ICONS.chevron
   };
   swap(document.querySelector('.app'), iconMap);
   swap(document.getElementById('budgetBackdrop'), iconMap);
 
   var TEMPLATES = [
-    ['home','Início'], ['services','Serviços'], ['about','Sobre / Equipa'], ['contact','Contacto']
+    ['home','Início'], ['services','Serviços'], ['portfolio','Portefólio'], ['about','Sobre'], ['contact','Contacto']
   ];
   var navTabs = document.getElementById('navTabs');
   TEMPLATES.forEach(function(t){
@@ -672,6 +788,24 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     b.dataset.goto = t[0];
     navTabs.appendChild(b);
   });
+
+  var CASES = [
+    { tag: 'Turismo & Alojamento', name: 'Costaview', result: 'Reservas diretas cresceram 40% no primeiro trimestre.', img: 'ChatGPT%20Image%20Aug%2019%2C%202026%2C%2011_08_48%20PM.png' },
+    { tag: 'Arquitetura', name: 'Bespoke Architecture Studio', result: 'O novo portefólio gerou o dobro de pedidos de orçamento.', img: 'ChatGPT%20Image%20Aug%2019%2C%202026%2C%2011_16_19%20PM.png' },
+    { tag: 'SaaS / Fintech', name: 'Boomerang', result: 'Demonstrações agendadas aumentaram 28% após o lançamento.', img: 'pasted-1787158532876-0.png' },
+    { tag: 'Inteligência Artificial', name: 'Aethera', result: 'O tempo médio na página triplicou com a nova estrutura.', img: 'pasted-1787159110553-0.png' },
+    { tag: 'Vários setores', name: 'Nove marcas, um verão.', result: 'Nove websites lançados em seis meses, do zero ao ar.', img: 'ChatGPT%20Image%20Aug%2019%2C%202026%2C%2010_57_36%20PM.png' },
+    { tag: 'Transformação digital', name: 'Antes & Depois', result: 'Um website datado transformado numa experiência atual.', img: 'ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_02_37%20AM.png' }
+  ];
+  var caseGrid = document.getElementById('caseGrid');
+  if (caseGrid){
+    CASES.forEach(function(c){
+      var d = document.createElement('div');
+      d.className = 'case-card';
+      d.innerHTML = '<div class="case-photo"><img src="uploads/' + c.img + '" alt="' + c.name + '"></div><div class="case-tag">' + c.tag + '</div><div class="case-name">' + c.name + '</div><p class="case-result">' + c.result + '</p>';
+      caseGrid.appendChild(d);
+    });
+  }
 
   function showPage(id){
     document.querySelectorAll('.page').forEach(function(p){ p.hidden = p.dataset.page !== id; });
@@ -816,15 +950,103 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   backdrop.addEventListener('click', function(e){ if (e.target === backdrop) closeBudget(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeBudget(); });
 
+  var CONTACT_EMAIL = 'hello@alwesstudio.space';
+
+  var FILE_ACCEPT = '.pdf,.jpg,.jpeg,.png,.doc,.docx';
+  var FILE_MAX_MB = 10;
+  function setupFileInput(inputId, nameId){
+    var input = document.getElementById(inputId);
+    var nameEl = document.getElementById(nameId);
+    if (!input || !nameEl) return;
+    input.setAttribute('accept', FILE_ACCEPT);
+    input.addEventListener('change', function(){
+      if (!input.files.length){ nameEl.textContent = 'Nenhum ficheiro selecionado'; return; }
+      var file = input.files[0];
+      if (file.size > FILE_MAX_MB * 1024 * 1024){
+        alert('Ficheiro demasiado grande. Tamanho máximo: ' + FILE_MAX_MB + 'MB.');
+        input.value = '';
+        nameEl.textContent = 'Nenhum ficheiro selecionado';
+        return;
+      }
+      nameEl.textContent = file.name;
+    });
+  }
+  setupFileInput('cfFile', 'cfFileName');
+  setupFileInput('bqFile', 'bqFileName');
+  var BOOKING_LINK = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0j4aDAD0V_JFk_tmb-eR9WiIuxgSq1K7hGHA38E5qqMw6dX-FKJDwkeuAlWgG13-y3c-5N2i8U?gv=true';
+  function openBookingPopup(){
+    var w = 520, h = 680;
+    var left = (window.screen.width - w) / 2;
+    var top = (window.screen.height - h) / 2;
+    window.open(BOOKING_LINK, 'alwesBooking', 'width=' + w + ',height=' + h + ',left=' + left + ',top=' + top + ',noopener,noreferrer');
+  }
+  var openBookingPopupBtn = document.getElementById('openBookingPopup');
+  if (openBookingPopupBtn) openBookingPopupBtn.addEventListener('click', openBookingPopup);
+
   document.getElementById('submitBudget').addEventListener('click', function(){
     var total = updateTotal();
     document.getElementById('doneTotal').textContent = total + '€';
     dialogTitle.textContent = 'Pedido enviado. Marque uma chamada.';
+
+    var lines = ['Pedido de orçamento — Alwes Studio', '', 'Website base: 790€'];
+    var chosenModules = Object.keys(selected).filter(function(id){ return selected[id]; });
+    if (chosenModules.length){
+      lines.push('', 'Módulos selecionados:');
+      chosenModules.forEach(function(id){
+        var m = MODULES.find(function(x){ return x.id === id; });
+        if (m) lines.push('- ' + m.name + ': +' + m.price + '€');
+      });
+    }
+    if (langCount > 0){
+      lines.push('', 'Idiomas adicionais: ' + langCount + ' (' + (langNamesEl.value || 'não especificado') + ')');
+    }
+    if (maintValue > 0){
+      var maintLabel = document.querySelector('input[name="maint"]:checked').closest('label').textContent.trim();
+      lines.push('', 'Manutenção mensal: ' + maintLabel);
+    }
+    lines.push('', 'Total estimado: ' + total + '€' + (maintValue > 0 ? ' + ' + maintValue + '€/mês' : '') + ' (valores sujeitos a confirmação)');
+
+    var bqFile = document.getElementById('bqFile');
+    if (bqFile && bqFile.files.length){
+      lines.push('', 'ANEXAR MANUALMENTE: ' + bqFile.files[0].name);
+    }
+
+    var mailto = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Pedido de orçamento — Alwes Studio') + '&body=' + encodeURIComponent(lines.join('\n'));
+    window.location.href = mailto;
+
     budgetForm.hidden = true;
     budgetDone.hidden = false;
   });
+  document.getElementById('closeBudgetDone').addEventListener('click', closeBudget);
 
-  document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); });
+  var contactForm = document.getElementById('contactForm');
+  var contactDone = document.getElementById('contactDone');
+  contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('cfName').value.trim();
+    var email = document.getElementById('cfEmail').value.trim();
+    var budget = document.getElementById('cfBudget').value;
+    var details = document.getElementById('cfDetails').value.trim();
+
+    var bodyLines = [
+      'Nome: ' + name,
+      'Email: ' + email,
+      'Orçamento: ' + budget,
+      '',
+      'Detalhes do projeto:',
+      details || '(não especificado)'
+    ];
+    var cfFile = document.getElementById('cfFile');
+    if (cfFile && cfFile.files.length){
+      bodyLines.push('', 'ANEXAR MANUALMENTE: ' + cfFile.files[0].name);
+    }
+
+    var mailto = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Novo contacto — ' + name) + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+    window.location.href = mailto;
+
+    contactForm.hidden = true;
+    contactDone.hidden = false;
+  });
 
   var cookieBanner = document.getElementById('cookieBanner');
   var cookieChoice = localStorage.getItem('cookieConsent');
