@@ -39,7 +39,7 @@
 html{background:var(--color-bg);color-scheme:light;}
 body{background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);margin:0;font-size:15px;line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 h1,h2,h3,h4{font-family:var(--font-heading);font-weight:400;line-height:1.15;letter-spacing:-.01em;margin:0;text-wrap:balance;}
-p{margin:0;}
+p{margin:0;text-align:justify;}
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;}
 button{font-family:inherit;}
@@ -55,6 +55,12 @@ button{font-family:inherit;}
 .nav-tab{white-space:nowrap;flex:none;padding:8px 14px;font-family:var(--font-body);font-weight:400;font-size:12.5px;letter-spacing:.02em;background:none;border:none;cursor:pointer;color:var(--color-text-55);border-radius:999px;transition:color .15s ease,background .15s ease;}
 .nav-tab:hover{color:var(--color-text);background:var(--color-divider-soft);}
 .nav-tab[aria-current="page"]{color:var(--color-text);background:var(--color-surface);font-weight:600;}
+.nav-menu{display:contents;}
+.nav-toggle{display:none;flex:none;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:36px;height:36px;margin-left:auto;background:none;border:none;cursor:pointer;padding:0;}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--color-text);transition:transform .15s ease,opacity .15s ease;}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;text-decoration:none;font-family:var(--font-body);font-weight:500;font-size:13.5px;line-height:1.2;border:1px solid transparent;padding:10px 18px;border-radius:999px;transition:opacity .15s ease,transform .1s ease;}
 .btn:active{transform:scale(.97);}
 .btn-dark{background:var(--color-text);color:var(--color-bg);}
@@ -66,7 +72,7 @@ button{font-family:inherit;}
 .btn svg{display:block;flex:none;}
 
 /* ---- shell ---- */
-.viewport{flex:1;overflow-y:auto;background:var(--color-bg);}
+.viewport{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--color-bg);}
 .page{max-width:1600px;margin:0 auto;}
 .page[hidden]{display:none;}
 section{padding:0 64px;}
@@ -75,13 +81,13 @@ section{padding:0 64px;}
 .hr-top{border-top:1px solid var(--color-divider);}
 
 /* ---- home ---- */
-.hero{min-height:calc(100vh - 65px);display:grid;grid-template-columns:1.05fr 1fr;align-items:center;padding-top:56px;padding-bottom:56px;gap:56px;}
+.hero{min-height:calc(100vh - 65px);display:grid;grid-template-columns:0.9fr 1.3fr;align-items:center;padding-top:56px;padding-bottom:56px;gap:56px;}
 .hero h1{font-family:var(--font-hero);font-size:clamp(30px,4vw,48px);max-width:13ch;margin-bottom:22px;}
 .hero-ctas{display:flex;gap:12px;margin-bottom:34px;flex-wrap:wrap;}
-.hero-note{font-size:13px;line-height:1.75;color:var(--color-text-75);border-top:1px solid var(--color-divider);padding-top:20px;max-width:58ch;}
+.hero-note{font-size:13px;line-height:1.75;color:var(--color-text-75);margin-top:20px;max-width:58ch;text-align:justify;}
 .hero-note-brand{font-family:var(--font-heading);font-size:15px;color:var(--color-text);margin-bottom:8px;}
-.hero-art{position:relative;aspect-ratio:3/2;border:1px solid var(--color-divider);overflow:hidden;}
-.hero-art img{width:100%;height:100%;object-fit:cover;}
+.hero-art{position:relative;margin-right:calc(-1 * max(64px, (100vw - 1600px) / 2 + 64px) + 32px);}
+.hero-art img{width:100%;height:auto;display:block;}
 
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--color-divider);padding-top:28px;}
 .grid-3>div{padding:0 32px;}
@@ -93,7 +99,7 @@ section{padding:0 64px;}
 .feat p{font-size:14px;color:var(--color-text-75);}
 
 .strip{display:flex;justify-content:center;padding-top:8px;}
-.strip-card{flex:none;width:190px;height:254px;box-shadow:var(--shadow-md);margin:0 -16px;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);filter:grayscale(1) contrast(1.08);display:flex;align-items:center;justify-content:center;}
+.strip-card{flex:none;width:190px;height:254px;box-shadow:var(--shadow-md);margin:0 -16px;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);display:flex;align-items:center;justify-content:center;}
 .strip-card span{font-family:monospace;font-size:9px;color:var(--color-text);background:rgba(255,255,255,.6);padding:3px 6px;}
 .strip-card.photo{background-image:linear-gradient(155deg,#c9c5c5,#9b9797);}
 
@@ -155,17 +161,8 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .maint-list div{display:flex;gap:8px;align-items:flex-start;}
 .maint-list svg{width:15px;height:15px;color:var(--color-accent);flex:none;margin-top:2px;}
 
-/* ---- portfolio ---- */
-.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.case-card{display:flex;flex-direction:column;gap:8px;padding:14px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.6);box-shadow:var(--shadow-sm);}
-.case-photo{aspect-ratio:4/3;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);filter:grayscale(1) contrast(1.08);display:flex;align-items:center;justify-content:center;margin:-14px -14px 0;}
-.case-photo span{font-family:monospace;font-size:10px;}
-.case-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);}
-.case-name{font-family:var(--font-heading);font-size:17px;}
-.case-result{font-size:13px;color:var(--color-text-75);opacity:.9;flex:1;}
-
 /* ---- about ---- */
-.about-hero{display:grid;grid-template-columns:7fr 5fr;gap:48px;padding-top:72px;padding-bottom:8px;}
+.about-hero{display:grid;grid-template-columns:7fr 5fr;gap:48px;padding-top:72px;padding-bottom:96px;}
 .about-hero h1{font-size:clamp(28px,4vw,42px);max-width:14ch;margin-bottom:18px;}
 .about-hero p{font-size:15px;color:var(--color-text-75);max-width:48ch;margin-bottom:14px;}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;border-left:1px solid var(--color-divider);padding-left:22px;}
@@ -174,12 +171,6 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .stat:nth-child(odd){border-right:1px solid var(--color-divider);padding-right:20px;}
 .stat-num{font-size:30px;font-weight:700;font-family:var(--font-heading);color:var(--color-accent);}
 .stat-label{font-size:12px;color:var(--color-text-70);margin-top:2px;}
-
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--color-divider);padding-top:28px;}
-.team-avatar{aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);filter:grayscale(1) contrast(1.08);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
-.team-avatar span{font-family:monospace;font-size:9px;}
-.team-name{font-size:14.5px;margin-bottom:2px;}
-.team-role{font-size:12px;color:var(--color-text-65,rgba(32,30,29,.65));}
 
 /* ---- contact ---- */
 .contact-wrap{display:grid;grid-template-columns:7fr 5fr;gap:52px;padding:44px 48px;}
@@ -195,6 +186,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 .contact-row .clabel{font-size:11.5px;color:var(--color-text-60);margin-bottom:2px;}
 .contact-map{aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--color-neutral-300),var(--color-neutral-300) 10px,var(--color-neutral-200) 10px,var(--color-neutral-200) 20px);filter:grayscale(1) contrast(1.08);display:flex;align-items:center;justify-content:center;margin-top:6px;}
 .contact-map span{font-family:monospace;font-size:10px;}
+
+/* ---- cookie banner ---- */
+.cookie-banner{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;background:var(--color-text);color:var(--color-bg);padding:18px 22px;display:none;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:var(--shadow-lg);border-radius:10px;}
+.cookie-banner.open{display:flex;}
+.cookie-banner p{margin:0;font-size:13px;line-height:1.5;max-width:60ch;flex:1;min-width:220px;}
+.cookie-actions{display:flex;gap:10px;flex:none;}
+.cookie-actions .btn-dark{background:var(--color-bg);color:var(--color-text);}
+.cookie-actions .btn-ghost{border-color:var(--color-bg);color:var(--color-bg);}
 
 /* ---- budget modal ---- */
 .backdrop{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:48px 24px;background:rgba(32,30,29,.55);}
@@ -239,7 +238,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   section{padding:0 22px;}
   .page-head{padding:48px 22px 32px;}
   .hero{grid-template-columns:1fr;padding-top:32px;}
-  .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.case-grid,.about-hero,.stat-grid,.team-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
+  .hero-art{margin-right:0;}
+  .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.about-hero,.stat-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
   .grid-3>div,.svc-grid>.svc-cell,.steps>div{border:none !important;padding:20px 0 !important;border-bottom:1px solid var(--color-divider) !important;}
   .cta-band,.quote,footer{padding:44px 22px;}
   .contact-side{border-left:none;border-top:1px solid var(--color-divider);padding-left:0;padding-top:24px;}
@@ -249,6 +249,11 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   .dialog{max-width:none;min-height:100vh;padding:28px 20px;border:none;}
   .contact-wrap{padding:28px 24px;}
   .topnav{padding:14px 16px;gap:12px;}
+  .nav-toggle{display:flex;}
+  .nav-menu{display:none;}
+  .topnav.nav-open .nav-menu{display:flex;flex-direction:column;align-items:stretch;gap:10px;position:absolute;top:100%;left:0;right:0;background:var(--color-bg);border-bottom:1px solid var(--color-divider);padding:16px;}
+  .topnav.nav-open .nav-tabs{flex-direction:column;align-items:stretch;overflow:visible;}
+  .topnav.nav-open .nav-tab{text-align:left;}
   .stat-grid{border-left:none;padding-left:0;}
   .stat:nth-child(odd){border-right:none;padding-right:0;}
   .stat{border-bottom:1px solid var(--color-divider);padding-bottom:16px;padding-top:16px;}
@@ -269,8 +274,11 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 <div class="app">
   <nav class="topnav">
     <div class="brand">Alwes Studio</div>
-    <div class="nav-tabs" id="navTabs" role="tablist"></div>
-    <button class="btn btn-dark" id="openBudgetNav">Falar connosco</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-tabs" id="navTabs" role="tablist"></div>
+      <button class="btn btn-dark" data-goto="contact">Falar connosco</button>
+    </div>
   </nav>
 
   <div class="viewport">
@@ -281,8 +289,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <div>
           <h1>Design que comunica. Marcas que ficam.</h1>
           <div class="hero-ctas">
-            <a href="#" class="btn btn-dark open-budget">Começar um projeto</a>
-            <button class="btn btn-ghost nav-link" data-goto="portfolio">Ver nosso trabalho</button>
+            <a href="#" class="btn btn-dark open-budget">Simular</a>
           </div>
           <div class="hero-note">
             <div class="hero-note-brand">Alwes Studio</div>
@@ -319,11 +326,11 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       </section>
 
       <section class="strip">
-        <div class="strip-card photo" style="transform:rotate(-10deg) translateY(20px);z-index:1;"></div>
-        <div class="strip-card photo" style="transform:rotate(-5deg) translateY(8px);z-index:2;"></div>
-        <div class="strip-card" style="z-index:3;box-shadow:var(--shadow-lg);"><span>foto da equipa</span></div>
-        <div class="strip-card" style="transform:rotate(5deg) translateY(8px);z-index:2;"><span>detalhe do projeto</span></div>
-        <div class="strip-card" style="transform:rotate(10deg) translateY(20px);z-index:1;"><span>projeto entregue</span></div>
+        <div class="strip-card photo" style="transform:rotate(-10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2019%2C%202026%2C%2011_08_48%20PM.png" alt="Projeto em desenvolvimento no estúdio" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card photo" style="transform:rotate(-5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/equipa-alwes-studio.png" alt="Colaboração em projeto digital" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="z-index:3;box-shadow:var(--shadow-lg);overflow:hidden;"><img src="uploads/imagem_2026-08-19_175020418.png" alt="Website desenhado pela Alwes Studio" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="transform:rotate(5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2019%2C%202026%2C%2007_02_51%20PM.png" alt="Detalhe de interface de um projeto" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="transform:rotate(10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2019%2C%202026%2C%2011_16_19%20PM.png" alt="Projeto entregue em vários dispositivos" style="width:100%;height:100%;object-fit:cover;"></div>
       </section>
 
       <section class="quote">
@@ -334,7 +341,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       <div class="cta-band">
         <div class="cta-band-inner">
           <h2>Pronto para transformar o seu site?</h2>
-          <a href="#" class="btn btn-dark open-budget" style="background:var(--color-text);color:var(--color-bg);">Começar um projeto ICON_ARROW</a>
+          <a href="#" class="btn btn-dark open-budget" style="background:var(--color-text);color:var(--color-bg);">Simular ICON_ARROW</a>
         </div>
       </div>
 
@@ -345,7 +352,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <div class="page" data-page="services" hidden>
       <div class="page-head">
         <div class="eyebrow">Serviços · Preços</div>
-        <h1>Cinco formas de ajudar.</h1>
+        <h1>Seis formas de ajudar.</h1>
         <p class="lede">A maioria dos projetos combina dois ou três destes serviços. Nenhum é vendido como pacote fechado — cada um é definido conforme o que o site realmente precisa.</p>
         <div class="seg" role="tablist">
           <button class="seg-btn" data-svc-tab="servicos" aria-selected="true">Serviços</button>
@@ -372,7 +379,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
               ICON_CART
               <h3>E-commerce</h3>
               <p>Catálogo de produtos, checkout e inventário configurados para vender de verdade, não só mostrar.</p>
-              <div class="svc-price">A partir de 1.200€</div>
+              <div class="svc-price">A partir de 1.690€</div>
             </div>
             <div class="svc-cell">
               ICON_LIFEBUOY
@@ -380,13 +387,18 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
               <p>Plano mensal que cobre atualizações, hosting, backups e pequenas alterações à medida que surgem.</p>
               <div class="svc-price">A partir de 79€/mês</div>
             </div>
-            <div class="svc-cell" style="border-bottom:none;">
+            <div class="svc-cell">
               ICON_SEARCH
               <h3>SEO e conteúdo</h3>
               <p>SEO técnico, estrutura de páginas e um plano de conteúdo que faz o site ser encontrado.</p>
               <div class="svc-price">A partir de 350€</div>
             </div>
-            <div class="svc-cell" style="border-bottom:none;"></div>
+            <div class="svc-cell" style="border-bottom:none;">
+              ICON_SMARTPHONE
+              <h3>App: design e desenvolvimento</h3>
+              <p>Aplicações móveis pensadas de raiz — design de interface e desenvolvimento nativo ou multiplataforma.</p>
+              <div class="svc-price">A partir de 10.000€</div>
+            </div>
           </div>
         </section>
 
@@ -494,44 +506,17 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       FOOTER
     </div>
 
-    <!-- PORTFOLIO -->
-    <div class="page" data-page="portfolio" hidden>
-      <div class="page-head">
-        <div class="eyebrow">Trabalho selecionado</div>
-        <h1>Seis negócios, seis problemas diferentes.</h1>
-      </div>
-      <section style="padding-bottom:88px;">
-        <div class="panel">
-          <div class="case-grid" id="caseGrid"></div>
-        </div>
-      </section>
-      FOOTER
-    </div>
-
     <!-- ABOUT -->
     <div class="page" data-page="about" hidden>
       <section class="about-hero">
         <div>
           <div class="eyebrow">Sobre</div>
-          <h1>Onze pessoas, um estúdio.</h1>
-          <p>A Alwes Studio começou em 2018 a construir sites para negócios que tinham sido mal servidos por templates e freelancers que desapareciam. Continuamos a fazer isso — agora para um leque mais alargado de clientes, com uma pequena equipa interna em vez de um portátil e um prazo.</p>
-          <p>Mantemos os projetos pequenos o suficiente para que as mesmas três ou quatro pessoas estejam neles do início ao lançamento.</p>
-        </div>
-        <div class="stat-grid">
-          <div class="stat"><div class="stat-num">8</div><div class="stat-label">anos de atividade</div></div>
-          <div class="stat"><div class="stat-num">130+</div><div class="stat-label">sites entregues</div></div>
-          <div class="stat"><div class="stat-num">11</div><div class="stat-label">na equipa</div></div>
-          <div class="stat"><div class="stat-num">92%</div><div class="stat-label">clientes que voltam</div></div>
+          <h1>Um estúdio focado em resultados.</h1>
+          <p>Nos últimos 5 anos, a Alwes Studio tem trabalhado com negócios que tinham sido mal servidos por templates e freelancers que desapareciam. Trazemos essa experiência para cada projeto, com acompanhamento próximo do início ao fim.</p>
+          <p>Mantemos os projetos com um acompanhamento dedicado, do início ao lançamento, sem passar de mão em mão.</p>
         </div>
       </section>
 
-      <section style="padding-top:40px;padding-bottom:88px;">
-        <div class="panel">
-          <div class="eyebrow" style="color:var(--color-text-55);">A equipa</div>
-          <h2 style="font-size:28px;margin-bottom:32px;">Onze pessoas, uma fila de secretárias</h2>
-          <div class="team-grid" id="teamGrid"></div>
-        </div>
-      </section>
       FOOTER
     </div>
 
@@ -546,19 +531,17 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
             <div class="field"><label>Email</label><input type="email" class="input" required></div>
             <div class="field"><label>Orçamento</label>
               <select class="input">
-                <option>Até 5.000€</option>
-                <option>5.000€ – 15.000€</option>
-                <option>15.000€+</option>
+                <option>Até 2.000€</option>
+                <option>2.000€ – 10.000€</option>
+                <option>10.000€+</option>
               </select>
             </div>
             <div class="field"><label>Detalhes do projeto</label><textarea rows="4" class="input"></textarea></div>
             <button type="submit" class="btn btn-dark" style="align-self:flex-start;">Enviar</button>
           </form>
           <div class="contact-side">
-            <div class="contact-row">ICON_MAIL<div><div class="clabel">Email</div><div style="font-size:14px;">hello@alwesstudio.com</div></div></div>
-            <div class="contact-row">ICON_PHONE<div><div class="clabel">Telefone</div><div style="font-size:14px;">+1 (555) 010-2938</div></div></div>
-            <div class="contact-row">ICON_PIN<div><div class="clabel">Estúdio</div><div style="font-size:14px;">214 Fulton St, Unit 4<br>Brooklyn, NY 11201</div></div></div>
-            <div class="contact-map"><span>mapa / localização</span></div>
+            <div class="contact-row">ICON_MAIL<div><div class="clabel">Email</div><div style="font-size:14px;">hello@alwesstudio.space</div></div></div>
+            <div class="contact-row">ICON_PHONE<div><div class="clabel">Telefone</div><div style="font-size:14px;">+351 910 294 842</div></div></div>
           </div>
         </div>
       </section>
@@ -621,6 +604,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   </div>
 </div>
 
+<div class="cookie-banner" id="cookieBanner">
+  <p>Usamos cookies para melhorar a sua experiência e analisar o tráfego do site. Pode aceitar ou rejeitar os cookies não essenciais a qualquer momento.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-ghost" id="cookieDecline">Rejeitar</button>
+    <button class="btn btn-dark" id="cookieAccept">Aceitar</button>
+  </div>
+</div>
+
 <script>
 (function(){
   var ICONS = {
@@ -631,6 +622,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21.5 8H6"/></svg>',
     lifebuoy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.9 4.9 4.2 4.2"/><path d="m14.9 14.9 4.2 4.2"/><path d="m14.9 9.1 4.2-4.2"/><path d="m4.9 19.1 4.2-4.2"/></svg>',
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
+    smartphone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
     arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>',
@@ -639,7 +631,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'
   };
 
-  var FOOTER = '<footer><div class="fbrand">Alwes Studio</div><div class="flinks"><a href="#">hello@alwesstudio.com</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div><div class="fcopy">© 2026 Alwes Studio</div></footer>';
+  var FOOTER = '<footer><div class="fbrand">Alwes Studio</div><div class="flinks"><a href="#">hello@alwesstudio.space</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div><div class="fcopy">© 2026 Alwes Studio</div></footer>';
 
   document.querySelectorAll('.viewport .page').forEach(function(pageEl){
     pageEl.innerHTML = pageEl.innerHTML.replace(/FOOTER/g, FOOTER);
@@ -658,6 +650,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     'ICON_CART': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.cart+'</span>',
     'ICON_LIFEBUOY': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.lifebuoy+'</span>',
     'ICON_SEARCH': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.search+'</span>',
+    'ICON_SMARTPHONE': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.smartphone+'</span>',
     'ICON_CHECK': ICONS.check,
     'ICON_ARROW': ICONS.arrow,
     'ICON_MAIL': ICONS.mail,
@@ -669,7 +662,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   swap(document.getElementById('budgetBackdrop'), iconMap);
 
   var TEMPLATES = [
-    ['home','Início'], ['services','Serviços'], ['portfolio','Portefólio'], ['about','Sobre / Equipa'], ['contact','Contacto']
+    ['home','Início'], ['services','Serviços'], ['about','Sobre / Equipa'], ['contact','Contacto']
   ];
   var navTabs = document.getElementById('navTabs');
   TEMPLATES.forEach(function(t){
@@ -693,40 +686,29 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   });
   showPage('home');
 
+  var navToggle = document.getElementById('navToggle');
+  var topnavEl = document.querySelector('.topnav');
+  var navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', function(){
+    var open = topnavEl.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navMenu.addEventListener('click', function(){
+    topnavEl.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded','false');
+  });
+  document.addEventListener('click', function(e){
+    if (topnavEl.classList.contains('nav-open') && !topnavEl.contains(e.target)){
+      topnavEl.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded','false');
+    }
+  });
+
   document.querySelectorAll('[data-svc-tab]').forEach(function(b){
     b.addEventListener('click', function(){
       document.querySelectorAll('[data-svc-tab]').forEach(function(x){ x.setAttribute('aria-selected', x===b ? 'true':'false'); });
       document.querySelectorAll('[data-svc-panel]').forEach(function(p){ p.hidden = p.dataset.svcPanel !== b.dataset.svcTab; });
     });
-  });
-
-  var CASES = [
-    { tag: 'E-commerce', name: 'Harlow & Finch', result: 'Conversão no checkout subiu 34% após a reconstrução.' },
-    { tag: 'Logística', name: 'Bramwell Logistics', result: 'Pedidos de orçamento triplicaram com um site mais claro.' },
-    { tag: 'Arquitetura', name: 'Ada Studio', result: 'Um portefólio que finalmente está à altura do trabalho.' },
-    { tag: 'Hotelaria', name: 'Kestrel Coffee', result: 'Os pedidos online passaram a representar 20% da receita.' },
-    { tag: 'Serviços profissionais', name: 'Northbank Legal', result: 'Os pedidos de novos clientes duplicaram em 6 meses.' },
-    { tag: 'Saúde', name: 'Solace Wellness', result: 'O fluxo de marcação reduziu a desistência para metade.' }
-  ];
-  var caseGrid = document.getElementById('caseGrid');
-  CASES.forEach(function(c){
-    var d = document.createElement('div');
-    d.className = 'case-card';
-    d.innerHTML = '<div class="case-photo"><span>foto do estudo de caso</span></div><div class="case-tag">'+c.tag+'</div><div class="case-name">'+c.name+'</div><p class="case-result">'+c.result+'</p>';
-    caseGrid.appendChild(d);
-  });
-
-  var TEAM = [
-    { name: 'Dana Okafor', role: 'Fundadora / Estratégia' },
-    { name: 'Marcus Ryel', role: 'Direção de Design' },
-    { name: 'Ines Vogt', role: 'Engenharia' },
-    { name: 'Tobias Lund', role: 'Gestão de Projeto' }
-  ];
-  var teamGrid = document.getElementById('teamGrid');
-  TEAM.forEach(function(p){
-    var d = document.createElement('div');
-    d.innerHTML = '<div class="team-avatar"><span>foto</span></div><h4 class="team-name">'+p.name+'</h4><div class="team-role">'+p.role+'</div>';
-    teamGrid.appendChild(d);
   });
 
   var MODULES = [
@@ -737,7 +719,9 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     { id:'ecom', name:'E-commerce', price:900, cat:'Módulos principais' },
     { id:'ecom-adv', name:'E-commerce avançado', price:1500, cat:'Módulos principais' },
     { id:'login', name:'Área de cliente / Login', price:500, cat:'Módulos principais' },
-    { id:'crm', name:'CRM', price:600, cat:'Módulos principais' },
+    { id:'crm-basic', name:'CRM básico à medida (contactos + pipeline + tarefas, 1 utilizador)', price:3000, priceLabel:'+3.000€ – 6.000€', cat:'Módulos principais' },
+    { id:'crm-mid', name:'CRM intermédio (+ permissões, relatórios, alguma automação)', price:6000, priceLabel:'+6.000€ – 12.000€', cat:'Módulos principais' },
+    { id:'crm-adv', name:'CRM avançado (multi-utilizador com papéis, integrações externas, automações complexas)', price:12000, priceLabel:'+12.000€ – 25.000€+', cat:'Módulos principais' },
     { id:'blog', name:'Blog / Notícias', price:300, cat:'Módulos principais' },
     { id:'members', name:'Área de membros', price:700, cat:'Módulos principais' },
     { id:'payments', name:'Pagamentos online', price:300, cat:'Módulos principais' },
@@ -753,7 +737,6 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     { id:'automations', name:'Automações', price:400, cat:'Integrações & automações' },
     { id:'api', name:'Integração com API externa', price:500, cat:'Integrações & automações' },
     { id:'software', name:'Integração com software externo', price:400, cat:'Integrações & automações' },
-    { id:'crm-int', name:'CRM + integração', price:750, cat:'Integrações & automações' },
     { id:'notifications', name:'Sistema de notificações', price:300, cat:'Integrações & automações' },
     { id:'forms', name:'Formulários avançados', price:200, cat:'Integrações & automações' },
     { id:'gallery', name:'Galeria / Portfólio avançado', price:250, cat:'Funcionalidades adicionais' },
@@ -780,7 +763,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     }
     var label = document.createElement('label');
     label.className = 'mod-row';
-    label.innerHTML = '<span class="mod-row-left"><input type="checkbox"><span class="mod-box"></span>'+m.name+'</span><span class="mod-price">+'+m.price+'€</span>';
+    label.innerHTML = '<span class="mod-row-left"><input type="checkbox"><span class="mod-box"></span>'+m.name+'</span><span class="mod-price">'+(m.priceLabel || ('+'+m.price+'€'))+'</span>';
     var input = label.querySelector('input');
     input.addEventListener('change', function(){ selected[m.id] = input.checked; updateTotal(); });
     moduleList.appendChild(label);
@@ -827,7 +810,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   function openBudget(){ backdrop.classList.add('open'); dialogTitle.textContent = 'Simule o seu projeto.'; budgetForm.hidden = false; budgetDone.hidden = true; }
   function closeBudget(){ backdrop.classList.remove('open'); }
   document.addEventListener('click', function(e){
-    if (e.target.closest('#openBudgetNav') || e.target.closest('.open-budget')){ e.preventDefault(); openBudget(); }
+    if (e.target.closest('.open-budget')){ e.preventDefault(); openBudget(); }
   });
   document.getElementById('closeBudget').addEventListener('click', closeBudget);
   backdrop.addEventListener('click', function(e){ if (e.target === backdrop) closeBudget(); });
@@ -842,6 +825,16 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   });
 
   document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); });
+
+  var cookieBanner = document.getElementById('cookieBanner');
+  var cookieChoice = localStorage.getItem('cookieConsent');
+  if (!cookieChoice){ cookieBanner.classList.add('open'); }
+  function setCookieConsent(value){
+    localStorage.setItem('cookieConsent', value);
+    cookieBanner.classList.remove('open');
+  }
+  document.getElementById('cookieAccept').addEventListener('click', function(){ setCookieConsent('accepted'); });
+  document.getElementById('cookieDecline').addEventListener('click', function(){ setCookieConsent('declined'); });
 })();
 </script>
 
