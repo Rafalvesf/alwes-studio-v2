@@ -55,6 +55,7 @@ button{font-family:inherit;}
 .nav-tab{white-space:nowrap;flex:none;padding:8px 14px;font-family:var(--font-body);font-weight:400;font-size:11px;letter-spacing:.02em;background:none;border:none;cursor:pointer;color:var(--color-text-55);border-radius:999px;transition:color .15s ease,background .15s ease;}
 .nav-tab:hover{color:var(--color-text);}
 .nav-tab[aria-current="page"]{color:var(--color-text);font-weight:600;}
+.nav-badge{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:var(--color-accent);color:var(--color-on-accent);font-size:9px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;vertical-align:middle;}
 .nav-menu{display:contents;}
 .nav-toggle{display:none;flex:none;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:36px;height:36px;margin-left:auto;background:none;border:none;cursor:pointer;padding:0;}
 .nav-toggle span{display:block;width:20px;height:2px;background:var(--color-text);transition:transform .15s ease,opacity .15s ease;}
@@ -841,8 +842,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   TEMPLATES.forEach(function(t){
     var b = document.createElement('button');
     b.className = 'nav-tab';
-    b.textContent = t[1];
     b.dataset.goto = t[0];
+    b.appendChild(document.createTextNode(t[1]));
+    if (t[0] === 'portfolio'){
+      var badge = document.createElement('span');
+      badge.className = 'nav-badge';
+      badge.textContent = 'Em breve';
+      b.appendChild(badge);
+    }
     navTabs.appendChild(b);
   });
 
