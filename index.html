@@ -694,23 +694,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       <div class="budget-grid">
         <div class="budget-modules">
           <div class="budget-modules-head"><div>Website base</div><div>790€</div></div>
-          <div id="moduleList"></div>
 
-          <div class="mod-cat">Idiomas adicionais</div>
-          <div class="lang-row">
-            <span>Idiomas adicionais além do Português (+250€ / idioma)</span>
-            <div class="stepper">
-              <button type="button" id="langDec">–</button>
-              <span id="langCount">0</span>
-              <button type="button" id="langInc">+</button>
-            </div>
-          </div>
-          <input type="text" class="input" id="langNames" placeholder="Quais idiomas além do Português? ex: Inglês, Espanhol" style="margin:8px 0;display:none;">
-
-          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Detalhes do projeto</div>
-          <textarea rows="3" class="input" id="bqDetails" placeholder="Conte-nos mais sobre o projeto (opcional)"></textarea>
-
-          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Mockup base</div>
+          <div class="mod-cat">Mockup base</div>
           <div class="mockup-pick" id="mockupPick">
             <label class="mockup-opt active">
               <input type="radio" name="mockup" value="Minimalista" checked>
@@ -733,6 +718,22 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
               Corporate
             </label>
           </div>
+
+          <div id="moduleList"></div>
+
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Idiomas adicionais</div>
+          <div class="lang-row">
+            <span>Idiomas adicionais além do Português (+250€ / idioma)</span>
+            <div class="stepper">
+              <button type="button" id="langDec">–</button>
+              <span id="langCount">0</span>
+              <button type="button" id="langInc">+</button>
+            </div>
+          </div>
+          <input type="text" class="input" id="langNames" placeholder="Quais idiomas além do Português? ex: Inglês, Espanhol" style="margin:8px 0;display:none;">
+
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Detalhes do projeto</div>
+          <textarea rows="3" class="input" id="bqDetails" placeholder="Conte-nos mais sobre o projeto (opcional)"></textarea>
 
           <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Manutenção mensal</div>
           <div class="maint-pick" id="maintPick">
