@@ -630,7 +630,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
                 <span class="file-input-name" id="cfFileName">Nenhum ficheiro selecionado</span>
               </label>
               <input type="file" id="cfFile" hidden>
-              <div class="field-hint">O ficheiro tem de ser anexado manualmente no email que se abrir a seguir.</div>
+              <div class="field-hint">Tamanho máximo: 10MB.</div>
             </div>
             <button type="submit" class="btn btn-dark" style="align-self:flex-start;color:#000;">Enviar</button>
           </form>
@@ -692,7 +692,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
             <span class="file-input-name" id="bqFileName">Nenhum ficheiro selecionado</span>
           </label>
           <input type="file" id="bqFile" hidden>
-          <div class="field-hint">O ficheiro tem de ser anexado manualmente no email que se abrir a seguir.</div>
+          <div class="field-hint">Tamanho máximo: 10MB.</div>
         </div>
 
         <div class="budget-summary">
@@ -724,6 +724,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 (function(){
   var ICONS = {
@@ -952,6 +953,10 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 
   var CONTACT_EMAIL = 'hello@alwesstudio.space';
 
+  var EMAILJS_SERVICE_ID = 'service_wywtcgs';
+  var EMAILJS_TEMPLATE_ID = 'template_2t80405';
+  emailjs.init({ publicKey: 'gbdRQ4vws5E8GLjpB' });
+
   var FILE_ACCEPT = '.pdf,.jpg,.jpeg,.png,.doc,.docx';
   var FILE_MAX_MB = 10;
   function setupFileInput(inputId, nameId){
@@ -985,8 +990,6 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 
   document.getElementById('submitBudget').addEventListener('click', function(){
     var total = updateTotal();
-    document.getElementById('doneTotal').textContent = total + '€';
-    dialogTitle.textContent = 'Pedido enviado. Marque uma chamada.';
 
     var lines = ['Pedido de orçamento — Alwes Studio', '', 'Website base: 790€'];
     var chosenModules = Object.keys(selected).filter(function(id){ return selected[id]; });
@@ -1006,16 +1009,34 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     }
     lines.push('', 'Total estimado: ' + total + '€' + (maintValue > 0 ? ' + ' + maintValue + '€/mês' : '') + ' (valores sujeitos a confirmação)');
 
+    var submitBudgetBtn = document.getElementById('submitBudget');
+    var submitBudgetLabel = submitBudgetBtn.querySelector('span');
+    var submitBudgetOriginal = submitBudgetLabel.textContent;
+    submitBudgetBtn.disabled = true;
+    submitBudgetLabel.textContent = 'A enviar...';
+
+    var params = {
+      subject: 'Pedido de orçamento — Alwes Studio',
+      message: lines.join('\n')
+    };
     var bqFile = document.getElementById('bqFile');
     if (bqFile && bqFile.files.length){
-      lines.push('', 'ANEXAR MANUALMENTE: ' + bqFile.files[0].name);
+      params.attachment = bqFile.files[0];
     }
 
-    var mailto = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Pedido de orçamento — Alwes Studio') + '&body=' + encodeURIComponent(lines.join('\n'));
-    window.location.href = mailto;
-
-    budgetForm.hidden = true;
-    budgetDone.hidden = false;
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(function(){
+      document.getElementById('doneTotal').textContent = total + '€';
+      dialogTitle.textContent = 'Pedido enviado. Marque uma chamada.';
+      budgetForm.hidden = true;
+      budgetDone.hidden = false;
+      submitBudgetBtn.disabled = false;
+      submitBudgetLabel.textContent = submitBudgetOriginal;
+    }).catch(function(err){
+      console.error('EmailJS error', err);
+      alert('Não foi possível enviar o pedido. Tente novamente ou envie um email para ' + CONTACT_EMAIL + '.');
+      submitBudgetBtn.disabled = false;
+      submitBudgetLabel.textContent = submitBudgetOriginal;
+    });
   });
   document.getElementById('closeBudgetDone').addEventListener('click', closeBudget);
 
@@ -1036,16 +1057,32 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       'Detalhes do projeto:',
       details || '(não especificado)'
     ];
+
+    var submitContactBtn = contactForm.querySelector('button[type="submit"]');
+    var submitContactOriginal = submitContactBtn.textContent;
+    submitContactBtn.disabled = true;
+    submitContactBtn.textContent = 'A enviar...';
+
+    var params = {
+      subject: 'Novo contacto — ' + name,
+      message: bodyLines.join('\n'),
+      from_name: name,
+      reply_to: email
+    };
     var cfFile = document.getElementById('cfFile');
     if (cfFile && cfFile.files.length){
-      bodyLines.push('', 'ANEXAR MANUALMENTE: ' + cfFile.files[0].name);
+      params.attachment = cfFile.files[0];
     }
 
-    var mailto = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Novo contacto — ' + name) + '&body=' + encodeURIComponent(bodyLines.join('\n'));
-    window.location.href = mailto;
-
-    contactForm.hidden = true;
-    contactDone.hidden = false;
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(function(){
+      contactForm.hidden = true;
+      contactDone.hidden = false;
+    }).catch(function(err){
+      console.error('EmailJS error', err);
+      alert('Não foi possível enviar a mensagem. Tente novamente ou envie um email para ' + CONTACT_EMAIL + '.');
+      submitContactBtn.disabled = false;
+      submitContactBtn.textContent = submitContactOriginal;
+    });
   });
 
   var cookieBanner = document.getElementById('cookieBanner');
