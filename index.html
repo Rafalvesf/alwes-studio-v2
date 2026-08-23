@@ -222,7 +222,7 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .field label{font-size:12px;color:var(--color-text-70);}
 .input{width:100%;min-height:38px;padding:8px 11px;font:inherit;font-size:14px;color:var(--color-text);background:var(--color-bg);border:1px solid var(--color-divider);}
 .input:focus-visible{outline:2px solid var(--color-accent);outline-offset:1px;}
-.contact-form .input{border:none;border-radius:12px;background:var(--color-surface);}
+.contact-form .input,.dialog .input{border:none;border-radius:12px;background:var(--color-surface);}
 .select-wrap{position:relative;}
 .select-wrap select.input{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-right:36px;cursor:pointer;}
 .select-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--color-text-60);display:flex;}
@@ -676,6 +676,9 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
           <div class="budget-modules-head"><div>Website base</div><div>790€</div></div>
           <div id="moduleList"></div>
 
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Detalhes do projeto</div>
+          <textarea rows="3" class="input" id="bqDetails" placeholder="Conte-nos mais sobre o projeto (opcional)"></textarea>
+
           <div class="mod-cat">Idiomas adicionais</div>
           <div class="lang-row">
             <span>Idiomas adicionais além do Português (+250€ / idioma)</span>
@@ -1009,7 +1012,11 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 
     var total = updateTotal();
 
+    var bqDetailsVal = document.getElementById('bqDetails').value.trim();
     var lines = ['Pedido de orçamento — Alwes Studio', '', 'Nome: ' + bqNameVal, 'Email: ' + bqEmailVal, '', 'Website base: 790€'];
+    if (bqDetailsVal){
+      lines.push('', 'Detalhes do projeto:', bqDetailsVal);
+    }
     var chosenModules = Object.keys(selected).filter(function(id){ return selected[id]; });
     if (chosenModules.length){
       lines.push('', 'Módulos selecionados:');
