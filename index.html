@@ -121,6 +121,7 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 
 /* ---- services ---- */
 .page-head{padding:72px 64px 48px;}
+.page-head-portfolio{padding-top:112px;}
 .page-head h1{font-size:clamp(28px,4vw,44px);max-width:16ch;margin-bottom:14px;}
 .page-head .lede{font-size:15.5px;max-width:54ch;color:var(--color-text-75);margin-bottom:26px;}
 .seg{display:inline-flex;border:1px solid var(--color-divider);border-radius:999px;padding:4px;gap:2px;}
@@ -154,6 +155,15 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .pill-row{display:flex;align-items:center;gap:14px;font-size:12.5px;font-weight:600;flex-wrap:wrap;margin:14px 0;}
 .pill{border:1px solid var(--color-divider);padding:11px 16px;}
 .pill.final{border-color:var(--color-text);}
+
+.style-group{padding-bottom:56px;}
+.style-group h3{font-size:19px;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.style-group>p{font-size:13.5px;color:var(--color-text-75);max-width:52ch;margin-bottom:20px;}
+.style-badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--color-divider);color:var(--color-text-75);}
+.style-badge.included{border-color:var(--color-accent);color:var(--color-accent);}
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.style-card{position:relative;overflow:hidden;border:1px solid var(--color-divider);align-self:start;}
+.style-video{width:100%;height:auto;display:block;}
 
 .maint-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 .maint-card{border:1px solid var(--color-divider);padding:40px 44px;display:flex;flex-direction:column;}
@@ -329,10 +339,12 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 @media (max-width:900px){
   section{padding:0 22px;}
   .page-head{padding:48px 22px 32px;}
+  .page-head-portfolio{padding-top:72px;}
   .hero{grid-template-columns:1fr;padding-top:64px;gap:20px;}
   .hero-art{margin-right:0;order:-1;}
   .btn-dark{background:#000;}
   .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.case-grid,.about-hero,.stat-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
+  .style-grid{grid-template-columns:1fr !important;}
   .mockup-pick{grid-template-columns:repeat(2,1fr) !important;}
   .grid-3>div,.svc-grid>.svc-cell,.steps>div{border:none !important;padding:20px 0 !important;border-bottom:1px solid var(--color-divider) !important;}
   .cta-band,.quote,footer{padding:44px 22px;}
@@ -370,7 +382,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 <body>
 <div class="app">
   <nav class="topnav">
-    <div class="brand">Alwes Studio</div>
+    <div class="brand"><img src="uploads/logo-alwes-studio.png" alt="Alwes Studio" style="height:26px;width:auto;display:block;"></div>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <div class="nav-tabs" id="navTabs" role="tablist"></div>
@@ -530,6 +542,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
               <div class="price-check">ICON_CHECK Alterações incluídas (2h)</div>
               <div class="price-check">ICON_CHECK Publicação</div>
             </div>
+            <p style="font-size:12.5px;color:var(--color-text-55);margin-top:16px;">Inclui os estilos Estático e Parallax. Motion Design e Scroll Cinemático têm custo adicional, apenas por orçamento.</p>
           </div>
         </section>
 
@@ -599,15 +612,62 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 
     <!-- PORTFOLIO -->
     <div class="page" data-page="portfolio" hidden>
-      <div class="page-head">
+      <div class="page-head page-head-portfolio">
         <div class="eyebrow">Trabalho selecionado</div>
         <h1>Projetos que resolveram problemas reais.</h1>
       </div>
+      <section style="padding-bottom:32px;">
+        <div class="eyebrow">Estilos de design</div>
+        <h2 style="font-size:28px;max-width:26ch;margin-bottom:12px;">Veja os tipos de experiência que criamos.</h2>
+        <p style="font-size:15px;color:var(--color-text-75);max-width:56ch;">Cada projeto usa o estilo certo para o objetivo do negócio — não o mais vistoso.</p>
+      </section>
+
+      <section class="style-group">
+        <h3>Scroll Cinemático<span class="style-badge">Por orçamento</span></h3>
+        <p>Vídeo dividido em frames e controlado pelo scroll — a narrativa avança ao ritmo do visitante.</p>
+        <div class="style-grid">
+          <div class="style-card"><video class="style-video" src="uploads/styles/scroll-summerblossom.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/scroll-bloom.mp4" muted loop playsinline preload="none"></video></div>
+        </div>
+      </section>
+
+      <section class="style-group">
+        <h3>Motion Design<span class="style-badge">Por orçamento</span></h3>
+        <p>Elementos animados, transições e microinterações que dão vida à página sem depender do scroll.</p>
+        <div class="style-grid">
+          <div class="style-card"><video class="style-video" src="uploads/styles/motion-agent-crew.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/motion-pixel-muse.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/motion-dentalblu.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/motion-natureritual.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/motion-inthecloud.mp4" muted loop playsinline preload="none"></video></div>
+        </div>
+      </section>
+
+      <section class="style-group">
+        <h3>Parallax<span class="style-badge included">Incluído na base</span></h3>
+        <p>Camadas que se movem a velocidades diferentes ao rolar a página, criando profundidade.</p>
+        <div class="style-grid">
+          <div class="style-card"><video class="style-video" src="uploads/styles/parallax-mareamarea.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/parallax-bitcoin-yield.mp4" muted loop playsinline preload="none"></video></div>
+        </div>
+      </section>
+
+      <section class="style-group" style="padding-bottom:56px;">
+        <h3>Estático<span class="style-badge included">Incluído na base</span></h3>
+        <p>Layout tradicional, com interações discretas — foco total em clareza, velocidade e conteúdo.</p>
+        <div class="style-grid">
+          <div class="style-card"><video class="style-video" src="uploads/styles/static-cursor-reveal.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/static-handstouchgod.mp4" muted loop playsinline preload="none"></video></div>
+          <div class="style-card"><video class="style-video" src="uploads/styles/static-orbit-flora.mp4" muted loop playsinline preload="none"></video></div>
+        </div>
+      </section>
+
       <section style="padding-bottom:88px;">
-        <div class="panel" style="text-align:center;padding:80px 32px;">
+        <div class="panel" style="text-align:center;padding:56px 32px;">
           <p class="dialog-lede" style="max-width:40ch;margin:0 auto;">Estamos a preparar os primeiros casos de estudo. Volte em breve para ver o trabalho selecionado.</p>
         </div>
       </section>
+
       FOOTER
     </div>
 
@@ -804,7 +864,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="m6 9 6 6 6-6"/></svg>'
   };
 
-  var FOOTER = '<footer><div class="fbrand">Alwes Studio</div><div class="flinks"><a href="#">hello@alwesstudio.space</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div><div class="fcopy">© 2026 Alwes Studio</div></footer>';
+  var FOOTER = '<footer><div class="fbrand"><img src="uploads/logo-alwes-studio.png" alt="Alwes Studio" style="height:20px;width:auto;display:block;"></div><div class="flinks"><a href="#">hello@alwesstudio.space</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div><div class="fcopy">© 2026 Alwes Studio</div></footer>';
 
   document.querySelectorAll('.viewport .page').forEach(function(pageEl){
     pageEl.innerHTML = pageEl.innerHTML.replace(/FOOTER/g, FOOTER);
@@ -1188,6 +1248,22 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   }
   document.getElementById('cookieAccept').addEventListener('click', function(){ setCookieConsent('accepted'); });
   document.getElementById('cookieDecline').addEventListener('click', function(){ setCookieConsent('declined'); });
+
+  var styleVideos = document.querySelectorAll('.style-video');
+  if (styleVideos.length){
+    var videoObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var v = entry.target;
+        if (entry.isIntersecting){
+          if (v.readyState === 0) v.load();
+          v.play().catch(function(){});
+        } else {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '100px' });
+    styleVideos.forEach(function(v){ videoObserver.observe(v); });
+  }
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
