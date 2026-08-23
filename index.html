@@ -302,24 +302,11 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 .maint-opt{display:flex;align-items:center;justify-content:center;text-align:center;padding:13px 9px;border-radius:14px;font-size:12px;cursor:pointer;border:none;background:var(--color-surface);position:relative;transition:background .15s ease;}
 .maint-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;}
 .maint-opt.active{background:rgba(226,163,0,.18);color:var(--color-accent);}
+.style-pick{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px;}
+.style-opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:13px 9px;border-radius:14px;font-size:12px;cursor:pointer;border:none;background:var(--color-surface);position:relative;transition:background .15s ease;}
+.style-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;}
+.style-opt.active{background:rgba(226,163,0,.18);color:var(--color-accent);}
 
-.mockup-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px;}
-.mockup-opt{display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px;border-radius:14px;font-size:11px;cursor:pointer;border:none;background:var(--color-surface);position:relative;transition:background .15s ease;text-align:center;}
-.mockup-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;}
-.mockup-opt.active{background:rgba(226,163,0,.18);color:var(--color-accent);}
-.mockup-preview{width:100%;height:54px;border-radius:8px;background:var(--color-bg);padding:7px;display:flex;gap:4px;overflow:hidden;}
-.mockup-preview i{display:block;border-radius:2px;background:rgba(255,255,255,.18);}
-.mockup-preview--minimal{flex-direction:column;}
-.mockup-preview--minimal i:nth-child(1){height:4px;width:35%;}
-.mockup-preview--minimal i:nth-child(2){flex:1;width:100%;opacity:.5;}
-.mockup-preview--minimal i:nth-child(3){height:3px;width:55%;}
-.mockup-preview--bold{flex-direction:column;}
-.mockup-preview--bold i:nth-child(1){height:9px;width:45%;background:var(--color-accent);}
-.mockup-preview--bold i:nth-child(2){flex:1;width:100%;background:var(--color-accent);opacity:.4;}
-.mockup-preview--bold i:nth-child(3){height:4px;width:65%;background:rgba(255,255,255,.35);}
-.mockup-preview--editorial i:nth-child(1){width:36%;height:100%;}
-.mockup-preview--editorial i:nth-child(2){flex:1;height:100%;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.28) 0 3px,transparent 3px 9px);}
-.mockup-preview--corporate i{flex:1;height:100%;box-shadow:inset 0 3px 0 var(--color-accent);}
 
 .budget-summary{padding:26px 22px;border-radius:20px;}
 .summary-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-55);font-weight:600;margin-bottom:10px;}
@@ -337,6 +324,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 .budget-submit:hover .submit-icon{transform:scale(1.1) rotate(45deg);}
 
 @media (max-width:900px){
+  p,.hero-note{text-align:left;}
   section{padding:0 22px;}
   .page-head{padding:48px 22px 32px;}
   .page-head-portfolio{padding-top:72px;}
@@ -344,8 +332,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   .hero-art{margin-right:0;order:-1;}
   .btn-dark{background:#000;}
   .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.case-grid,.about-hero,.stat-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
+  .style-pick{grid-template-columns:repeat(2,1fr) !important;}
   .style-grid{grid-template-columns:1fr !important;}
-  .mockup-pick{grid-template-columns:repeat(2,1fr) !important;}
   .grid-3>div,.svc-grid>.svc-cell,.steps>div{border:none !important;padding:20px 0 !important;border-bottom:1px solid var(--color-divider) !important;}
   .cta-band,.quote,footer{padding:44px 22px;}
   footer{flex-direction:column;align-items:flex-start;gap:14px;}
@@ -475,37 +463,43 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
               ICON_LAYOUT
               <h3>Website: design e desenvolvimento</h3>
               <p>Um site novo do zero — estrutura, design, textos e uma construção que a sua equipa consegue manter.</p>
-              <div class="svc-price">A partir de 790€</div>
+              <div class="svc-price">Desde 790€</div>
             </div>
             <div class="svc-cell">
               ICON_PALETTE
               <h3>Marca e identidade</h3>
               <p>Logótipo, tipografia, cor e um conjunto de guidelines — construído para se manter coerente no site e além dele.</p>
-              <div class="svc-price">A partir de 750€</div>
+              <div class="svc-price">Desde 750€</div>
             </div>
             <div class="svc-cell">
               ICON_CART
               <h3>E-commerce</h3>
               <p>Catálogo de produtos, checkout e inventário configurados para vender de verdade, não só mostrar.</p>
-              <div class="svc-price">A partir de 1.690€</div>
-            </div>
-            <div class="svc-cell">
-              ICON_LIFEBUOY
-              <h3>Manutenção contínua</h3>
-              <p>Plano mensal que cobre atualizações, hosting, backups e pequenas alterações à medida que surgem.</p>
-              <div class="svc-price">A partir de 79€/mês</div>
+              <div class="svc-price">Desde 1.690€</div>
             </div>
             <div class="svc-cell">
               ICON_SEARCH
               <h3>SEO e conteúdo</h3>
               <p>SEO técnico, estrutura de páginas e um plano de conteúdo que faz o site ser encontrado.</p>
-              <div class="svc-price">A partir de 350€</div>
+              <div class="svc-price">Desde 350€</div>
             </div>
-            <div class="svc-cell" style="border-bottom:none;">
+            <div class="svc-cell">
               ICON_SMARTPHONE
               <h3>App: design e desenvolvimento</h3>
               <p>Aplicações móveis pensadas de raiz — design de interface e desenvolvimento nativo ou multiplataforma.</p>
-              <div class="svc-price">A partir de 10.000€</div>
+              <div class="svc-price">Desde 10.000€</div>
+            </div>
+            <div class="svc-cell">
+              ICON_DATABASE
+              <h3>CRM à medida</h3>
+              <p>Contactos, leads, pipeline, tarefas e gestão do negócio num sistema desenvolvido para a sua empresa.</p>
+              <div class="svc-price">Desde 3.000€</div>
+            </div>
+            <div class="svc-cell" style="border-bottom:none;">
+              ICON_DATABASE
+              <h3>Integração com CRM</h3>
+              <p>Ligação do website ao CRM que já utiliza.</p>
+              <div class="svc-price">Desde 400€</div>
             </div>
           </div>
         </section>
@@ -528,7 +522,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <section style="padding-bottom:44px;">
           <div class="price-card">
             <div class="eyebrow">01 — Website</div>
-            <div class="price-headline">A partir de 790€</div>
+            <div class="price-headline">Desde 790€</div>
             <p style="font-size:14px;color:var(--color-text-75);max-width:44ch;">A base para colocar o seu negócio online.</p>
             <div class="price-check-grid">
               <div class="price-check">ICON_CHECK 1–3 páginas</div>
@@ -612,13 +606,9 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 
     <!-- PORTFOLIO -->
     <div class="page" data-page="portfolio" hidden>
-      <div class="page-head page-head-portfolio">
-        <div class="eyebrow">Trabalho selecionado</div>
-        <h1>Projetos que resolveram problemas reais.</h1>
-      </div>
-      <section style="padding-bottom:32px;">
+      <section class="page-head-portfolio" style="padding-bottom:32px;">
         <div class="eyebrow">Estilos de design</div>
-        <h2 style="font-size:28px;max-width:26ch;margin-bottom:12px;">Veja os tipos de experiência que criamos.</h2>
+        <h2 style="font-size:clamp(28px,4vw,44px);max-width:26ch;margin-bottom:12px;">Veja os tipos de experiência que criamos.</h2>
         <p style="font-size:15px;color:var(--color-text-75);max-width:56ch;">Cada projeto usa o estilo certo para o objetivo do negócio — não o mais vistoso.</p>
       </section>
 
@@ -661,6 +651,11 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
           <div class="style-card"><video class="style-video" src="uploads/styles/static-orbit-flora.mp4" muted loop playsinline preload="none"></video></div>
         </div>
       </section>
+
+      <div class="page-head">
+        <div class="eyebrow">Trabalho selecionado</div>
+        <h1>Projetos que resolveram problemas reais.</h1>
+      </div>
 
       <section style="padding-bottom:88px;">
         <div class="panel" style="text-align:center;padding:56px 32px;">
@@ -757,35 +752,42 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <div class="budget-modules">
           <div class="budget-modules-head"><div>Website base</div><div>790€</div></div>
 
-          <div class="mod-cat">Mockup base</div>
-          <div class="mockup-pick" id="mockupPick">
-            <label class="mockup-opt active">
-              <input type="radio" name="mockup" value="Minimalista" checked>
-              <span class="mockup-preview mockup-preview--minimal"><i></i><i></i><i></i></span>
-              Minimalista
+          <div class="mod-cat">Tipo de site</div>
+          <div class="style-pick" id="stylePick">
+            <label class="style-opt">
+              <input type="radio" name="siteStyle" value="Scroll Cinemático">
+              <span>Scroll Cinemático</span>
+              <span class="style-badge">Por orçamento</span>
             </label>
-            <label class="mockup-opt">
-              <input type="radio" name="mockup" value="Bold & Colorido">
-              <span class="mockup-preview mockup-preview--bold"><i></i><i></i><i></i></span>
-              Bold &amp; Colorido
+            <label class="style-opt">
+              <input type="radio" name="siteStyle" value="Motion Design">
+              <span>Motion Design</span>
+              <span class="style-badge">Por orçamento</span>
             </label>
-            <label class="mockup-opt">
-              <input type="radio" name="mockup" value="Editorial">
-              <span class="mockup-preview mockup-preview--editorial"><i></i><i></i></span>
-              Editorial
+            <label class="style-opt">
+              <input type="radio" name="siteStyle" value="Parallax">
+              <span>Parallax</span>
+              <span class="style-badge included">Incluído na base</span>
             </label>
-            <label class="mockup-opt">
-              <input type="radio" name="mockup" value="Corporate">
-              <span class="mockup-preview mockup-preview--corporate"><i></i><i></i><i></i></span>
-              Corporate
+            <label class="style-opt active">
+              <input type="radio" name="siteStyle" value="Estático" checked>
+              <span>Estático</span>
+              <span class="style-badge included">Incluído na base</span>
             </label>
           </div>
 
           <div id="moduleList"></div>
 
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">CRM</div>
+          <div class="mod-row" style="cursor:default;">
+            <span class="mod-row-left">CRM à medida / Integração com CRM</span>
+            <span class="mod-price">Por orçamento</span>
+          </div>
+          <p class="field-hint">O âmbito varia muito de negócio para negócio — descreva a necessidade nos detalhes do projeto e enviamos um orçamento à parte.</p>
+
           <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Idiomas adicionais</div>
           <div class="lang-row">
-            <span>Idiomas adicionais além do Português (+250€ / idioma)</span>
+            <span>Idiomas adicionais além do Português (250€ / idioma)</span>
             <div class="stepper">
               <button type="button" id="langDec">–</button>
               <span id="langCount">0</span>
@@ -854,6 +856,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     lifebuoy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.9 4.9 4.2 4.2"/><path d="m14.9 14.9 4.2 4.2"/><path d="m14.9 9.1 4.2-4.2"/><path d="m4.9 19.1 4.2-4.2"/></svg>',
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
     smartphone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>',
+    database: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
     arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>',
@@ -884,6 +887,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     'ICON_LIFEBUOY': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.lifebuoy+'</span>',
     'ICON_SEARCH': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.search+'</span>',
     'ICON_SMARTPHONE': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.smartphone+'</span>',
+    'ICON_DATABASE': '<span class="feat-icon" style="color:var(--color-accent);display:block;margin-bottom:16px;">'+ICONS.database+'</span>',
     'ICON_CHECK': ICONS.check,
     'ICON_ARROW': ICONS.arrow,
     'ICON_MAIL': ICONS.mail,
@@ -971,42 +975,39 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   });
 
   var MODULES = [
-    { id:'page', name:'Página adicional', price:200, cat:'Módulos principais' },
-    { id:'landing', name:'Landing Page', price:300, cat:'Módulos principais' },
+    { id:'page', name:'Página adicional', price:200, qty:true, cat:'Módulos principais' },
+    { id:'landing', name:'Landing Page', price:350, qty:true, cat:'Módulos principais' },
     { id:'booking', name:'Booking / Reservas', price:450, cat:'Módulos principais' },
-    { id:'booking-adv', name:'Booking avançado', price:750, cat:'Módulos principais' },
-    { id:'ecom', name:'E-commerce', price:900, cat:'Módulos principais' },
-    { id:'ecom-adv', name:'E-commerce avançado', price:1500, cat:'Módulos principais' },
-    { id:'login', name:'Área de cliente / Login', price:500, cat:'Módulos principais' },
-    { id:'crm-basic', name:'CRM básico à medida (contactos + pipeline + tarefas, 1 utilizador)', price:3000, priceLabel:'+3.000€ – 6.000€', cat:'Módulos principais' },
-    { id:'crm-mid', name:'CRM intermédio (+ permissões, relatórios, alguma automação)', price:6000, priceLabel:'+6.000€ – 12.000€', cat:'Módulos principais' },
-    { id:'crm-adv', name:'CRM avançado (multi-utilizador com papéis, integrações externas, automações complexas)', price:12000, priceLabel:'+12.000€ – 25.000€+', cat:'Módulos principais' },
+    { id:'booking-adv', name:'Booking avançado', price:750, priceLabel:'desde 750€', cat:'Módulos principais' },
+    { id:'ecom', name:'E-commerce', price:900, priceLabel:'desde 900€', cat:'Módulos principais' },
+    { id:'ecom-adv', name:'E-commerce avançado', price:1750, priceLabel:'desde 1.750€', cat:'Módulos principais' },
+    { id:'login', name:'Área de cliente / Login', price:750, priceLabel:'desde 750€', cat:'Módulos principais' },
     { id:'blog', name:'Blog / Notícias', price:300, cat:'Módulos principais' },
-    { id:'members', name:'Área de membros', price:700, cat:'Módulos principais' },
-    { id:'payments', name:'Pagamentos online', price:300, cat:'Módulos principais' },
-    { id:'seo-adv', name:'SEO avançado', price:400, cat:'Marketing & SEO' },
+    { id:'members', name:'Área de membros', price:750, priceLabel:'desde 750€', cat:'Módulos principais' },
+    { id:'payments', name:'Pagamentos online', price:350, priceLabel:'desde 350€', cat:'Módulos principais' },
+    { id:'seo-adv', name:'SEO avançado', price:400, priceLabel:'desde 400€', cat:'Marketing & SEO' },
     { id:'seo-tech', name:'SEO técnico', price:350, cat:'Marketing & SEO' },
-    { id:'analytics', name:'Google Analytics + tracking avançado', price:200, cat:'Marketing & SEO' },
+    { id:'analytics', name:'Google Analytics + tracking avançado', price:250, cat:'Marketing & SEO' },
     { id:'gsc', name:'Google Search Console + configuração', price:150, cat:'Marketing & SEO' },
-    { id:'perf', name:'Performance / Core Web Vitals', price:300, cat:'Marketing & SEO' },
-    { id:'copy', name:'Copywriting (por página)', price:200, cat:'Marketing & SEO' },
+    { id:'perf', name:'Performance / Core Web Vitals', price:350, priceLabel:'desde 350€', cat:'Marketing & SEO' },
+    { id:'copy', name:'Copywriting (por página)', price:200, priceLabel:'200€/página', cat:'Marketing & SEO' },
     { id:'blog-seo', name:'Blog + estrutura SEO', price:400, cat:'Marketing & SEO' },
     { id:'whatsapp', name:'WhatsApp / contacto avançado', price:150, cat:'Integrações & automações' },
     { id:'newsletter', name:'Newsletter / Email marketing', price:250, cat:'Integrações & automações' },
-    { id:'automations', name:'Automações', price:400, cat:'Integrações & automações' },
-    { id:'api', name:'Integração com API externa', price:500, cat:'Integrações & automações' },
-    { id:'software', name:'Integração com software externo', price:400, cat:'Integrações & automações' },
-    { id:'notifications', name:'Sistema de notificações', price:300, cat:'Integrações & automações' },
-    { id:'forms', name:'Formulários avançados', price:200, cat:'Integrações & automações' },
+    { id:'automations', name:'Automações', price:500, priceLabel:'desde 500€', cat:'Integrações & automações' },
+    { id:'api', name:'Integração com API externa', price:750, priceLabel:'desde 750€', cat:'Integrações & automações' },
+    { id:'software', name:'Integração com software externo', price:600, priceLabel:'desde 600€', cat:'Integrações & automações' },
+    { id:'notifications', name:'Sistema de notificações', price:400, priceLabel:'desde 400€', cat:'Integrações & automações' },
+    { id:'forms', name:'Formulários avançados', price:250, priceLabel:'desde 250€', cat:'Integrações & automações' },
     { id:'gallery', name:'Galeria / Portfólio avançado', price:250, cat:'Funcionalidades adicionais' },
-    { id:'reviews', name:'Sistema de avaliações', price:150, cat:'Funcionalidades adicionais' },
-    { id:'map', name:'Mapa / localização avançada', price:150, cat:'Funcionalidades adicionais' },
+    { id:'reviews', name:'Sistema de avaliações', price:200, cat:'Funcionalidades adicionais' },
+    { id:'map', name:'Mapa / localização avançada', price:200, cat:'Funcionalidades adicionais' },
     { id:'chat', name:'Chat / Live Chat', price:150, cat:'Funcionalidades adicionais' },
     { id:'social', name:'Integração de redes sociais', price:100, cat:'Funcionalidades adicionais' },
-    { id:'search', name:'Pesquisa interna', price:250, cat:'Funcionalidades adicionais' },
-    { id:'filters', name:'Filtros / pesquisa avançada', price:400, cat:'Funcionalidades adicionais' },
-    { id:'dashboard', name:'Dashboard personalizado', price:750, cat:'Funcionalidades adicionais' },
-    { id:'custom', name:'Funcionalidade personalizada', price:500, cat:'Funcionalidades adicionais' }
+    { id:'search', name:'Pesquisa interna', price:300, cat:'Funcionalidades adicionais' },
+    { id:'filters', name:'Filtros / pesquisa avançada', price:500, priceLabel:'desde 500€', cat:'Funcionalidades adicionais' },
+    { id:'dashboard', name:'Dashboard personalizado', price:1000, priceLabel:'desde 1.000€', cat:'Funcionalidades adicionais' },
+    { id:'custom', name:'Funcionalidade personalizada', price:500, priceLabel:'desde 500€', cat:'Funcionalidades adicionais' }
   ];
 
   var moduleList = document.getElementById('moduleList');
@@ -1020,12 +1021,23 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       moduleList.appendChild(h);
       lastCat = m.cat;
     }
-    var label = document.createElement('label');
-    label.className = 'mod-row';
-    label.innerHTML = '<span class="mod-row-left"><input type="checkbox"><span class="mod-box"></span>'+m.name+'</span><span class="mod-price">'+(m.priceLabel || ('+'+m.price+'€'))+'</span>';
-    var input = label.querySelector('input');
-    input.addEventListener('change', function(){ selected[m.id] = input.checked; updateTotal(); });
-    moduleList.appendChild(label);
+    if (m.qty){
+      selected[m.id] = 0;
+      var row = document.createElement('div');
+      row.className = 'lang-row';
+      row.innerHTML = '<span>'+m.name+' ('+m.price+'€ / unidade)</span><div class="stepper"><button type="button" class="qty-dec">–</button><span class="qty-count">0</span><button type="button" class="qty-inc">+</button></div>';
+      var qtyEl = row.querySelector('.qty-count');
+      row.querySelector('.qty-dec').addEventListener('click', function(){ selected[m.id] = Math.max(0, selected[m.id]-1); qtyEl.textContent = selected[m.id]; updateTotal(); });
+      row.querySelector('.qty-inc').addEventListener('click', function(){ selected[m.id]++; qtyEl.textContent = selected[m.id]; updateTotal(); });
+      moduleList.appendChild(row);
+    } else {
+      var label = document.createElement('label');
+      label.className = 'mod-row';
+      label.innerHTML = '<span class="mod-row-left"><input type="checkbox"><span class="mod-box"></span>'+m.name+'</span><span class="mod-price">'+(m.priceLabel || (m.price+'€'))+'</span>';
+      var input = label.querySelector('input');
+      input.addEventListener('change', function(){ selected[m.id] = input.checked ? 1 : 0; updateTotal(); });
+      moduleList.appendChild(label);
+    }
   });
 
   var langCount = 0;
@@ -1048,11 +1060,13 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     });
   });
 
-  var mockupValue = 'Minimalista';
-  document.querySelectorAll('input[name="mockup"]').forEach(function(r){
+  var QUOTE_STYLES = ['Scroll Cinemático', 'Motion Design'];
+  var siteStyleValue = 'Estático';
+  document.querySelectorAll('input[name="siteStyle"]').forEach(function(r){
     r.addEventListener('change', function(){
-      mockupValue = r.value;
-      document.querySelectorAll('.mockup-opt').forEach(function(o){ o.classList.toggle('active', o.querySelector('input').checked); });
+      siteStyleValue = r.value;
+      document.querySelectorAll('.style-opt').forEach(function(o){ o.classList.toggle('active', o.querySelector('input').checked); });
+      updateTotal();
     });
   });
 
@@ -1061,11 +1075,12 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   var maintEl = document.getElementById('budgetMaint');
   function updateTotal(){
     var sum = 790;
-    Object.keys(selected).forEach(function(id){ if (selected[id]){ var m = MODULES.find(function(x){return x.id===id;}); sum += m.price; } });
+    Object.keys(selected).forEach(function(id){ if (selected[id]){ var m = MODULES.find(function(x){return x.id===id;}); sum += m.price * selected[id]; } });
     sum += langCount * 250;
     totalEl.textContent = sum + '€';
-    subEl.textContent = 'Website base + módulos + ' + langCount + ' idioma(s)';
-    if (maintValue > 0){ maintEl.style.display='block'; maintEl.textContent = '+ ' + maintValue + '€/mês manutenção'; }
+    var styleNote = QUOTE_STYLES.indexOf(siteStyleValue) !== -1 ? ' (por orçamento)' : '';
+    subEl.textContent = 'Website base + módulos + ' + langCount + ' idioma(s) + estilo ' + siteStyleValue + styleNote;
+    if (maintValue > 0){ maintEl.style.display='block'; maintEl.textContent = maintValue + '€/mês manutenção'; }
     else { maintEl.style.display='none'; }
     return sum;
   }
@@ -1134,7 +1149,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     var total = updateTotal();
 
     var bqDetailsVal = document.getElementById('bqDetails').value.trim();
-    var lines = ['Pedido de orçamento — Alwes Studio', '', 'Nome: ' + bqNameVal, 'Email: ' + bqEmailVal, '', 'Website base: 790€', 'Mockup base: ' + mockupValue];
+    var styleLabel = 'Tipo de site: ' + siteStyleValue + (QUOTE_STYLES.indexOf(siteStyleValue) !== -1 ? ' (por orçamento — valor adicional a confirmar)' : ' (incluído na base)');
+    var lines = ['Pedido de orçamento — Alwes Studio', '', 'Nome: ' + bqNameVal, 'Email: ' + bqEmailVal, '', 'Website base: 790€', styleLabel];
     if (bqDetailsVal){
       lines.push('', 'Detalhes do projeto:', bqDetailsVal);
     }
@@ -1143,7 +1159,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       lines.push('', 'Módulos selecionados:');
       chosenModules.forEach(function(id){
         var m = MODULES.find(function(x){ return x.id === id; });
-        if (m) lines.push('- ' + m.name + ': +' + m.price + '€');
+        var qty = selected[id];
+        if (m) lines.push('- ' + m.name + (qty > 1 ? ' ×' + qty : '') + ': +' + (m.price * qty) + '€');
       });
     }
     if (langCount > 0){
