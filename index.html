@@ -663,6 +663,10 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 
     <div id="budgetForm">
       <p class="dialog-lede">Comece com a base e adicione os módulos que o seu negócio precisa. Valor estimado — o orçamento final é confirmado após uma conversa connosco.</p>
+      <div style="display:flex;gap:12px;margin-bottom:18px;">
+        <div class="field" style="flex:1;"><label>Nome</label><input type="text" class="input" id="bqName" required></div>
+        <div class="field" style="flex:1;"><label>Email</label><input type="email" class="input" id="bqEmail" required></div>
+      </div>
       <div class="budget-grid">
         <div class="budget-modules">
           <div class="budget-modules-head"><div>Website base</div><div>790€</div></div>
@@ -989,9 +993,19 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   if (openBookingPopupBtn) openBookingPopupBtn.addEventListener('click', openBookingPopup);
 
   document.getElementById('submitBudget').addEventListener('click', function(){
+    var bqNameInput = document.getElementById('bqName');
+    var bqEmailInput = document.getElementById('bqEmail');
+    var bqNameVal = bqNameInput.value.trim();
+    var bqEmailVal = bqEmailInput.value.trim();
+    if (!bqNameVal || !bqEmailInput.checkValidity()){
+      alert('Preencha o seu nome e um email válido para enviar o pedido.');
+      (!bqNameVal ? bqNameInput : bqEmailInput).focus();
+      return;
+    }
+
     var total = updateTotal();
 
-    var lines = ['Pedido de orçamento — Alwes Studio', '', 'Website base: 790€'];
+    var lines = ['Pedido de orçamento — Alwes Studio', '', 'Nome: ' + bqNameVal, 'Email: ' + bqEmailVal, '', 'Website base: 790€'];
     var chosenModules = Object.keys(selected).filter(function(id){ return selected[id]; });
     if (chosenModules.length){
       lines.push('', 'Módulos selecionados:');
@@ -1017,7 +1031,9 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 
     var params = {
       subject: 'Pedido de orçamento — Alwes Studio',
-      message: lines.join('\n')
+      message: lines.join('\n'),
+      from_name: bqNameVal,
+      reply_to: bqEmailVal
     };
     var bqFile = document.getElementById('bqFile');
     if (bqFile && bqFile.files.length){
