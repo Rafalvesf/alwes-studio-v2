@@ -291,6 +291,24 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
 .maint-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;}
 .maint-opt.active{background:rgba(226,163,0,.18);color:var(--color-accent);}
 
+.mockup-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px;}
+.mockup-opt{display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px;border-radius:14px;font-size:11px;cursor:pointer;border:none;background:var(--color-surface);position:relative;transition:background .15s ease;text-align:center;}
+.mockup-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0;}
+.mockup-opt.active{background:rgba(226,163,0,.18);color:var(--color-accent);}
+.mockup-preview{width:100%;height:54px;border-radius:8px;background:var(--color-bg);padding:7px;display:flex;gap:4px;overflow:hidden;}
+.mockup-preview i{display:block;border-radius:2px;background:rgba(255,255,255,.18);}
+.mockup-preview--minimal{flex-direction:column;}
+.mockup-preview--minimal i:nth-child(1){height:4px;width:35%;}
+.mockup-preview--minimal i:nth-child(2){flex:1;width:100%;opacity:.5;}
+.mockup-preview--minimal i:nth-child(3){height:3px;width:55%;}
+.mockup-preview--bold{flex-direction:column;}
+.mockup-preview--bold i:nth-child(1){height:9px;width:45%;background:var(--color-accent);}
+.mockup-preview--bold i:nth-child(2){flex:1;width:100%;background:var(--color-accent);opacity:.4;}
+.mockup-preview--bold i:nth-child(3){height:4px;width:65%;background:rgba(255,255,255,.35);}
+.mockup-preview--editorial i:nth-child(1){width:36%;height:100%;}
+.mockup-preview--editorial i:nth-child(2){flex:1;height:100%;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.28) 0 3px,transparent 3px 9px);}
+.mockup-preview--corporate i{flex:1;height:100%;box-shadow:inset 0 3px 0 var(--color-accent);}
+
 .budget-summary{padding:26px 22px;border-radius:20px;}
 .summary-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-55);font-weight:600;margin-bottom:10px;}
 .summary-total{font-size:30px;font-weight:800;font-family:var(--font-heading);margin-bottom:6px;font-variant-numeric:tabular-nums;}
@@ -313,6 +331,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   .hero-art{margin-right:0;order:-1;}
   .btn-dark{background:#000;}
   .grid-3,.svc-grid,.steps,.two-col,.maint-grid,.case-grid,.about-hero,.stat-grid,.contact-wrap,.budget-grid,.price-check-grid,.maint-pick{grid-template-columns:1fr !important;}
+  .mockup-pick{grid-template-columns:repeat(2,1fr) !important;}
   .grid-3>div,.svc-grid>.svc-cell,.steps>div{border:none !important;padding:20px 0 !important;border-bottom:1px solid var(--color-divider) !important;}
   .cta-band,.quote,footer{padding:44px 22px;}
   footer{flex-direction:column;align-items:flex-start;gap:14px;}
@@ -679,6 +698,30 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
           <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Detalhes do projeto</div>
           <textarea rows="3" class="input" id="bqDetails" placeholder="Conte-nos mais sobre o projeto (opcional)"></textarea>
 
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Mockup base</div>
+          <div class="mockup-pick" id="mockupPick">
+            <label class="mockup-opt active">
+              <input type="radio" name="mockup" value="Minimalista" checked>
+              <span class="mockup-preview mockup-preview--minimal"><i></i><i></i><i></i></span>
+              Minimalista
+            </label>
+            <label class="mockup-opt">
+              <input type="radio" name="mockup" value="Bold & Colorido">
+              <span class="mockup-preview mockup-preview--bold"><i></i><i></i><i></i></span>
+              Bold &amp; Colorido
+            </label>
+            <label class="mockup-opt">
+              <input type="radio" name="mockup" value="Editorial">
+              <span class="mockup-preview mockup-preview--editorial"><i></i><i></i></span>
+              Editorial
+            </label>
+            <label class="mockup-opt">
+              <input type="radio" name="mockup" value="Corporate">
+              <span class="mockup-preview mockup-preview--corporate"><i></i><i></i><i></i></span>
+              Corporate
+            </label>
+          </div>
+
           <div class="mod-cat">Idiomas adicionais</div>
           <div class="lang-row">
             <span>Idiomas adicionais além do Português (+250€ / idioma)</span>
@@ -935,6 +978,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     });
   });
 
+  var mockupValue = 'Minimalista';
+  document.querySelectorAll('input[name="mockup"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      mockupValue = r.value;
+      document.querySelectorAll('.mockup-opt').forEach(function(o){ o.classList.toggle('active', o.querySelector('input').checked); });
+    });
+  });
+
   var totalEl = document.getElementById('budgetTotal');
   var subEl = document.getElementById('budgetSub');
   var maintEl = document.getElementById('budgetMaint');
@@ -1013,7 +1064,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     var total = updateTotal();
 
     var bqDetailsVal = document.getElementById('bqDetails').value.trim();
-    var lines = ['Pedido de orçamento — Alwes Studio', '', 'Nome: ' + bqNameVal, 'Email: ' + bqEmailVal, '', 'Website base: 790€'];
+    var lines = ['Pedido de orçamento — Alwes Studio', '', 'Nome: ' + bqNameVal, 'Email: ' + bqEmailVal, '', 'Website base: 790€', 'Mockup base: ' + mockupValue];
     if (bqDetailsVal){
       lines.push('', 'Detalhes do projeto:', bqDetailsVal);
     }
