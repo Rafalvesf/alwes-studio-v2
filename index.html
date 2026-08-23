@@ -235,7 +235,8 @@ footer .fcopy{color:var(--color-text-55);font-size:12px;}
 .budget-modules .file-input,.contact-form .file-input{border:none;border-radius:12px;padding:9px 10px;background:var(--color-surface);}
 .budget-modules .file-input-name,.contact-form .file-input-name{font-size:12.5px;}
 textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
-.contact-form{display:flex;flex-direction:column;gap:18px;max-width:480px;min-width:0;}
+.contact-main{min-width:0;max-width:480px;}
+.contact-form{display:flex;flex-direction:column;gap:18px;min-width:0;}
 .contact-form .btn-dark{background:#fff;color:#000;}
 .contact-side{border-left:1px solid var(--color-divider);padding-left:30px;display:flex;flex-direction:column;gap:22px;min-width:0;}
 .contact-row{display:flex;gap:10px;align-items:flex-start;}
@@ -609,38 +610,40 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
         <div class="eyebrow">Contacto</div>
         <h1 style="font-size:clamp(28px,4vw,44px);max-width:14ch;margin-bottom:28px;">Conte-nos sobre o projeto.</h1>
         <div class="panel contact-wrap">
-          <form class="contact-form" id="contactForm">
-            <div class="field"><label>Nome</label><input type="text" class="input" id="cfName" required></div>
-            <div class="field"><label>Email</label><input type="email" class="input" id="cfEmail" required></div>
-            <div class="field"><label>Orçamento</label>
-              <div class="select-wrap">
-              <select class="input" id="cfBudget">
-                <option>Até 2.000€</option>
-                <option>2.000€ – 10.000€</option>
-                <option>10.000€+</option>
-              </select>
-              <span class="select-arrow">ICON_CHEVRON</span>
+          <div class="contact-main">
+            <form class="contact-form" id="contactForm">
+              <div class="field"><label>Nome</label><input type="text" class="input" id="cfName" required></div>
+              <div class="field"><label>Email</label><input type="email" class="input" id="cfEmail" required></div>
+              <div class="field"><label>Orçamento</label>
+                <div class="select-wrap">
+                <select class="input" id="cfBudget">
+                  <option>Até 2.000€</option>
+                  <option>2.000€ – 10.000€</option>
+                  <option>10.000€+</option>
+                </select>
+                <span class="select-arrow">ICON_CHEVRON</span>
+                </div>
               </div>
+              <div class="field"><label>Detalhes do projeto</label><textarea rows="4" class="input" id="cfDetails"></textarea></div>
+              <div class="field">
+                <label>Anexar documento (opcional)</label>
+                <label class="file-input" for="cfFile">
+                  <span class="file-input-btn">ICON_PAPERCLIP Escolher ficheiro</span>
+                  <span class="file-input-name" id="cfFileName">Nenhum ficheiro selecionado</span>
+                </label>
+                <input type="file" id="cfFile" hidden>
+                <div class="field-hint">Tamanho máximo: 10MB.</div>
+              </div>
+              <button type="submit" class="btn btn-dark" style="align-self:flex-start;color:#000;">Enviar</button>
+            </form>
+            <div id="contactDone" hidden style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+              <div class="done-icon">ICON_CHECK</div>
+              <p class="dialog-lede" style="text-align:center;margin-top:40px;">Obrigado! Recebemos a sua mensagem. Marque já uma chamada, se preferir avançar mais rápido.</p>
+              <button class="btn btn-accent" id="openBookingPopup" style="margin-top:20px;">Marcar chamada ICON_ARROW</button>
             </div>
-            <div class="field"><label>Detalhes do projeto</label><textarea rows="4" class="input" id="cfDetails"></textarea></div>
-            <div class="field">
-              <label>Anexar documento (opcional)</label>
-              <label class="file-input" for="cfFile">
-                <span class="file-input-btn">ICON_PAPERCLIP Escolher ficheiro</span>
-                <span class="file-input-name" id="cfFileName">Nenhum ficheiro selecionado</span>
-              </label>
-              <input type="file" id="cfFile" hidden>
-              <div class="field-hint">Tamanho máximo: 10MB.</div>
-            </div>
-            <button type="submit" class="btn btn-dark" style="align-self:flex-start;color:#000;">Enviar</button>
-          </form>
+          </div>
           <div class="contact-side">
             <div class="contact-row">ICON_MAIL<div><div class="clabel">Email</div><div style="font-size:14px;">hello@alwesstudio.space</div></div></div>
-            <div id="contactDone" hidden style="margin-top:40px;text-align:center;">
-              <div class="done-icon">ICON_CHECK</div>
-              <p class="dialog-lede" style="text-align:center;margin-left:auto;margin-right:auto;margin-top:40px;">Obrigado! Recebemos a sua mensagem. Marque já uma chamada, se preferir avançar mais rápido.</p>
-              <button class="btn btn-accent" id="openBookingPopup" style="align-self:center;margin-top:20px;">Marcar chamada ICON_ARROW</button>
-            </div>
           </div>
         </div>
       </section>
@@ -1041,12 +1044,15 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     }
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(function(){
-      document.getElementById('doneTotal').textContent = total + '€';
-      dialogTitle.textContent = 'Pedido enviado. Marque uma chamada.';
-      budgetForm.hidden = true;
-      budgetDone.hidden = false;
-      submitBudgetBtn.disabled = false;
-      submitBudgetLabel.textContent = submitBudgetOriginal;
+      submitBudgetLabel.textContent = 'Enviado';
+      setTimeout(function(){
+        document.getElementById('doneTotal').textContent = total + '€';
+        dialogTitle.textContent = 'Pedido enviado. Marque uma chamada.';
+        budgetForm.hidden = true;
+        budgetDone.hidden = false;
+        submitBudgetBtn.disabled = false;
+        submitBudgetLabel.textContent = submitBudgetOriginal;
+      }, 4000);
     }).catch(function(err){
       console.error('EmailJS error', err);
       alert('Não foi possível enviar o pedido. Tente novamente ou envie um email para ' + CONTACT_EMAIL + '.');
@@ -1091,8 +1097,11 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     }
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(function(){
-      contactForm.hidden = true;
-      contactDone.hidden = false;
+      submitContactBtn.textContent = 'Enviado';
+      setTimeout(function(){
+        contactForm.hidden = true;
+        contactDone.hidden = false;
+      }, 4000);
     }).catch(function(err){
       console.error('EmailJS error', err);
       alert('Não foi possível enviar a mensagem. Tente novamente ou envie um email para ' + CONTACT_EMAIL + '.');
