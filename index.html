@@ -58,6 +58,10 @@ button{font-family:inherit;}
 .nav-tab:hover{color:var(--color-text);}
 .nav-tab[aria-current="page"]{color:var(--color-text);font-weight:600;}
 .nav-menu{display:contents;}
+.lang-switch{display:flex;align-items:center;gap:6px;flex:none;font-size:12px;font-weight:600;color:var(--color-text-55);margin-left:8px;}
+.lang-switch span{opacity:.4;}
+.lang-btn{background:none;border:none;cursor:pointer;padding:2px 4px;font-family:inherit;font-weight:inherit;font-size:inherit;color:inherit;}
+.lang-btn.active{color:var(--color-text);}
 .nav-toggle{display:none;flex:none;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:36px;height:36px;margin-left:auto;background:none;border:none;cursor:pointer;padding:0;}
 .nav-toggle span{display:block;width:20px;height:2px;background:var(--color-text);transition:transform .15s ease,opacity .15s ease;}
 .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg);}
@@ -374,10 +378,15 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   <nav class="topnav">
     <div class="topnav-inner">
       <div class="brand"><img src="uploads/favicon.png" alt="Alwes Studio" style="height:30px;width:auto;display:block;"></div>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="lang-switch" id="langSwitch">
+        <button class="lang-btn" data-lang="pt">PT</button>
+        <span>|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" data-i18n-aria-label="aria.openMenu" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav-menu" id="navMenu">
         <div class="nav-tabs" id="navTabs" role="tablist"></div>
-        <button class="btn btn-ghost" data-goto="contact" style="font-size:12px;">Falar connosco ICON_ARROW</button>
+        <button class="btn btn-ghost" data-goto="contact" style="font-size:12px;"><span data-i18n="nav.talk">Falar connosco</span> ICON_ARROW</button>
       </div>
     </div>
   </nav>
@@ -388,61 +397,61 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <div class="page" data-page="home" hidden>
       <section class="hero">
         <div>
-          <h1>Design que comunica. Marcas que ficam.</h1>
-          <div class="hero-price">Desde 649€ · Valor Especial de Lançamento</div>
+          <h1 data-i18n="home.h1">Design que comunica. Marcas que ficam.</h1>
+          <div class="hero-price"><span data-i18n="home.price.prefix">Desde</span> 649€ · <span data-i18n="home.price.suffix">Valor Especial de Lançamento</span></div>
           <div class="hero-ctas">
-            <a href="#" class="btn btn-dark open-budget">Simular projeto</a>
+            <a href="#" class="btn btn-dark open-budget" data-i18n="cta.simulate">Simular projeto</a>
           </div>
-          <div class="hero-note">
+          <div class="hero-note" data-i18n="home.note">
             Todo projeto começa com a mesma pergunta: para que existe este site, de verdade.
           </div>
         </div>
         <div class="hero-art">
-          <img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2003_16_38%20AM.png" alt="Website da Alwes Studio apresentado em laptop">
+          <img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2003_16_38%20AM.png" data-i18n-alt="home.heroArt.alt" alt="Website da Alwes Studio apresentado em laptop">
         </div>
       </section>
 
       <section style="padding-bottom:72px;">
         <div class="panel">
-          <div class="eyebrow" style="color:var(--color-text-55);">O que fazemos</div>
-          <h2 style="font-size:28px;max-width:22ch;margin-bottom:32px;">Um processo pensado para durar, com IA onde ela ajuda de verdade</h2>
+          <div class="eyebrow" style="color:var(--color-text-55);" data-i18n="home.eyebrow">O que fazemos</div>
+          <h2 style="font-size:28px;max-width:22ch;margin-bottom:32px;" data-i18n="shared.processH2">Um processo pensado para durar, com IA onde ela ajuda de verdade</h2>
           <div class="grid-3">
             <div class="feat">
               ICON_COMPASS
-              <h3>Estratégia</h3>
-              <p>Estrutura, conteúdo e objetivos definidos antes de qualquer pixel.</p>
+              <h3 data-i18n="home.feat1.title">Estratégia</h3>
+              <p data-i18n="home.feat1.desc">Estrutura, conteúdo e objetivos definidos antes de qualquer pixel.</p>
             </div>
             <div class="feat">
               ICON_PALETTE
-              <h3>Design</h3>
-              <p>Grelha consistente, tipografia com a cara da marca.</p>
+              <h3 data-i18n="home.feat2.title">Design</h3>
+              <p data-i18n="home.feat2.desc">Grelha consistente, tipografia com a cara da marca.</p>
             </div>
             <div class="feat">
               ICON_CODE
-              <h3>Construção</h3>
-              <p>Um website rápido, eficiente e fácil de atualizar. Performance sem complicações.</p>
+              <h3 data-i18n="home.feat3.title">Construção</h3>
+              <p data-i18n="home.feat3.desc">Um website rápido, eficiente e fácil de atualizar. Performance sem complicações.</p>
             </div>
           </div>
         </div>
       </section>
 
       <section class="strip">
-        <div class="strip-card photo" style="transform:rotate(-10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2001_59_42%20AM.png" alt="Equipa Alwes Studio a colaborar num projeto" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card photo" style="transform:rotate(-5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_01_12%20AM.png" alt="Sistema de design e guia de estilo criado pela Alwes Studio" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card" style="z-index:3;box-shadow:var(--shadow-lg);overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_03_51%20AM.png" alt="Website desenhado pela Alwes Studio apresentado em laptop" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card" style="transform:rotate(5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_03_28%20AM.png" alt="Website da Alwes Studio apresentado em smartphone" style="width:100%;height:100%;object-fit:cover;"></div>
-        <div class="strip-card" style="transform:rotate(10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_02_37%20AM.png" alt="Transformação de um website antes e depois do redesign" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card photo" style="transform:rotate(-10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2001_59_42%20AM.png" data-i18n-alt="strip.alt1" alt="Equipa Alwes Studio a colaborar num projeto" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card photo" style="transform:rotate(-5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_01_12%20AM.png" data-i18n-alt="strip.alt2" alt="Sistema de design e guia de estilo criado pela Alwes Studio" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="z-index:3;box-shadow:var(--shadow-lg);overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_03_51%20AM.png" data-i18n-alt="strip.alt3" alt="Website desenhado pela Alwes Studio apresentado em laptop" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="transform:rotate(5deg) translateY(8px);z-index:2;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_03_28%20AM.png" data-i18n-alt="strip.alt4" alt="Website da Alwes Studio apresentado em smartphone" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="strip-card" style="transform:rotate(10deg) translateY(20px);z-index:1;overflow:hidden;"><img src="uploads/ChatGPT%20Image%20Aug%2021%2C%202026%2C%2002_02_37%20AM.png" data-i18n-alt="strip.alt5" alt="Transformação de um website antes e depois do redesign" style="width:100%;height:100%;object-fit:cover;"></div>
       </section>
 
       <section class="quote">
-        <p>"Não desenho sites bonitos por desenhar. Cada projeto começa com uma pergunta simples: o que é que isto precisa de fazer pelo seu negócio."</p>
-        <cite>Rafael Alves — Fundador, Alwes Studio</cite>
+        <p data-i18n="home.quote">"Não desenho sites bonitos por desenhar. Cada projeto começa com uma pergunta simples: o que é que isto precisa de fazer pelo seu negócio."</p>
+        <cite data-i18n="home.quoteCite">Rafael Alves — Fundador, Alwes Studio</cite>
       </section>
 
       <div class="cta-band">
         <div class="cta-band-inner">
-          <h2>Pronto para transformar o seu site?</h2>
-          <a href="#" class="btn btn-dark open-budget">Simular ICON_ARROW</a>
+          <h2 data-i18n="home.ctaband.h2">Pronto para transformar o seu site?</h2>
+          <a href="#" class="btn btn-dark open-budget"><span data-i18n="cta.simulateShort">Simular</span> ICON_ARROW</a>
         </div>
       </div>
 
@@ -452,12 +461,12 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <!-- SERVICES -->
     <div class="page" data-page="services" hidden>
       <div class="page-head">
-        <div class="eyebrow">Serviços · Preços</div>
-        <h1>Seis formas de ajudar.</h1>
-        <p class="lede">A maioria dos projetos combina dois ou três destes serviços. Nenhum é vendido como pacote fechado.</p>
+        <div class="eyebrow" data-i18n="svc.eyebrow">Serviços · Preços</div>
+        <h1 data-i18n="svc.h1">Seis formas de ajudar.</h1>
+        <p class="lede" data-i18n="svc.lede">A maioria dos projetos combina dois ou três destes serviços. Nenhum é vendido como pacote fechado.</p>
         <div class="seg" role="tablist">
-          <button class="seg-btn" data-svc-tab="servicos" aria-selected="true">Serviços</button>
-          <button class="seg-btn" data-svc-tab="precos" aria-selected="false">Preços</button>
+          <button class="seg-btn" data-svc-tab="servicos" aria-selected="true" data-i18n="svc.tab.services">Serviços</button>
+          <button class="seg-btn" data-svc-tab="precos" aria-selected="false" data-i18n="svc.tab.prices">Preços</button>
         </div>
       </div>
 
@@ -466,58 +475,58 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
           <div class="svc-grid hr-top">
             <div class="svc-cell">
               ICON_LAYOUT
-              <h3>Website: design e desenvolvimento</h3>
-              <p>Um site novo do zero — estrutura, design, textos e uma construção que a sua equipa consegue manter.</p>
-              <div class="svc-price">Desde 649€</div>
+              <h3 data-i18n="svc.item1.title">Website: design e desenvolvimento</h3>
+              <p data-i18n="svc.item1.desc">Um site novo do zero — estrutura, design, textos e uma construção que a sua equipa consegue manter.</p>
+              <div class="svc-price"><span data-i18n="common.from">Desde</span> 649€</div>
             </div>
             <div class="svc-cell">
               ICON_PALETTE
-              <h3>Marca e identidade</h3>
-              <p>Logótipo, tipografia, cor e um conjunto de guidelines — construído para se manter coerente no site e além dele.</p>
-              <div class="svc-price">Desde 750€</div>
+              <h3 data-i18n="svc.item2.title">Marca e identidade</h3>
+              <p data-i18n="svc.item2.desc">Logótipo, tipografia, cor e um conjunto de guidelines — construído para se manter coerente no site e além dele.</p>
+              <div class="svc-price"><span data-i18n="common.from">Desde</span> 750€</div>
             </div>
             <div class="svc-cell">
               ICON_CART
-              <h3>E-commerce</h3>
-              <p>Catálogo de produtos, checkout e inventário configurados para vender de verdade, não só mostrar.</p>
-              <div class="svc-price">Desde 1.690€</div>
+              <h3 data-i18n="svc.item3.title">E-commerce</h3>
+              <p data-i18n="svc.item3.desc">Catálogo de produtos, checkout e inventário configurados para vender de verdade, não só mostrar.</p>
+              <div class="svc-price"><span data-i18n="common.from">Desde</span> 1.690€</div>
             </div>
             <div class="svc-cell">
               ICON_SEARCH
-              <h3>SEO e conteúdo</h3>
-              <p>SEO técnico, estrutura de páginas e um plano de conteúdo que faz o site ser encontrado.</p>
-              <div class="svc-price">Desde 350€</div>
+              <h3 data-i18n="svc.item4.title">SEO e conteúdo</h3>
+              <p data-i18n="svc.item4.desc">SEO técnico, estrutura de páginas e um plano de conteúdo que faz o site ser encontrado.</p>
+              <div class="svc-price"><span data-i18n="common.from">Desde</span> 350€</div>
             </div>
             <div class="svc-cell">
               ICON_SMARTPHONE
-              <h3>App: design e desenvolvimento</h3>
-              <p>Aplicações móveis pensadas de raiz — design de interface e desenvolvimento nativo ou multiplataforma.</p>
-              <div class="svc-price">Desde 10.000€</div>
+              <h3 data-i18n="svc.item5.title">App: design e desenvolvimento</h3>
+              <p data-i18n="svc.item5.desc">Aplicações móveis pensadas de raiz — design de interface e desenvolvimento nativo ou multiplataforma.</p>
+              <div class="svc-price"><span data-i18n="common.from">Desde</span> 10.000€</div>
             </div>
             <div class="svc-cell">
               ICON_DATABASE
-              <h3>CRM à medida</h3>
-              <p>Contactos, leads, pipeline, tarefas e gestão do negócio num sistema desenvolvido para a sua empresa.</p>
-              <div class="svc-price">Desde 3.000€</div>
+              <h3 data-i18n="svc.item6.title">CRM à medida</h3>
+              <p data-i18n="svc.item6.desc">Contactos, leads, pipeline, tarefas e gestão do negócio num sistema desenvolvido para a sua empresa.</p>
+              <div class="svc-price"><span data-i18n="common.from">Desde</span> 3.000€</div>
             </div>
             <div class="svc-cell" style="border-bottom:none;">
               ICON_DATABASE
-              <h3>Integração com CRM</h3>
-              <p>Ligação do website ao CRM que já utiliza.</p>
-              <div class="svc-price">Desde 400€</div>
+              <h3 data-i18n="svc.item7.title">Integração com CRM</h3>
+              <p data-i18n="svc.item7.desc">Ligação do website ao CRM que já utiliza.</p>
+              <div class="svc-price"><span data-i18n="common.from">Desde</span> 400€</div>
             </div>
           </div>
         </section>
 
         <section style="padding-top:40px;padding-bottom:88px;">
           <div class="panel">
-            <div class="eyebrow" style="color:var(--color-text-55);">Como funciona</div>
-            <h2 style="font-size:28px;max-width:22ch;margin-bottom:32px;">Um processo pensado para durar, com IA onde ela ajuda de verdade</h2>
+            <div class="eyebrow" style="color:var(--color-text-55);" data-i18n="svc.how.eyebrow">Como funciona</div>
+            <h2 style="font-size:28px;max-width:22ch;margin-bottom:32px;" data-i18n="shared.processH2">Um processo pensado para durar, com IA onde ela ajuda de verdade</h2>
             <div class="steps">
-              <div><div class="step-eyebrow">01</div><h4>Descoberta</h4><p>Duas semanas. Objetivos, público e auditoria de conteúdo.</p></div>
-              <div><div class="step-eyebrow">02</div><h4>Design</h4><p>2 horas de revisão. Sem surpresas no lançamento.</p></div>
-              <div><div class="step-eyebrow">03</div><h4>Construção</h4><p>Em ambiente de testes para validar antes do lançamento.</p></div>
-              <div><div class="step-eyebrow">04</div><h4>Lançamento</h4><p>Documentação de handoff. Suporte pago disponível depois.</p></div>
+              <div><div class="step-eyebrow">01</div><h4 data-i18n="step1.title">Descoberta</h4><p data-i18n="step1.desc">Duas semanas. Objetivos, público e auditoria de conteúdo.</p></div>
+              <div><div class="step-eyebrow">02</div><h4 data-i18n="step2.title">Design</h4><p data-i18n="step2.desc">2 horas de revisão. Sem surpresas no lançamento.</p></div>
+              <div><div class="step-eyebrow">03</div><h4 data-i18n="step3.title">Construção</h4><p data-i18n="step3.desc">Em ambiente de testes para validar antes do lançamento.</p></div>
+              <div><div class="step-eyebrow">04</div><h4 data-i18n="step4.title">Lançamento</h4><p data-i18n="step4.desc">Documentação de handoff. Suporte pago disponível depois.</p></div>
             </div>
           </div>
         </section>
@@ -526,81 +535,81 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       <div data-svc-panel="precos" hidden>
         <section style="padding-bottom:44px;">
           <div class="price-card">
-            <div class="eyebrow">01 — Website</div>
-            <div class="price-headline">Desde 649€</div>
-            <p style="font-size:14px;color:var(--color-text-75);max-width:44ch;">A base para colocar o seu negócio online.</p>
+            <div class="eyebrow" data-i18n="price.01.eyebrow">01 — Website</div>
+            <div class="price-headline"><span data-i18n="common.from">Desde</span> 649€</div>
+            <p style="font-size:14px;color:var(--color-text-75);max-width:44ch;" data-i18n="price.01.desc">A base para colocar o seu negócio online.</p>
             <div class="price-check-grid">
-              <div class="price-check">ICON_CHECK 1–3 páginas</div>
-              <div class="price-check">ICON_CHECK Até 3 secções por página</div>
-              <div class="price-check">ICON_CHECK Design personalizado</div>
-              <div class="price-check">ICON_CHECK Mobile responsive</div>
-              <div class="price-check">ICON_CHECK SEO base</div>
-              <div class="price-check">ICON_CHECK Analytics</div>
-              <div class="price-check">ICON_CHECK Formulário de contacto</div>
-              <div class="price-check">ICON_CHECK Links para redes sociais</div>
-              <div class="price-check">ICON_CHECK Alterações incluídas (2h)</div>
-              <div class="price-check">ICON_CHECK Publicação</div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check1">1–3 páginas</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check2">Até 3 secções por página</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check3">Design personalizado</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check4">Mobile responsive</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check5">SEO base</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check6">Analytics</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check7">Formulário de contacto</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check8">Links para redes sociais</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check9">Alterações incluídas (2h)</span></div>
+              <div class="price-check">ICON_CHECK <span data-i18n="price.check10">Publicação</span></div>
             </div>
-            <p style="font-size:12.5px;color:var(--color-text-55);margin-top:16px;">Inclui os estilos Estático e Parallax. Motion Design e Scroll Cinemático têm custo adicional, apenas por orçamento.</p>
+            <p style="font-size:12.5px;color:var(--color-text-55);margin-top:16px;" data-i18n="price.01.note">Inclui os estilos Estático e Parallax. Motion Design e Scroll Cinemático têm custo adicional, apenas por orçamento.</p>
           </div>
         </section>
 
         <section style="padding-bottom:44px;">
           <div class="two-col">
             <div class="price-card">
-              <div class="eyebrow">02 — Personalize</div>
-              <h2 style="font-size:23px;max-width:18ch;margin-bottom:13px;">O que precisa além da base?</h2>
-              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:11px;">O seu negócio não precisa de funcionalidades que não vai utilizar.</p>
-              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:18px;">Escolha apenas o que faz sentido para o seu projeto e nós adicionamos ao website.</p>
-              <div style="font-size:13px;font-weight:600;margin-bottom:9px;">Booking · E-commerce · CRM · Landing Pages · SEO avançado · Automações · Multilingue · Pagamentos · ...</div>
-              <div style="font-size:13.5px;color:var(--color-text-75);">Cada módulo tem o seu próprio custo</div>
+              <div class="eyebrow" data-i18n="price.02.eyebrow">02 — Personalize</div>
+              <h2 style="font-size:23px;max-width:18ch;margin-bottom:13px;" data-i18n="price.02.h2">O que precisa além da base?</h2>
+              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:11px;" data-i18n="price.02.p1">O seu negócio não precisa de funcionalidades que não vai utilizar.</p>
+              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:18px;" data-i18n="price.02.p2">Escolha apenas o que faz sentido para o seu projeto e nós adicionamos ao website.</p>
+              <div style="font-size:13px;font-weight:600;margin-bottom:9px;" data-i18n="price.02.modules">Booking · E-commerce · CRM · Landing Pages · SEO avançado · Automações · Multilingue · Pagamentos · ...</div>
+              <div style="font-size:13.5px;color:var(--color-text-75);" data-i18n="price.02.cost">Cada módulo tem o seu próprio custo</div>
             </div>
             <div class="price-card" style="background:#fff;border-color:var(--color-accent);color:#000;--color-text:#000;--color-text-55:rgba(0,0,0,.55);--color-text-60:rgba(0,0,0,.6);--color-text-65:rgba(0,0,0,.65);--color-text-70:rgba(0,0,0,.7);--color-text-75:rgba(0,0,0,.75);">
-              <div class="eyebrow">03 — À sua medida</div>
-              <h2 style="font-size:23px;max-width:18ch;margin-bottom:13px;">Construa apenas o que precisa.</h2>
-              <p style="font-size:13.5px;color:var(--color-text-75);max-width:44ch;margin-bottom:22px;">Começamos com a base de 649€ e adicionamos apenas as funcionalidades que o seu negócio necessita.</p>
+              <div class="eyebrow" data-i18n="price.03.eyebrow">03 — À sua medida</div>
+              <h2 style="font-size:23px;max-width:18ch;margin-bottom:13px;" data-i18n="price.03.h2">Construa apenas o que precisa.</h2>
+              <p style="font-size:13.5px;color:var(--color-text-75);max-width:44ch;margin-bottom:22px;" data-i18n="price.03.p">Começamos com a base de 649€ e adicionamos apenas as funcionalidades que o seu negócio necessita.</p>
               <div class="pill-row">
-                <div class="pill">Website Base 649€</div><span style="opacity:.5">+</span>
-                <div class="pill">Módulos selecionados</div><span style="opacity:.5">=</span>
-                <button class="btn btn-dark open-budget">Simular projeto</button>
+                <div class="pill"><span data-i18n="price.03.pillBase">Website Base</span> 649€</div><span style="opacity:.5">+</span>
+                <div class="pill" data-i18n="price.03.pillModules">Módulos selecionados</div><span style="opacity:.5">=</span>
+                <button class="btn btn-dark open-budget" data-i18n="cta.simulate">Simular projeto</button>
               </div>
-              <div style="font-size:13.5px;color:var(--color-text-75);line-height:1.6;">Sem funcionalidades desnecessárias.<br>Sem pacotes que não se adaptam ao seu negócio.</div>
+              <div style="font-size:13.5px;color:var(--color-text-75);line-height:1.6;" data-i18n-html="price.03.footnote">Sem funcionalidades desnecessárias.<br>Sem pacotes que não se adaptam ao seu negócio.</div>
             </div>
           </div>
         </section>
 
         <section style="padding-bottom:48px;">
-          <div class="eyebrow">Manutenção</div>
-          <h2 style="font-family:var(--font-heading);font-size:32px;max-width:16ch;margin-bottom:12px;">Depois do website, continuamos consigo.</h2>
-          <p style="font-size:15px;color:var(--color-text-75);max-width:52ch;">Planos de manutenção mensal, opcionais e separados do valor do website. Escolha o que faz sentido para o seu negócio — sem obrigação de aderir.</p>
+          <div class="eyebrow" data-i18n="maint.eyebrow">Manutenção</div>
+          <h2 style="font-family:var(--font-heading);font-size:32px;max-width:16ch;margin-bottom:12px;" data-i18n="maint.h2">Depois do website, continuamos consigo.</h2>
+          <p style="font-size:15px;color:var(--color-text-75);max-width:52ch;" data-i18n="maint.p">Planos de manutenção mensal, opcionais e separados do valor do website. Escolha o que faz sentido para o seu negócio — sem obrigação de aderir.</p>
         </section>
 
         <section style="padding-bottom:88px;">
           <div class="maint-grid">
             <div class="maint-card">
               <h3 style="font-size:17px;margin-bottom:6px;">Managed Website</h3>
-              <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-55);margin-bottom:6px;">Mensal</div>
-              <div class="maint-price">79€/mês</div>
-              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:4px;">O essencial para manter o website seguro, atualizado e online.</p>
-              <p style="font-size:11.5px;color:var(--color-text-55);">Plano opcional, independente do valor do website.</p>
+              <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-55);margin-bottom:6px;" data-i18n="common.monthly">Mensal</div>
+              <div class="maint-price">79€<span data-i18n="common.perMonth">/mês</span></div>
+              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:4px;" data-i18n="maint.website.desc">O essencial para manter o website seguro, atualizado e online.</p>
+              <p style="font-size:11.5px;color:var(--color-text-55);" data-i18n="maint.optionalNote">Plano opcional, independente do valor do website.</p>
               <div class="maint-list">
-                <div>ICON_CHECK Hosting</div><div>ICON_CHECK SSL</div><div>ICON_CHECK Backups</div>
-                <div>ICON_CHECK Atualizações técnicas</div><div>ICON_CHECK Monitorização</div>
-                <div>ICON_CHECK Pequenas alterações incluídas (1h/mês)</div><div>ICON_CHECK Suporte</div>
+                <div>ICON_CHECK <span data-i18n="maint.website.list1">Hosting</span></div><div>ICON_CHECK <span data-i18n="maint.website.list2">SSL</span></div><div>ICON_CHECK <span data-i18n="maint.website.list3">Backups</span></div>
+                <div>ICON_CHECK <span data-i18n="maint.website.list4">Atualizações técnicas</span></div><div>ICON_CHECK <span data-i18n="maint.website.list5">Monitorização</span></div>
+                <div>ICON_CHECK <span data-i18n="maint.website.list6">Pequenas alterações incluídas (1h/mês)</span></div><div>ICON_CHECK <span data-i18n="maint.website.list7">Suporte</span></div>
               </div>
             </div>
             <div class="maint-card highlight" style="background:#fff;border-color:var(--color-accent);color:#000;--color-text:#000;--color-text-55:rgba(0,0,0,.55);--color-text-60:rgba(0,0,0,.6);--color-text-65:rgba(0,0,0,.65);--color-text-70:rgba(0,0,0,.7);--color-text-75:rgba(0,0,0,.75);">
               <h3 style="font-size:17px;margin-bottom:6px;">Managed Plus</h3>
-              <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-55);margin-bottom:6px;">Mensal</div>
-              <div class="maint-price">149€/mês</div>
-              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:4px;">Mais acompanhamento para websites que estão em constante evolução.</p>
-              <p style="font-size:11.5px;color:var(--color-text-55);">Plano opcional, independente do valor do website.</p>
+              <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-55);margin-bottom:6px;" data-i18n="common.monthly">Mensal</div>
+              <div class="maint-price">149€<span data-i18n="common.perMonth">/mês</span></div>
+              <p style="font-size:13.5px;color:var(--color-text-75);margin-bottom:4px;" data-i18n="maint.plus.desc">Mais acompanhamento para websites que estão em constante evolução.</p>
+              <p style="font-size:11.5px;color:var(--color-text-55);" data-i18n="maint.optionalNote">Plano opcional, independente do valor do website.</p>
               <div class="maint-list">
-                <div>ICON_CHECK Tudo do Managed Website</div><div>ICON_CHECK Alterações regulares incluídas (3h/mês)</div>
-                <div>ICON_CHECK Monitorização avançada</div><div>ICON_CHECK Otimização de performance</div>
-                <div>ICON_CHECK SEO básico contínuo</div><div>ICON_CHECK Melhorias contínuas</div>
+                <div>ICON_CHECK <span data-i18n="maint.plus.list1">Tudo do Managed Website</span></div><div>ICON_CHECK <span data-i18n="maint.plus.list2">Alterações regulares incluídas (3h/mês)</span></div>
+                <div>ICON_CHECK <span data-i18n="maint.plus.list3">Monitorização avançada</span></div><div>ICON_CHECK <span data-i18n="maint.plus.list4">Otimização de performance</span></div>
+                <div>ICON_CHECK <span data-i18n="maint.plus.list5">SEO básico contínuo</span></div><div>ICON_CHECK <span data-i18n="maint.plus.list6">Melhorias contínuas</span></div>
               </div>
-              <button class="btn btn-ghost open-budget" style="align-self:flex-start;font-size:12px;">Falar connosco ICON_ARROW</button>
+              <button class="btn btn-ghost open-budget" style="align-self:flex-start;font-size:12px;"><span data-i18n="nav.talk">Falar connosco</span> ICON_ARROW</button>
             </div>
           </div>
         </section>
@@ -612,14 +621,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <!-- PORTFOLIO -->
     <div class="page" data-page="portfolio" hidden>
       <section class="page-head-portfolio" style="padding-bottom:32px;">
-        <div class="eyebrow">Estilos de design</div>
-        <h2 style="font-size:clamp(28px,4vw,44px);max-width:26ch;margin-bottom:12px;">Veja os tipos de experiência que criamos.</h2>
-        <p style="font-size:15px;color:var(--color-text-75);max-width:56ch;">Cada projeto usa o estilo certo para o objetivo do negócio — não o mais vistoso.</p>
+        <div class="eyebrow" data-i18n="portfolio.eyebrow">Estilos de design</div>
+        <h2 style="font-size:clamp(28px,4vw,44px);max-width:26ch;margin-bottom:12px;" data-i18n="portfolio.h2">Veja os tipos de experiência que criamos.</h2>
+        <p style="font-size:15px;color:var(--color-text-75);max-width:56ch;" data-i18n="portfolio.p">Cada projeto usa o estilo certo para o objetivo do negócio — não o mais vistoso.</p>
       </section>
 
       <section class="style-group">
-        <h3>Scroll Cinemático<span class="style-badge">Por orçamento</span></h3>
-        <p>Vídeo dividido em frames e controlado pelo scroll — a narrativa avança ao ritmo do visitante.</p>
+        <h3><span data-i18n="style.scroll.title">Scroll Cinemático</span><span class="style-badge" data-i18n="style.badge.quote">Por orçamento</span></h3>
+        <p data-i18n="style.scroll.desc">Vídeo dividido em frames e controlado pelo scroll — a narrativa avança ao ritmo do visitante.</p>
         <div class="style-grid">
           <div class="style-card"><video class="style-video" src="uploads/styles/scroll-summerblossom.mp4" muted loop playsinline preload="none"></video></div>
           <div class="style-card"><video class="style-video" src="uploads/styles/scroll-bloom.mp4" muted loop playsinline preload="none"></video></div>
@@ -627,8 +636,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       </section>
 
       <section class="style-group">
-        <h3>Motion Design<span class="style-badge">Por orçamento</span></h3>
-        <p>Elementos animados, transições e microinterações que dão vida à página sem depender do scroll.</p>
+        <h3><span data-i18n="style.motion.title">Motion Design</span><span class="style-badge" data-i18n="style.badge.quote">Por orçamento</span></h3>
+        <p data-i18n="style.motion.desc">Elementos animados, transições e microinterações que dão vida à página sem depender do scroll.</p>
         <div class="style-grid">
           <div class="style-card"><video class="style-video" src="uploads/styles/motion-agent-crew.mp4" muted loop playsinline preload="none"></video></div>
           <div class="style-card"><video class="style-video" src="uploads/styles/motion-pixel-muse.mp4" muted loop playsinline preload="none"></video></div>
@@ -639,8 +648,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       </section>
 
       <section class="style-group">
-        <h3>Parallax<span class="style-badge included">Incluído na base</span></h3>
-        <p>Camadas que se movem a velocidades diferentes ao rolar a página, criando profundidade.</p>
+        <h3><span data-i18n="style.parallax.title">Parallax</span><span class="style-badge included" data-i18n="style.badge.included">Incluído na base</span></h3>
+        <p data-i18n="style.parallax.desc">Camadas que se movem a velocidades diferentes ao rolar a página, criando profundidade.</p>
         <div class="style-grid">
           <div class="style-card"><video class="style-video" src="uploads/styles/parallax-mareamarea.mp4" muted loop playsinline preload="none"></video></div>
           <div class="style-card"><video class="style-video" src="uploads/styles/parallax-bitcoin-yield.mp4" muted loop playsinline preload="none"></video></div>
@@ -648,8 +657,8 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       </section>
 
       <section class="style-group" style="padding-bottom:56px;">
-        <h3>Estático<span class="style-badge included">Incluído na base</span></h3>
-        <p>Layout tradicional, com interações discretas — foco total em clareza, velocidade e conteúdo.</p>
+        <h3><span data-i18n="style.static.title">Estático</span><span class="style-badge included" data-i18n="style.badge.included">Incluído na base</span></h3>
+        <p data-i18n="style.static.desc">Layout tradicional, com interações discretas — foco total em clareza, velocidade e conteúdo.</p>
         <div class="style-grid">
           <div class="style-card"><video class="style-video" src="uploads/styles/static-cursor-reveal.mp4" muted loop playsinline preload="none"></video></div>
           <div class="style-card"><video class="style-video" src="uploads/styles/static-handstouchgod.mp4" muted loop playsinline preload="none"></video></div>
@@ -658,13 +667,13 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       </section>
 
       <div class="page-head">
-        <div class="eyebrow">Trabalho selecionado</div>
-        <h1>Projetos que resolveram problemas reais.</h1>
+        <div class="eyebrow" data-i18n="portfolio.work.eyebrow">Trabalho selecionado</div>
+        <h1 data-i18n="portfolio.work.h1">Projetos que resolveram problemas reais.</h1>
       </div>
 
       <section style="padding-bottom:88px;">
         <div class="panel" style="text-align:center;padding:56px 32px;">
-          <p class="dialog-lede" style="max-width:40ch;margin:0 auto;">Estamos a preparar os primeiros casos de estudo. Volte em breve para ver o trabalho selecionado.</p>
+          <p class="dialog-lede" style="max-width:40ch;margin:0 auto;" data-i18n="portfolio.comingSoon">Estamos a preparar os primeiros casos de estudo. Volte em breve para ver o trabalho selecionado.</p>
         </div>
       </section>
 
@@ -675,12 +684,12 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <div class="page" data-page="about" hidden>
       <section class="about-hero">
         <div>
-          <div class="eyebrow">Sobre</div>
-          <h1>Um estúdio focado em resultados.</h1>
-          <p>A Alwes Studio nasceu de uma paixão por tecnologia, design e pela vontade de criar algo próprio.</p>
-          <p>Fundada por Rafael Alves, programador autodidata e entusiasta de tecnologia e Inteligência Artificial, a Alwes é o resultado de vários anos a explorar, aprender e desenvolver experiências digitais.</p>
-          <p>O que começou como uma paixão por código tornou-se num objetivo maior: criar um estúdio onde cada projeto recebe atenção real, desde a primeira ideia até ao lançamento.</p>
-          <p>Na Alwes, cada projeto é acompanhado de perto, sem passar de mão em mão. Combinamos design, desenvolvimento e novas tecnologias para transformar ideias em experiências digitais pensadas para fazer negócios crescer.</p>
+          <div class="eyebrow" data-i18n="about.eyebrow">Sobre</div>
+          <h1 data-i18n="about.h1">Um estúdio focado em resultados.</h1>
+          <p data-i18n="about.p1">A Alwes Studio nasceu de uma paixão por tecnologia, design e pela vontade de criar algo próprio.</p>
+          <p data-i18n="about.p2">Fundada por Rafael Alves, programador autodidata e entusiasta de tecnologia e Inteligência Artificial, a Alwes é o resultado de vários anos a explorar, aprender e desenvolver experiências digitais.</p>
+          <p data-i18n="about.p3">O que começou como uma paixão por código tornou-se num objetivo maior: criar um estúdio onde cada projeto recebe atenção real, desde a primeira ideia até ao lançamento.</p>
+          <p data-i18n="about.p4">Na Alwes, cada projeto é acompanhado de perto, sem passar de mão em mão. Combinamos design, desenvolvimento e novas tecnologias para transformar ideias em experiências digitais pensadas para fazer negócios crescer.</p>
         </div>
       </section>
 
@@ -690,43 +699,43 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     <!-- CONTACT -->
     <div class="page" data-page="contact" hidden>
       <section style="padding-top:72px;padding-bottom:96px;">
-        <div class="eyebrow">Contacto</div>
-        <h1 style="font-size:clamp(28px,4vw,44px);max-width:14ch;margin-bottom:28px;">Conte-nos sobre o projeto.</h1>
+        <div class="eyebrow" data-i18n="contact.eyebrow">Contacto</div>
+        <h1 style="font-size:clamp(28px,4vw,44px);max-width:14ch;margin-bottom:28px;" data-i18n="contact.h1">Conte-nos sobre o projeto.</h1>
         <div class="panel contact-wrap">
           <div class="contact-main">
             <form class="contact-form" id="contactForm">
-              <div class="field"><label>Nome</label><input type="text" class="input" id="cfName" required></div>
-              <div class="field"><label>Email</label><input type="email" class="input" id="cfEmail" required></div>
-              <div class="field"><label>Orçamento</label>
+              <div class="field"><label data-i18n="contact.name">Nome</label><input type="text" class="input" id="cfName" required></div>
+              <div class="field"><label data-i18n="contact.email">Email</label><input type="email" class="input" id="cfEmail" required></div>
+              <div class="field"><label data-i18n="contact.budget">Orçamento</label>
                 <div class="select-wrap">
                 <select class="input" id="cfBudget">
-                  <option>Até 2.000€</option>
-                  <option>2.000€ – 10.000€</option>
-                  <option>10.000€+</option>
+                  <option data-i18n="contact.budget.opt1">Até 2.000€</option>
+                  <option data-i18n="contact.budget.opt2">2.000€ – 10.000€</option>
+                  <option data-i18n="contact.budget.opt3">10.000€+</option>
                 </select>
                 <span class="select-arrow">ICON_CHEVRON</span>
                 </div>
               </div>
-              <div class="field"><label>Detalhes do projeto</label><textarea rows="4" class="input" id="cfDetails"></textarea></div>
+              <div class="field"><label data-i18n="contact.details">Detalhes do projeto</label><textarea rows="4" class="input" id="cfDetails"></textarea></div>
               <div class="field">
-                <label>Anexar documento (opcional)</label>
+                <label data-i18n="contact.attach">Anexar documento (opcional)</label>
                 <label class="file-input" for="cfFile">
-                  <span class="file-input-btn">ICON_PAPERCLIP Escolher ficheiro</span>
-                  <span class="file-input-name" id="cfFileName">Nenhum ficheiro selecionado</span>
+                  <span class="file-input-btn">ICON_PAPERCLIP <span data-i18n="common.chooseFile">Escolher ficheiro</span></span>
+                  <span class="file-input-name" id="cfFileName" data-i18n="common.noFileSelected">Nenhum ficheiro selecionado</span>
                 </label>
                 <input type="file" id="cfFile" hidden>
-                <div class="field-hint">Tamanho máximo: 10MB.</div>
+                <div class="field-hint" data-i18n="common.maxSize">Tamanho máximo: 10MB.</div>
               </div>
-              <button type="submit" class="btn btn-dark" style="align-self:flex-start;color:#000;">Enviar</button>
+              <button type="submit" class="btn btn-dark" style="align-self:flex-start;color:#000;" data-i18n="common.send">Enviar</button>
             </form>
             <div id="contactDone" hidden>
               <div class="done-icon">ICON_CHECK</div>
-              <p class="dialog-lede" style="text-align:center;margin-top:40px;">Obrigado! Recebemos a sua mensagem. Marque já uma chamada, se preferir avançar mais rápido.</p>
-              <button class="btn btn-accent" id="openBookingPopup" style="margin-top:20px;">Marcar chamada ICON_ARROW</button>
+              <p class="dialog-lede" style="text-align:center;margin-top:40px;" data-i18n="contact.thanks">Obrigado! Recebemos a sua mensagem. Marque já uma chamada, se preferir avançar mais rápido.</p>
+              <button class="btn btn-accent" id="openBookingPopup" style="margin-top:20px;"><span data-i18n="cta.bookCall">Marcar chamada</span> ICON_ARROW</button>
             </div>
           </div>
           <div class="contact-side">
-            <div class="contact-row">ICON_MAIL<div><div class="clabel">Email</div><div style="font-size:14px;">hello@alwesstudio.space</div></div></div>
+            <div class="contact-row">ICON_MAIL<div><div class="clabel" data-i18n="contact.email">Email</div><div style="font-size:14px;">hello@alwesstudio.space</div></div></div>
           </div>
         </div>
       </section>
@@ -741,117 +750,321 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   <div class="dialog">
     <div class="dialog-head">
       <div>
-        <div class="eyebrow">Orçamento</div>
-        <h2 id="dialogTitle">Simule o seu projeto.</h2>
+        <div class="eyebrow" data-i18n="budget.eyebrow">Orçamento</div>
+        <h2 id="dialogTitle" data-i18n="budget.title">Simule o seu projeto.</h2>
       </div>
-      <button class="dialog-close" id="closeBudget" aria-label="Fechar">ICON_X</button>
+      <button class="dialog-close" id="closeBudget" data-i18n-aria-label="aria.close" aria-label="Fechar">ICON_X</button>
     </div>
 
     <div id="budgetForm">
-      <p class="dialog-lede">Comece com a base e adicione os módulos que o seu negócio precisa. Valor estimado — o orçamento final é confirmado após uma conversa connosco.</p>
+      <p class="dialog-lede" data-i18n="budget.lede">Comece com a base e adicione os módulos que o seu negócio precisa. Valor estimado — o orçamento final é confirmado após uma conversa connosco.</p>
       <div style="display:flex;gap:12px;margin-bottom:18px;">
-        <div class="field" style="flex:1;"><label>Nome</label><input type="text" class="input" id="bqName" required></div>
-        <div class="field" style="flex:1;"><label>Email</label><input type="email" class="input" id="bqEmail" required></div>
+        <div class="field" style="flex:1;"><label data-i18n="contact.name">Nome</label><input type="text" class="input" id="bqName" required></div>
+        <div class="field" style="flex:1;"><label data-i18n="contact.email">Email</label><input type="email" class="input" id="bqEmail" required></div>
       </div>
       <div class="budget-grid">
         <div class="budget-modules">
-          <div class="budget-modules-head"><div>Website base</div><div>649€</div></div>
+          <div class="budget-modules-head"><div data-i18n="budget.websiteBase">Website base</div><div>649€</div></div>
 
-          <div class="mod-cat">Tipo de site</div>
+          <div class="mod-cat" data-i18n="budget.siteType">Tipo de site</div>
           <div class="style-pick" id="stylePick">
             <label class="style-opt">
               <input type="radio" name="siteStyle" value="Scroll Cinemático">
-              <span>Scroll Cinemático</span>
-              <span class="style-badge">Por orçamento</span>
+              <span data-i18n="style.scroll.title">Scroll Cinemático</span>
+              <span class="style-badge" data-i18n="style.badge.quote">Por orçamento</span>
             </label>
             <label class="style-opt">
               <input type="radio" name="siteStyle" value="Motion Design">
-              <span>Motion Design</span>
-              <span class="style-badge">Por orçamento</span>
+              <span data-i18n="style.motion.title">Motion Design</span>
+              <span class="style-badge" data-i18n="style.badge.quote">Por orçamento</span>
             </label>
             <label class="style-opt">
               <input type="radio" name="siteStyle" value="Parallax">
-              <span>Parallax</span>
-              <span class="style-badge included">Incluído na base</span>
+              <span data-i18n="style.parallax.title">Parallax</span>
+              <span class="style-badge included" data-i18n="style.badge.included">Incluído na base</span>
             </label>
             <label class="style-opt active">
               <input type="radio" name="siteStyle" value="Estático" checked>
-              <span>Estático</span>
-              <span class="style-badge included">Incluído na base</span>
+              <span data-i18n="style.static.title">Estático</span>
+              <span class="style-badge included" data-i18n="style.badge.included">Incluído na base</span>
             </label>
           </div>
 
           <div id="moduleList"></div>
 
-          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">CRM</div>
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;" data-i18n="budget.crm.title">CRM</div>
           <div class="mod-row" style="cursor:default;">
-            <span class="mod-row-left">CRM à medida / Integração com CRM</span>
-            <span class="mod-price">Por orçamento</span>
+            <span class="mod-row-left" data-i18n="budget.crm.label">CRM à medida / Integração com CRM</span>
+            <span class="mod-price" data-i18n="style.badge.quote">Por orçamento</span>
           </div>
-          <p class="field-hint">O âmbito varia muito de negócio para negócio — descreva a necessidade nos detalhes do projeto e enviamos um orçamento à parte.</p>
+          <p class="field-hint" data-i18n="budget.crm.hint">O âmbito varia muito de negócio para negócio — descreva a necessidade nos detalhes do projeto e enviamos um orçamento à parte.</p>
 
-          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Idiomas adicionais</div>
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;" data-i18n="budget.langs.title">Idiomas adicionais</div>
           <div class="lang-row">
-            <span>Idiomas adicionais além do Português (250€ / idioma)</span>
+            <span data-i18n="budget.langs.label">Idiomas adicionais além do Português (250€ / idioma)</span>
             <div class="stepper">
               <button type="button" id="langDec">–</button>
               <span id="langCount">0</span>
               <button type="button" id="langInc">+</button>
             </div>
           </div>
-          <input type="text" class="input" id="langNames" placeholder="Quais idiomas além do Português? ex: Inglês, Espanhol" style="margin:8px 0;display:none;">
+          <input type="text" class="input" id="langNames" data-i18n-placeholder="budget.langs.placeholder" placeholder="Quais idiomas além do Português? ex: Inglês, Espanhol" style="margin:8px 0;display:none;">
 
-          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Detalhes do projeto</div>
-          <textarea rows="3" class="input" id="bqDetails" placeholder="Conte-nos mais sobre o projeto (opcional)"></textarea>
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;" data-i18n="contact.details">Detalhes do projeto</div>
+          <textarea rows="3" class="input" id="bqDetails" data-i18n-placeholder="budget.details.placeholder" placeholder="Conte-nos mais sobre o projeto (opcional)"></textarea>
 
-          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Manutenção mensal</div>
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;" data-i18n="budget.maint.title">Manutenção mensal</div>
           <div class="maint-pick" id="maintPick">
-            <label class="maint-opt active"><input type="radio" name="maint" value="0" checked>Sem manutenção</label>
-            <label class="maint-opt"><input type="radio" name="maint" value="79">Managed Website 79€/mês</label>
-            <label class="maint-opt"><input type="radio" name="maint" value="149">Managed Plus 149€/mês</label>
+            <label class="maint-opt active"><input type="radio" name="maint" value="0" checked><span data-i18n="budget.maint.opt0">Sem manutenção</span></label>
+            <label class="maint-opt"><input type="radio" name="maint" value="79"><span data-i18n="budget.maint.opt79">Managed Website 79€/mês</span></label>
+            <label class="maint-opt"><input type="radio" name="maint" value="149"><span data-i18n="budget.maint.opt149">Managed Plus 149€/mês</span></label>
           </div>
 
-          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;">Anexar documento (opcional)</div>
+          <div class="mod-cat hr-top" style="margin-top:8px;padding-top:16px;" data-i18n="contact.attach">Anexar documento (opcional)</div>
           <label class="file-input" for="bqFile">
-            <span class="file-input-btn">ICON_PAPERCLIP Escolher ficheiro</span>
-            <span class="file-input-name" id="bqFileName">Nenhum ficheiro selecionado</span>
+            <span class="file-input-btn">ICON_PAPERCLIP <span data-i18n="common.chooseFile">Escolher ficheiro</span></span>
+            <span class="file-input-name" id="bqFileName" data-i18n="common.noFileSelected">Nenhum ficheiro selecionado</span>
           </label>
           <input type="file" id="bqFile" hidden>
-          <div class="field-hint">Tamanho máximo: 10MB.</div>
+          <div class="field-hint" data-i18n="common.maxSize">Tamanho máximo: 10MB.</div>
         </div>
 
         <div class="budget-summary">
-          <div class="summary-label">Estimativa</div>
+          <div class="summary-label" data-i18n="budget.estimate">Estimativa</div>
           <div class="summary-total" id="budgetTotal">649€</div>
           <div class="summary-sub" id="budgetSub">Website base + módulos + 0 idioma(s)</div>
           <div class="summary-maint" id="budgetMaint" style="display:none;"></div>
-          <button class="btn btn-accent budget-submit" id="submitBudget" style="margin-top:8px;"><span>Enviar pedido de contacto</span><span class="submit-icon">ICON_ARROW</span></button>
+          <button class="btn btn-accent budget-submit" id="submitBudget" style="margin-top:8px;"><span data-i18n="budget.submit">Enviar pedido de contacto</span><span class="submit-icon">ICON_ARROW</span></button>
         </div>
       </div>
     </div>
 
     <div id="budgetDone" hidden style="text-align:center;padding:24px 0 4px;">
       <div class="done-icon">ICON_CHECK</div>
-      <p class="dialog-lede" style="text-align:center;margin-left:auto;margin-right:auto;">Recebemos o seu pedido com uma estimativa de <strong id="doneTotal"></strong>. Marque já uma chamada para conversarmos sobre o projeto.</p>
+      <p class="dialog-lede" style="text-align:center;margin-left:auto;margin-right:auto;"><span data-i18n="budget.done.text1">Recebemos o seu pedido com uma estimativa de</span> <strong id="doneTotal"></strong>. <span data-i18n="budget.done.text2">Marque já uma chamada para conversarmos sobre o projeto.</span></p>
       <div class="booking-embed">
         <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0j4aDAD0V_JFk_tmb-eR9WiIuxgSq1K7hGHA38E5qqMw6dX-FKJDwkeuAlWgG13-y3c-5N2i8U?gv=true" style="border:0" width="100%" height="500" frameborder="0"></iframe>
       </div>
-      <button class="btn btn-ghost" id="closeBudgetDone">Fechar</button>
+      <button class="btn btn-ghost" id="closeBudgetDone" data-i18n="common.close">Fechar</button>
     </div>
   </div>
 </div>
 
 <div class="cookie-banner" id="cookieBanner">
-  <p>Usamos cookies para melhorar a sua experiência e analisar o tráfego do site. Pode aceitar ou rejeitar os cookies não essenciais a qualquer momento.</p>
+  <p data-i18n="cookie.text">Usamos cookies para melhorar a sua experiência e analisar o tráfego do site. Pode aceitar ou rejeitar os cookies não essenciais a qualquer momento.</p>
   <div class="cookie-actions">
-    <button class="btn btn-ghost" id="cookieDecline">Rejeitar</button>
-    <button class="btn btn-dark" id="cookieAccept">Aceitar</button>
+    <button class="btn btn-ghost" id="cookieDecline" data-i18n="cookie.decline">Rejeitar</button>
+    <button class="btn btn-dark" id="cookieAccept" data-i18n="cookie.accept">Aceitar</button>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 (function(){
+  var LANG_KEY = 'alwesLang';
+  var lang = localStorage.getItem(LANG_KEY) === 'en' ? 'en' : 'pt';
+
+  var I18N = {
+    pt: {
+      'nav.home':'Início','nav.services':'Serviços','nav.portfolio':'Portfólio','nav.about':'Sobre','nav.contact':'Contacto','nav.talk':'Falar connosco',
+      'home.h1':'Design que comunica. Marcas que ficam.','home.price.prefix':'Desde','home.price.suffix':'Valor Especial de Lançamento',
+      'cta.simulate':'Simular projeto','cta.simulateShort':'Simular','home.note':'Todo projeto começa com a mesma pergunta: para que existe este site, de verdade.',
+      'home.heroArt.alt':'Website da Alwes Studio apresentado em laptop',
+      'home.eyebrow':'O que fazemos','shared.processH2':'Um processo pensado para durar, com IA onde ela ajuda de verdade',
+      'home.feat1.title':'Estratégia','home.feat1.desc':'Estrutura, conteúdo e objetivos definidos antes de qualquer pixel.',
+      'home.feat2.title':'Design','home.feat2.desc':'Grelha consistente, tipografia com a cara da marca.',
+      'home.feat3.title':'Construção','home.feat3.desc':'Um website rápido, eficiente e fácil de atualizar. Performance sem complicações.',
+      'strip.alt1':'Equipa Alwes Studio a colaborar num projeto','strip.alt2':'Sistema de design e guia de estilo criado pela Alwes Studio',
+      'strip.alt3':'Website desenhado pela Alwes Studio apresentado em laptop','strip.alt4':'Website da Alwes Studio apresentado em smartphone',
+      'strip.alt5':'Transformação de um website antes e depois do redesign',
+      'home.quote':'"Não desenho sites bonitos por desenhar. Cada projeto começa com uma pergunta simples: o que é que isto precisa de fazer pelo seu negócio."',
+      'home.quoteCite':'Rafael Alves — Fundador, Alwes Studio','home.ctaband.h2':'Pronto para transformar o seu site?',
+      'svc.eyebrow':'Serviços · Preços','svc.h1':'Seis formas de ajudar.','svc.lede':'A maioria dos projetos combina dois ou três destes serviços. Nenhum é vendido como pacote fechado.',
+      'svc.tab.services':'Serviços','svc.tab.prices':'Preços','common.from':'Desde',
+      'svc.item1.title':'Website: design e desenvolvimento','svc.item1.desc':'Um site novo do zero — estrutura, design, textos e uma construção que a sua equipa consegue manter.',
+      'svc.item2.title':'Marca e identidade','svc.item2.desc':'Logótipo, tipografia, cor e um conjunto de guidelines — construído para se manter coerente no site e além dele.',
+      'svc.item3.title':'E-commerce','svc.item3.desc':'Catálogo de produtos, checkout e inventário configurados para vender de verdade, não só mostrar.',
+      'svc.item4.title':'SEO e conteúdo','svc.item4.desc':'SEO técnico, estrutura de páginas e um plano de conteúdo que faz o site ser encontrado.',
+      'svc.item5.title':'App: design e desenvolvimento','svc.item5.desc':'Aplicações móveis pensadas de raiz — design de interface e desenvolvimento nativo ou multiplataforma.',
+      'svc.item6.title':'CRM à medida','svc.item6.desc':'Contactos, leads, pipeline, tarefas e gestão do negócio num sistema desenvolvido para a sua empresa.',
+      'svc.item7.title':'Integração com CRM','svc.item7.desc':'Ligação do website ao CRM que já utiliza.',
+      'svc.how.eyebrow':'Como funciona',
+      'step1.title':'Descoberta','step1.desc':'Duas semanas. Objetivos, público e auditoria de conteúdo.',
+      'step2.title':'Design','step2.desc':'2 horas de revisão. Sem surpresas no lançamento.',
+      'step3.title':'Construção','step3.desc':'Em ambiente de testes para validar antes do lançamento.',
+      'step4.title':'Lançamento','step4.desc':'Documentação de handoff. Suporte pago disponível depois.',
+      'price.01.eyebrow':'01 — Website','price.01.desc':'A base para colocar o seu negócio online.',
+      'price.check1':'1–3 páginas','price.check2':'Até 3 secções por página','price.check3':'Design personalizado','price.check4':'Mobile responsive',
+      'price.check5':'SEO base','price.check6':'Analytics','price.check7':'Formulário de contacto','price.check8':'Links para redes sociais',
+      'price.check9':'Alterações incluídas (2h)','price.check10':'Publicação',
+      'price.01.note':'Inclui os estilos Estático e Parallax. Motion Design e Scroll Cinemático têm custo adicional, apenas por orçamento.',
+      'price.02.eyebrow':'02 — Personalize','price.02.h2':'O que precisa além da base?','price.02.p1':'O seu negócio não precisa de funcionalidades que não vai utilizar.',
+      'price.02.p2':'Escolha apenas o que faz sentido para o seu projeto e nós adicionamos ao website.',
+      'price.02.modules':'Booking · E-commerce · CRM · Landing Pages · SEO avançado · Automações · Multilingue · Pagamentos · ...','price.02.cost':'Cada módulo tem o seu próprio custo',
+      'price.03.eyebrow':'03 — À sua medida','price.03.h2':'Construa apenas o que precisa.','price.03.p':'Começamos com a base de 649€ e adicionamos apenas as funcionalidades que o seu negócio necessita.',
+      'price.03.pillBase':'Website Base','price.03.pillModules':'Módulos selecionados','price.03.footnote':'Sem funcionalidades desnecessárias.<br>Sem pacotes que não se adaptam ao seu negócio.',
+      'maint.eyebrow':'Manutenção','maint.h2':'Depois do website, continuamos consigo.','maint.p':'Planos de manutenção mensal, opcionais e separados do valor do website. Escolha o que faz sentido para o seu negócio — sem obrigação de aderir.',
+      'common.monthly':'Mensal','common.perMonth':'/mês',
+      'maint.website.desc':'O essencial para manter o website seguro, atualizado e online.','maint.optionalNote':'Plano opcional, independente do valor do website.',
+      'maint.website.list1':'Hosting','maint.website.list2':'SSL','maint.website.list3':'Backups','maint.website.list4':'Atualizações técnicas',
+      'maint.website.list5':'Monitorização','maint.website.list6':'Pequenas alterações incluídas (1h/mês)','maint.website.list7':'Suporte',
+      'maint.plus.desc':'Mais acompanhamento para websites que estão em constante evolução.',
+      'maint.plus.list1':'Tudo do Managed Website','maint.plus.list2':'Alterações regulares incluídas (3h/mês)','maint.plus.list3':'Monitorização avançada',
+      'maint.plus.list4':'Otimização de performance','maint.plus.list5':'SEO básico contínuo','maint.plus.list6':'Melhorias contínuas',
+      'portfolio.eyebrow':'Estilos de design','portfolio.h2':'Veja os tipos de experiência que criamos.','portfolio.p':'Cada projeto usa o estilo certo para o objetivo do negócio — não o mais vistoso.',
+      'style.scroll.title':'Scroll Cinemático','style.scroll.desc':'Vídeo dividido em frames e controlado pelo scroll — a narrativa avança ao ritmo do visitante.',
+      'style.motion.title':'Motion Design','style.motion.desc':'Elementos animados, transições e microinterações que dão vida à página sem depender do scroll.',
+      'style.parallax.title':'Parallax','style.parallax.desc':'Camadas que se movem a velocidades diferentes ao rolar a página, criando profundidade.',
+      'style.static.title':'Estático','style.static.desc':'Layout tradicional, com interações discretas — foco total em clareza, velocidade e conteúdo.',
+      'style.badge.quote':'Por orçamento','style.badge.included':'Incluído na base',
+      'portfolio.work.eyebrow':'Trabalho selecionado','portfolio.work.h1':'Projetos que resolveram problemas reais.',
+      'portfolio.comingSoon':'Estamos a preparar os primeiros casos de estudo. Volte em breve para ver o trabalho selecionado.',
+      'about.eyebrow':'Sobre','about.h1':'Um estúdio focado em resultados.',
+      'about.p1':'A Alwes Studio nasceu de uma paixão por tecnologia, design e pela vontade de criar algo próprio.',
+      'about.p2':'Fundada por Rafael Alves, programador autodidata e entusiasta de tecnologia e Inteligência Artificial, a Alwes é o resultado de vários anos a explorar, aprender e desenvolver experiências digitais.',
+      'about.p3':'O que começou como uma paixão por código tornou-se num objetivo maior: criar um estúdio onde cada projeto recebe atenção real, desde a primeira ideia até ao lançamento.',
+      'about.p4':'Na Alwes, cada projeto é acompanhado de perto, sem passar de mão em mão. Combinamos design, desenvolvimento e novas tecnologias para transformar ideias em experiências digitais pensadas para fazer negócios crescer.',
+      'contact.eyebrow':'Contacto','contact.h1':'Conte-nos sobre o projeto.','contact.name':'Nome','contact.email':'Email','contact.budget':'Orçamento',
+      'contact.budget.opt1':'Até 2.000€','contact.budget.opt2':'2.000€ – 10.000€','contact.budget.opt3':'10.000€+',
+      'contact.details':'Detalhes do projeto','contact.attach':'Anexar documento (opcional)','common.chooseFile':'Escolher ficheiro',
+      'common.noFileSelected':'Nenhum ficheiro selecionado','common.maxSize':'Tamanho máximo: 10MB.','common.send':'Enviar',
+      'contact.thanks':'Obrigado! Recebemos a sua mensagem. Marque já uma chamada, se preferir avançar mais rápido.','cta.bookCall':'Marcar chamada',
+      'budget.eyebrow':'Orçamento','budget.title':'Simule o seu projeto.','aria.close':'Fechar',
+      'budget.lede':'Comece com a base e adicione os módulos que o seu negócio precisa. Valor estimado — o orçamento final é confirmado após uma conversa connosco.',
+      'budget.websiteBase':'Website base','budget.siteType':'Tipo de site','budget.crm.title':'CRM','budget.crm.label':'CRM à medida / Integração com CRM',
+      'budget.crm.hint':'O âmbito varia muito de negócio para negócio — descreva a necessidade nos detalhes do projeto e enviamos um orçamento à parte.',
+      'budget.langs.title':'Idiomas adicionais','budget.langs.label':'Idiomas adicionais além do Português (250€ / idioma)',
+      'budget.langs.placeholder':'Quais idiomas além do Português? ex: Inglês, Espanhol','budget.details.placeholder':'Conte-nos mais sobre o projeto (opcional)',
+      'budget.maint.title':'Manutenção mensal','budget.maint.opt0':'Sem manutenção','budget.maint.opt79':'Managed Website 79€/mês','budget.maint.opt149':'Managed Plus 149€/mês',
+      'budget.estimate':'Estimativa','budget.submit':'Enviar pedido de contacto',
+      'budget.done.text1':'Recebemos o seu pedido com uma estimativa de','budget.done.text2':'Marque já uma chamada para conversarmos sobre o projeto.','common.close':'Fechar',
+      'cookie.text':'Usamos cookies para melhorar a sua experiência e analisar o tráfego do site. Pode aceitar ou rejeitar os cookies não essenciais a qualquer momento.',
+      'cookie.decline':'Rejeitar','cookie.accept':'Aceitar','aria.openMenu':'Abrir menu',
+      'common.unit':'unidade','common.page':'página',
+      'cat.main':'Módulos principais','cat.marketing':'Marketing & SEO','cat.integrations':'Integrações & automações','cat.features':'Funcionalidades adicionais',
+      'mod.page':'Página adicional','mod.landing':'Landing Page','mod.booking':'Booking / Reservas','mod.booking-adv':'Booking avançado',
+      'mod.ecom':'E-commerce','mod.ecom-adv':'E-commerce avançado','mod.login':'Área de cliente / Login','mod.blog':'Blog / Notícias',
+      'mod.members':'Área de membros','mod.payments':'Pagamentos online','mod.seo-adv':'SEO avançado','mod.seo-tech':'SEO técnico',
+      'mod.analytics':'Google Analytics + tracking avançado','mod.gsc':'Google Search Console + configuração','mod.perf':'Performance / Core Web Vitals',
+      'mod.copy':'Copywriting (por página)','mod.blog-seo':'Blog + estrutura SEO','mod.whatsapp':'WhatsApp / contacto avançado',
+      'mod.newsletter':'Newsletter / Email marketing','mod.automations':'Automações','mod.api':'Integração com API externa',
+      'mod.software':'Integração com software externo','mod.notifications':'Sistema de notificações','mod.forms':'Formulários avançados',
+      'mod.gallery':'Galeria / Portfólio avançado','mod.reviews':'Sistema de avaliações','mod.map':'Mapa / localização avançada',
+      'mod.chat':'Chat / Live Chat','mod.social':'Integração de redes sociais','mod.search':'Pesquisa interna','mod.filters':'Filtros / pesquisa avançada',
+      'mod.dashboard':'Dashboard personalizado','mod.custom':'Funcionalidade personalizada',
+      'common.sending':'A enviar...','common.sent':'Enviado','budget.titleSent':'Pedido enviado. Marque uma chamada.',
+      'alert.fileTooLarge':'Ficheiro demasiado grande. Tamanho máximo: {mb}MB.','alert.fillNameEmail':'Preencha o seu nome e um email válido para enviar o pedido.',
+      'alert.errorBudget':'Não foi possível enviar o pedido. Tente novamente ou envie um email para {email}.',
+      'alert.errorContact':'Não foi possível enviar a mensagem. Tente novamente ou envie um email para {email}.',
+      'budget.sub.prefix':'Website base + módulos + ','budget.sub.langSuffix':' idioma(s) + estilo ','budget.sub.quoteNote':' (por orçamento)',
+      'budget.maintSuffix':'/mês manutenção'
+    },
+    en: {
+      'nav.home':'Home','nav.services':'Services','nav.portfolio':'Portfolio','nav.about':'About','nav.contact':'Contact','nav.talk':'Talk to us',
+      'home.h1':'Design that communicates. Brands that last.','home.price.prefix':'From','home.price.suffix':'Special Launch Price',
+      'cta.simulate':'Get a quote','cta.simulateShort':'Get a quote','home.note':'Every project starts with the same question: what does this website actually exist for?',
+      'home.heroArt.alt':'Alwes Studio website shown on a laptop',
+      'home.eyebrow':'What we do','shared.processH2':'A process built to last, with AI where it actually helps',
+      'home.feat1.title':'Strategy','home.feat1.desc':'Structure, content and goals defined before a single pixel.',
+      'home.feat2.title':'Design','home.feat2.desc':'Consistent grid, typography that looks like the brand.',
+      'home.feat3.title':'Build','home.feat3.desc':'A fast, efficient website that’s easy to update. Performance without the hassle.',
+      'strip.alt1':'Alwes Studio team collaborating on a project','strip.alt2':'Design system and style guide created by Alwes Studio',
+      'strip.alt3':'Website designed by Alwes Studio shown on a laptop','strip.alt4':'Alwes Studio website shown on a smartphone',
+      'strip.alt5':'A website transformation, before and after the redesign',
+      'home.quote':'"I don’t design pretty sites for the sake of it. Every project starts with one simple question: what does this actually need to do for your business."',
+      'home.quoteCite':'Rafael Alves — Founder, Alwes Studio','home.ctaband.h2':'Ready to transform your website?',
+      'svc.eyebrow':'Services · Pricing','svc.h1':'Six ways to help.','svc.lede':'Most projects combine two or three of these services. None is sold as a fixed package.',
+      'svc.tab.services':'Services','svc.tab.prices':'Pricing','common.from':'From',
+      'svc.item1.title':'Website: design & development','svc.item1.desc':'A brand-new site from scratch — structure, design, copy and a build your team can maintain.',
+      'svc.item2.title':'Brand & identity','svc.item2.desc':'Logo, typography, colour and a set of guidelines — built to stay consistent on the site and beyond.',
+      'svc.item3.title':'E-commerce','svc.item3.desc':'Product catalogue, checkout and inventory set up to actually sell, not just showcase.',
+      'svc.item4.title':'SEO & content','svc.item4.desc':'Technical SEO, page structure and a content plan that gets the site found.',
+      'svc.item5.title':'App: design & development','svc.item5.desc':'Mobile apps built from the ground up — interface design and native or cross-platform development.',
+      'svc.item6.title':'Bespoke CRM','svc.item6.desc':'Contacts, leads, pipeline, tasks and business management in a system built for your company.',
+      'svc.item7.title':'CRM integration','svc.item7.desc':'Connecting your website to the CRM you already use.',
+      'svc.how.eyebrow':'How it works',
+      'step1.title':'Discovery','step1.desc':'Two weeks. Goals, audience and content audit.',
+      'step2.title':'Design','step2.desc':'2 hours of revisions. No surprises at launch.',
+      'step3.title':'Build','step3.desc':'Built in a staging environment to validate before launch.',
+      'step4.title':'Launch','step4.desc':'Handoff documentation. Paid support available afterwards.',
+      'price.01.eyebrow':'01 — Website','price.01.desc':'The base to get your business online.',
+      'price.check1':'1–3 pages','price.check2':'Up to 3 sections per page','price.check3':'Custom design','price.check4':'Mobile responsive',
+      'price.check5':'Base SEO','price.check6':'Analytics','price.check7':'Contact form','price.check8':'Social media links',
+      'price.check9':'Included revisions (2h)','price.check10':'Publishing',
+      'price.01.note':'Includes the Static and Parallax styles. Motion Design and Cinematic Scroll cost extra, quoted separately.',
+      'price.02.eyebrow':'02 — Customise','price.02.h2':'What do you need beyond the base?','price.02.p1':'Your business doesn’t need features it won’t use.',
+      'price.02.p2':'Choose only what makes sense for your project and we’ll add it to the website.',
+      'price.02.modules':'Booking · E-commerce · CRM · Landing Pages · Advanced SEO · Automations · Multilingual · Payments · ...','price.02.cost':'Each module has its own cost',
+      'price.03.eyebrow':'03 — Made to measure','price.03.h2':'Build only what you need.','price.03.p':'We start with the €649 base and add only the features your business needs.',
+      'price.03.pillBase':'Website Base','price.03.pillModules':'Selected modules','price.03.footnote':'No unnecessary features.<br>No packages that don’t fit your business.',
+      'maint.eyebrow':'Maintenance','maint.h2':'After the website, we stay with you.','maint.p':'Monthly maintenance plans, optional and separate from the website cost. Choose what makes sense for your business — no obligation to sign up.',
+      'common.monthly':'Monthly','common.perMonth':'/mo',
+      'maint.website.desc':'The essentials to keep the website secure, up to date and online.','maint.optionalNote':'Optional plan, independent of the website cost.',
+      'maint.website.list1':'Hosting','maint.website.list2':'SSL','maint.website.list3':'Backups','maint.website.list4':'Technical updates',
+      'maint.website.list5':'Monitoring','maint.website.list6':'Small included changes (1h/month)','maint.website.list7':'Support',
+      'maint.plus.desc':'More hands-on support for websites in constant evolution.',
+      'maint.plus.list1':'Everything in Managed Website','maint.plus.list2':'Regular included changes (3h/month)','maint.plus.list3':'Advanced monitoring',
+      'maint.plus.list4':'Performance optimisation','maint.plus.list5':'Ongoing basic SEO','maint.plus.list6':'Continuous improvements',
+      'portfolio.eyebrow':'Design styles','portfolio.h2':'See the types of experience we build.','portfolio.p':'Every project uses the right style for the business goal — not the flashiest one.',
+      'style.scroll.title':'Cinematic Scroll','style.scroll.desc':'Video split into frames and driven by scroll — the story moves at the visitor’s pace.',
+      'style.motion.title':'Motion Design','style.motion.desc':'Animated elements, transitions and micro-interactions that bring the page to life without relying on scroll.',
+      'style.parallax.title':'Parallax','style.parallax.desc':'Layers that move at different speeds as you scroll, creating depth.',
+      'style.static.title':'Static','style.static.desc':'Traditional layout with subtle interactions — full focus on clarity, speed and content.',
+      'style.badge.quote':'Quoted separately','style.badge.included':'Included in base',
+      'portfolio.work.eyebrow':'Selected work','portfolio.work.h1':'Projects that solved real problems.',
+      'portfolio.comingSoon':'We’re putting together our first case studies. Check back soon to see the selected work.',
+      'about.eyebrow':'About','about.h1':'A studio focused on results.',
+      'about.p1':'Alwes Studio was born from a passion for technology, design and the drive to build something of our own.',
+      'about.p2':'Founded by Rafael Alves, a self-taught developer and enthusiast of technology and Artificial Intelligence, Alwes is the result of several years exploring, learning and building digital experiences.',
+      'about.p3':'What started as a passion for code became a bigger goal: building a studio where every project gets real attention, from first idea to launch.',
+      'about.p4':'At Alwes, every project is followed closely, without being passed from hand to hand. We combine design, development and new technologies to turn ideas into digital experiences built to help businesses grow.',
+      'contact.eyebrow':'Contact','contact.h1':'Tell us about the project.','contact.name':'Name','contact.email':'Email','contact.budget':'Budget',
+      'contact.budget.opt1':'Up to €2,000','contact.budget.opt2':'€2,000 – €10,000','contact.budget.opt3':'€10,000+',
+      'contact.details':'Project details','contact.attach':'Attach a document (optional)','common.chooseFile':'Choose file',
+      'common.noFileSelected':'No file selected','common.maxSize':'Maximum size: 10MB.','common.send':'Send',
+      'contact.thanks':'Thank you! We’ve received your message. Book a call now if you’d like to move faster.','cta.bookCall':'Book a call',
+      'budget.eyebrow':'Quote','budget.title':'Build your quote.','aria.close':'Close',
+      'budget.lede':'Start with the base and add the modules your business needs. Estimated value — the final quote is confirmed after a conversation with us.',
+      'budget.websiteBase':'Website base','budget.siteType':'Website type','budget.crm.title':'CRM','budget.crm.label':'Bespoke CRM / CRM integration',
+      'budget.crm.hint':'Scope varies a lot from business to business — describe your needs in the project details and we’ll send a separate quote.',
+      'budget.langs.title':'Additional languages','budget.langs.label':'Additional languages besides Portuguese (€250 / language)',
+      'budget.langs.placeholder':'Which languages besides Portuguese? e.g. English, Spanish','budget.details.placeholder':'Tell us more about the project (optional)',
+      'budget.maint.title':'Monthly maintenance','budget.maint.opt0':'No maintenance','budget.maint.opt79':'Managed Website €79/mo','budget.maint.opt149':'Managed Plus €149/mo',
+      'budget.estimate':'Estimate','budget.submit':'Send quote request',
+      'budget.done.text1':'We’ve received your request with an estimate of','budget.done.text2':'Book a call now so we can talk about the project.','common.close':'Close',
+      'cookie.text':'We use cookies to improve your experience and analyse site traffic. You can accept or reject non-essential cookies at any time.',
+      'cookie.decline':'Reject','cookie.accept':'Accept','aria.openMenu':'Open menu',
+      'common.unit':'unit','common.page':'page',
+      'cat.main':'Main modules','cat.marketing':'Marketing & SEO','cat.integrations':'Integrations & automations','cat.features':'Additional features',
+      'mod.page':'Additional page','mod.landing':'Landing Page','mod.booking':'Booking / Reservations','mod.booking-adv':'Advanced Booking',
+      'mod.ecom':'E-commerce','mod.ecom-adv':'Advanced E-commerce','mod.login':'Customer Area / Login','mod.blog':'Blog / News',
+      'mod.members':'Membership area','mod.payments':'Online payments','mod.seo-adv':'Advanced SEO','mod.seo-tech':'Technical SEO',
+      'mod.analytics':'Google Analytics + advanced tracking','mod.gsc':'Google Search Console + setup','mod.perf':'Performance / Core Web Vitals',
+      'mod.copy':'Copywriting (per page)','mod.blog-seo':'Blog + SEO structure','mod.whatsapp':'WhatsApp / advanced contact',
+      'mod.newsletter':'Newsletter / Email marketing','mod.automations':'Automations','mod.api':'External API integration',
+      'mod.software':'External software integration','mod.notifications':'Notification system','mod.forms':'Advanced forms',
+      'mod.gallery':'Gallery / Advanced portfolio','mod.reviews':'Review system','mod.map':'Map / advanced location',
+      'mod.chat':'Chat / Live Chat','mod.social':'Social media integration','mod.search':'Internal search','mod.filters':'Filters / advanced search',
+      'mod.dashboard':'Custom dashboard','mod.custom':'Custom feature',
+      'common.sending':'Sending...','common.sent':'Sent','budget.titleSent':'Quote sent. Book a call.',
+      'alert.fileTooLarge':'File too large. Maximum size: {mb}MB.','alert.fillNameEmail':'Please fill in your name and a valid email to send the request.',
+      'alert.errorBudget':'We couldn’t send the request. Please try again or email {email}.',
+      'alert.errorContact':'We couldn’t send the message. Please try again or email {email}.',
+      'budget.sub.prefix':'Website base + modules + ','budget.sub.langSuffix':' language(s) + style ','budget.sub.quoteNote':' (quoted separately)',
+      'budget.maintSuffix':'/mo maintenance'
+    }
+  };
+  function t(key){
+    var v = (I18N[lang] && I18N[lang][key]);
+    if (v === undefined) v = I18N.pt[key];
+    return v === undefined ? key : v;
+  }
+  function tf(key, params){
+    var s = t(key);
+    Object.keys(params || {}).forEach(function(k){ s = s.split('{'+k+'}').join(params[k]); });
+    return s;
+  }
+
   var ICONS = {
     compass: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
     palette: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1.1-.2-.3-.4-.6-.4-1 0-.8.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-4.4-4.5-8-10-8Z"/></svg>',
@@ -905,15 +1118,13 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   swap(document.querySelector('.app'), iconMap);
   swap(document.getElementById('budgetBackdrop'), iconMap);
 
-  var TEMPLATES = [
-    ['home','Início'], ['services','Serviços'], ['portfolio','Portfólio'], ['about','Sobre'], ['contact','Contacto']
-  ];
+  var NAV_PAGES = ['home','services','portfolio','about','contact'];
   var navTabs = document.getElementById('navTabs');
-  TEMPLATES.forEach(function(t){
+  NAV_PAGES.forEach(function(id){
     var b = document.createElement('button');
     b.className = 'nav-tab';
-    b.dataset.goto = t[0];
-    b.appendChild(document.createTextNode(t[1]));
+    b.dataset.goto = id;
+    b.setAttribute('data-i18n', 'nav.' + id);
     navTabs.appendChild(b);
   });
 
@@ -974,70 +1185,87 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   });
 
   var MODULES = [
-    { id:'page', name:'Página adicional', price:200, qty:true, cat:'Módulos principais' },
-    { id:'landing', name:'Landing Page', price:350, qty:true, cat:'Módulos principais' },
-    { id:'booking', name:'Booking / Reservas', price:450, cat:'Módulos principais' },
-    { id:'booking-adv', name:'Booking avançado', price:750, priceLabel:'desde 750€', cat:'Módulos principais' },
-    { id:'ecom', name:'E-commerce', price:900, priceLabel:'desde 900€', cat:'Módulos principais' },
-    { id:'ecom-adv', name:'E-commerce avançado', price:1750, priceLabel:'desde 1.750€', cat:'Módulos principais' },
-    { id:'login', name:'Área de cliente / Login', price:750, priceLabel:'desde 750€', cat:'Módulos principais' },
-    { id:'blog', name:'Blog / Notícias', price:300, cat:'Módulos principais' },
-    { id:'members', name:'Área de membros', price:750, priceLabel:'desde 750€', cat:'Módulos principais' },
-    { id:'payments', name:'Pagamentos online', price:350, priceLabel:'desde 350€', cat:'Módulos principais' },
-    { id:'seo-adv', name:'SEO avançado', price:400, priceLabel:'desde 400€', cat:'Marketing & SEO' },
-    { id:'seo-tech', name:'SEO técnico', price:350, cat:'Marketing & SEO' },
-    { id:'analytics', name:'Google Analytics + tracking avançado', price:250, cat:'Marketing & SEO' },
-    { id:'gsc', name:'Google Search Console + configuração', price:150, cat:'Marketing & SEO' },
-    { id:'perf', name:'Performance / Core Web Vitals', price:350, priceLabel:'desde 350€', cat:'Marketing & SEO' },
-    { id:'copy', name:'Copywriting (por página)', price:200, priceLabel:'200€/página', cat:'Marketing & SEO' },
-    { id:'blog-seo', name:'Blog + estrutura SEO', price:400, cat:'Marketing & SEO' },
-    { id:'whatsapp', name:'WhatsApp / contacto avançado', price:150, cat:'Integrações & automações' },
-    { id:'newsletter', name:'Newsletter / Email marketing', price:250, cat:'Integrações & automações' },
-    { id:'automations', name:'Automações', price:500, priceLabel:'desde 500€', cat:'Integrações & automações' },
-    { id:'api', name:'Integração com API externa', price:750, priceLabel:'desde 750€', cat:'Integrações & automações' },
-    { id:'software', name:'Integração com software externo', price:600, priceLabel:'desde 600€', cat:'Integrações & automações' },
-    { id:'notifications', name:'Sistema de notificações', price:400, priceLabel:'desde 400€', cat:'Integrações & automações' },
-    { id:'forms', name:'Formulários avançados', price:250, priceLabel:'desde 250€', cat:'Integrações & automações' },
-    { id:'gallery', name:'Galeria / Portfólio avançado', price:250, cat:'Funcionalidades adicionais' },
-    { id:'reviews', name:'Sistema de avaliações', price:200, cat:'Funcionalidades adicionais' },
-    { id:'map', name:'Mapa / localização avançada', price:200, cat:'Funcionalidades adicionais' },
-    { id:'chat', name:'Chat / Live Chat', price:150, cat:'Funcionalidades adicionais' },
-    { id:'social', name:'Integração de redes sociais', price:100, cat:'Funcionalidades adicionais' },
-    { id:'search', name:'Pesquisa interna', price:300, cat:'Funcionalidades adicionais' },
-    { id:'filters', name:'Filtros / pesquisa avançada', price:500, priceLabel:'desde 500€', cat:'Funcionalidades adicionais' },
-    { id:'dashboard', name:'Dashboard personalizado', price:1000, priceLabel:'desde 1.000€', cat:'Funcionalidades adicionais' },
-    { id:'custom', name:'Funcionalidade personalizada', price:500, priceLabel:'desde 500€', cat:'Funcionalidades adicionais' }
+    { id:'page', nameKey:'mod.page', price:200, qty:true, catKey:'cat.main' },
+    { id:'landing', nameKey:'mod.landing', price:350, qty:true, catKey:'cat.main' },
+    { id:'booking', nameKey:'mod.booking', price:450, catKey:'cat.main' },
+    { id:'booking-adv', nameKey:'mod.booking-adv', price:750, priceKind:'from', catKey:'cat.main' },
+    { id:'ecom', nameKey:'mod.ecom', price:900, priceKind:'from', catKey:'cat.main' },
+    { id:'ecom-adv', nameKey:'mod.ecom-adv', price:1750, priceKind:'from', catKey:'cat.main' },
+    { id:'login', nameKey:'mod.login', price:750, priceKind:'from', catKey:'cat.main' },
+    { id:'blog', nameKey:'mod.blog', price:300, catKey:'cat.main' },
+    { id:'members', nameKey:'mod.members', price:750, priceKind:'from', catKey:'cat.main' },
+    { id:'payments', nameKey:'mod.payments', price:350, priceKind:'from', catKey:'cat.main' },
+    { id:'seo-adv', nameKey:'mod.seo-adv', price:400, priceKind:'from', catKey:'cat.marketing' },
+    { id:'seo-tech', nameKey:'mod.seo-tech', price:350, catKey:'cat.marketing' },
+    { id:'analytics', nameKey:'mod.analytics', price:250, catKey:'cat.marketing' },
+    { id:'gsc', nameKey:'mod.gsc', price:150, catKey:'cat.marketing' },
+    { id:'perf', nameKey:'mod.perf', price:350, priceKind:'from', catKey:'cat.marketing' },
+    { id:'copy', nameKey:'mod.copy', price:200, priceKind:'perPage', catKey:'cat.marketing' },
+    { id:'blog-seo', nameKey:'mod.blog-seo', price:400, catKey:'cat.marketing' },
+    { id:'whatsapp', nameKey:'mod.whatsapp', price:150, catKey:'cat.integrations' },
+    { id:'newsletter', nameKey:'mod.newsletter', price:250, catKey:'cat.integrations' },
+    { id:'automations', nameKey:'mod.automations', price:500, priceKind:'from', catKey:'cat.integrations' },
+    { id:'api', nameKey:'mod.api', price:750, priceKind:'from', catKey:'cat.integrations' },
+    { id:'software', nameKey:'mod.software', price:600, priceKind:'from', catKey:'cat.integrations' },
+    { id:'notifications', nameKey:'mod.notifications', price:400, priceKind:'from', catKey:'cat.integrations' },
+    { id:'forms', nameKey:'mod.forms', price:250, priceKind:'from', catKey:'cat.integrations' },
+    { id:'gallery', nameKey:'mod.gallery', price:250, catKey:'cat.features' },
+    { id:'reviews', nameKey:'mod.reviews', price:200, catKey:'cat.features' },
+    { id:'map', nameKey:'mod.map', price:200, catKey:'cat.features' },
+    { id:'chat', nameKey:'mod.chat', price:150, catKey:'cat.features' },
+    { id:'social', nameKey:'mod.social', price:100, catKey:'cat.features' },
+    { id:'search', nameKey:'mod.search', price:300, catKey:'cat.features' },
+    { id:'filters', nameKey:'mod.filters', price:500, priceKind:'from', catKey:'cat.features' },
+    { id:'dashboard', nameKey:'mod.dashboard', price:1000, priceKind:'from', catKey:'cat.features' },
+    { id:'custom', nameKey:'mod.custom', price:500, priceKind:'from', catKey:'cat.features' }
   ];
+
+  function fmtPrice(price){ return price.toLocaleString('pt-PT'); }
+  function moduleUnitLabel(m){ return m.price + '€ / ' + t('common.unit'); }
+  function modulePriceLabel(m){
+    if (m.priceKind === 'from') return t('common.from') + ' ' + fmtPrice(m.price) + '€';
+    if (m.priceKind === 'perPage') return m.price + '€/' + t('common.page');
+    return m.price + '€';
+  }
 
   var moduleList = document.getElementById('moduleList');
   var selected = {};
+  var moduleI18nRefs = [];
   var lastCat = null;
   MODULES.forEach(function(m){
-    if (m.cat !== lastCat){
+    if (m.catKey !== lastCat){
       var h = document.createElement('div');
       h.className = 'mod-cat';
-      h.textContent = m.cat;
+      h.setAttribute('data-i18n', m.catKey);
       moduleList.appendChild(h);
-      lastCat = m.cat;
+      lastCat = m.catKey;
     }
     if (m.qty){
       selected[m.id] = 0;
       var row = document.createElement('div');
       row.className = 'lang-row';
-      row.innerHTML = '<span>'+m.name+' ('+m.price+'€ / unidade)</span><div class="stepper"><button type="button" class="qty-dec">–</button><span class="qty-count">0</span><button type="button" class="qty-inc">+</button></div>';
+      var nameSpan = document.createElement('span');
+      row.appendChild(nameSpan);
+      row.insertAdjacentHTML('beforeend', '<div class="stepper"><button type="button" class="qty-dec">–</button><span class="qty-count">0</span><button type="button" class="qty-inc">+</button></div>');
       var qtyEl = row.querySelector('.qty-count');
       row.querySelector('.qty-dec').addEventListener('click', function(){ selected[m.id] = Math.max(0, selected[m.id]-1); qtyEl.textContent = selected[m.id]; updateTotal(); });
       row.querySelector('.qty-inc').addEventListener('click', function(){ selected[m.id]++; qtyEl.textContent = selected[m.id]; updateTotal(); });
       moduleList.appendChild(row);
+      moduleI18nRefs.push({ el: nameSpan, fn: function(){ return t(m.nameKey) + ' (' + moduleUnitLabel(m) + ')'; } });
     } else {
       var label = document.createElement('label');
       label.className = 'mod-row';
-      label.innerHTML = '<span class="mod-row-left"><input type="checkbox"><span class="mod-box"></span>'+m.name+'</span><span class="mod-price">'+(m.priceLabel || (m.price+'€'))+'</span>';
+      label.innerHTML = '<span class="mod-row-left"><input type="checkbox"><span class="mod-box"></span><span class="mod-name"></span></span><span class="mod-price"></span>';
       var input = label.querySelector('input');
       input.addEventListener('change', function(){ selected[m.id] = input.checked ? 1 : 0; updateTotal(); });
       moduleList.appendChild(label);
+      moduleI18nRefs.push({ el: label.querySelector('.mod-name'), fn: function(){ return t(m.nameKey); } });
+      moduleI18nRefs.push({ el: label.querySelector('.mod-price'), fn: function(){ return modulePriceLabel(m); } });
     }
   });
+  function renderModuleLabels(){
+    moduleI18nRefs.forEach(function(ref){ ref.el.textContent = ref.fn(); });
+  }
 
   var langCount = 0;
   var langCountEl = document.getElementById('langCount');
@@ -1072,14 +1300,15 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   var totalEl = document.getElementById('budgetTotal');
   var subEl = document.getElementById('budgetSub');
   var maintEl = document.getElementById('budgetMaint');
+  var STYLE_KEYS = { 'Scroll Cinemático':'style.scroll.title', 'Motion Design':'style.motion.title', 'Parallax':'style.parallax.title', 'Estático':'style.static.title' };
   function updateTotal(){
     var sum = 649;
     Object.keys(selected).forEach(function(id){ if (selected[id]){ var m = MODULES.find(function(x){return x.id===id;}); sum += m.price * selected[id]; } });
     sum += langCount * 250;
     totalEl.textContent = sum + '€';
-    var styleNote = QUOTE_STYLES.indexOf(siteStyleValue) !== -1 ? ' (por orçamento)' : '';
-    subEl.textContent = 'Website base + módulos + ' + langCount + ' idioma(s) + estilo ' + siteStyleValue + styleNote;
-    if (maintValue > 0){ maintEl.style.display='block'; maintEl.textContent = maintValue + '€/mês manutenção'; }
+    var styleNote = QUOTE_STYLES.indexOf(siteStyleValue) !== -1 ? t('budget.sub.quoteNote') : '';
+    subEl.textContent = t('budget.sub.prefix') + langCount + t('budget.sub.langSuffix') + t(STYLE_KEYS[siteStyleValue] || siteStyleValue) + styleNote;
+    if (maintValue > 0){ maintEl.style.display='block'; maintEl.textContent = maintValue + '€' + t('budget.maintSuffix'); }
     else { maintEl.style.display='none'; }
     return sum;
   }
@@ -1088,7 +1317,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
   var dialogTitle = document.getElementById('dialogTitle');
   var budgetForm = document.getElementById('budgetForm');
   var budgetDone = document.getElementById('budgetDone');
-  function openBudget(){ backdrop.classList.add('open'); dialogTitle.textContent = 'Simule o seu projeto.'; budgetForm.hidden = false; budgetDone.hidden = true; }
+  function openBudget(){ backdrop.classList.add('open'); dialogTitle.textContent = t('budget.title'); budgetForm.hidden = false; budgetDone.hidden = true; }
   function closeBudget(){ backdrop.classList.remove('open'); }
   document.addEventListener('click', function(e){
     if (e.target.closest('.open-budget')){ e.preventDefault(); openBudget(); }
@@ -1111,12 +1340,12 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     if (!input || !nameEl) return;
     input.setAttribute('accept', FILE_ACCEPT);
     input.addEventListener('change', function(){
-      if (!input.files.length){ nameEl.textContent = 'Nenhum ficheiro selecionado'; return; }
+      if (!input.files.length){ nameEl.textContent = t('common.noFileSelected'); return; }
       var file = input.files[0];
       if (file.size > FILE_MAX_MB * 1024 * 1024){
-        alert('Ficheiro demasiado grande. Tamanho máximo: ' + FILE_MAX_MB + 'MB.');
+        alert(tf('alert.fileTooLarge', { mb: FILE_MAX_MB }));
         input.value = '';
-        nameEl.textContent = 'Nenhum ficheiro selecionado';
+        nameEl.textContent = t('common.noFileSelected');
         return;
       }
       nameEl.textContent = file.name;
@@ -1140,7 +1369,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     var bqNameVal = bqNameInput.value.trim();
     var bqEmailVal = bqEmailInput.value.trim();
     if (!bqNameVal || !bqEmailInput.checkValidity()){
-      alert('Preencha o seu nome e um email válido para enviar o pedido.');
+      alert(t('alert.fillNameEmail'));
       (!bqNameVal ? bqNameInput : bqEmailInput).focus();
       return;
     }
@@ -1175,7 +1404,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     var submitBudgetLabel = submitBudgetBtn.querySelector('span');
     var submitBudgetOriginal = submitBudgetLabel.textContent;
     submitBudgetBtn.disabled = true;
-    submitBudgetLabel.textContent = 'A enviar...';
+    submitBudgetLabel.textContent = t('common.sending');
 
     var params = {
       subject: 'Pedido de orçamento — Alwes Studio',
@@ -1189,10 +1418,10 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     }
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(function(){
-      submitBudgetLabel.textContent = 'Enviado';
+      submitBudgetLabel.textContent = t('common.sent');
       setTimeout(function(){
         document.getElementById('doneTotal').textContent = total + '€';
-        dialogTitle.textContent = 'Pedido enviado. Marque uma chamada.';
+        dialogTitle.textContent = t('budget.titleSent');
         budgetForm.hidden = true;
         budgetDone.hidden = false;
         submitBudgetBtn.disabled = false;
@@ -1200,7 +1429,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
       }, 4000);
     }).catch(function(err){
       console.error('EmailJS error', err);
-      alert('Não foi possível enviar o pedido. Tente novamente ou envie um email para ' + CONTACT_EMAIL + '.');
+      alert(tf('alert.errorBudget', { email: CONTACT_EMAIL }));
       submitBudgetBtn.disabled = false;
       submitBudgetLabel.textContent = submitBudgetOriginal;
     });
@@ -1228,7 +1457,7 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     var submitContactBtn = contactForm.querySelector('button[type="submit"]');
     var submitContactOriginal = submitContactBtn.textContent;
     submitContactBtn.disabled = true;
-    submitContactBtn.textContent = 'A enviar...';
+    submitContactBtn.textContent = t('common.sending');
 
     var params = {
       subject: 'Novo contacto — ' + name,
@@ -1242,14 +1471,14 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     }
 
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(function(){
-      submitContactBtn.textContent = 'Enviado';
+      submitContactBtn.textContent = t('common.sent');
       setTimeout(function(){
         contactForm.hidden = true;
         contactDone.hidden = false;
       }, 4000);
     }).catch(function(err){
       console.error('EmailJS error', err);
-      alert('Não foi possível enviar a mensagem. Tente novamente ou envie um email para ' + CONTACT_EMAIL + '.');
+      alert(tf('alert.errorContact', { email: CONTACT_EMAIL }));
       submitContactBtn.disabled = false;
       submitContactBtn.textContent = submitContactOriginal;
     });
@@ -1280,6 +1509,27 @@ textarea.input{min-height:96px;resize:vertical;font-family:inherit;}
     }, { rootMargin: '100px' });
     styleVideos.forEach(function(v){ videoObserver.observe(v); });
   }
+
+  function applyLanguage(){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){ el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){ el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder'))); });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function(el){ el.setAttribute('alt', t(el.getAttribute('data-i18n-alt'))); });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el){ el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria-label'))); });
+    document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.lang === lang); });
+    renderModuleLabels();
+    updateTotal();
+  }
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (b.dataset.lang === lang) return;
+      lang = b.dataset.lang;
+      localStorage.setItem(LANG_KEY, lang);
+      applyLanguage();
+    });
+  });
+  applyLanguage();
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
